@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ink: #1e1b2e;
+    --purple: #5b3e96;
+    --purple-dark: #46307a;
+    --blue: #2f6fed;
+    --bg: #ffffff;
+    --panel-bg: #f6f6fc;
+    --muted: #726f85;
+    --border: #e6e5f0;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+.page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+}
+
+/* ---------- Brand panel ---------- */
+
+.brand-panel {
+    background:
+        radial-gradient(circle at 15% 12%, rgba(47, 111, 237, 0.10), transparent 55%),
+        radial-gradient(circle at 85% 88%, rgba(91, 62, 150, 0.12), transparent 55%),
+        var(--panel-bg);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    padding: 60px;
+    border-right: 1px solid var(--border);
+}
+
+.brand-panel__content {
+    max-width: 320px;
+}
+
+.brand-panel__logo {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--purple);
+    margin-bottom: 14px;
+}
+
+.brand-panel__tagline {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 220px;
+}
+
+.pulse {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 56px;
+}
+
+.pulse__line {
+    fill: none;
+    stroke: url(#pulse-gradient);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 620;
+    stroke-dashoffset: 620;
+    animation: draw-pulse 1.8s ease-out 0.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pulse__line {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes draw-pulse {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ---------- Form panel ---------- */
+
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form-panel__content {
+    width: 100%;
+    max-width: 360px;
+}
+
+.form-panel__content h2 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-panel__subtitle {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin-bottom: 36px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+.field input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14.5px;
+    font-family: inherit;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.field input:focus {
+    border-color: var(--blue);
+}
+
+.field input::placeholder {
+    color: #aab2ac;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    font-size: 13px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+}
+
+.remember input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--purple);
+}
+
+.forgot-password {
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.login-button:hover {
+    filter: brightness(0.94);
+    transform: translateY(-1px);
+}
+
+.login-button:focus-visible,
+.field input:focus-visible,
+.forgot-password:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.register {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 13.5px;
+    color: var(--muted);
+}
+
+.register a {
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 880px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-panel {
+        padding: 40px 32px;
+        justify-content: center;
+    }
+
+    .brand-panel__content {
+        max-width: none;
+        text-align: center;
+    }
+
+    .brand-panel__tagline {
+        max-width: none;
+        margin: 0 auto;
+    }
+
+    .pulse {
+        max-width: 320px;
+        margin: 32px auto 0;
+    }
+
+    .form-panel {
+        padding: 40px 24px 56px;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-panel__logo {
+        font-size: 36px;
+    }
+
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,369 @@
+/* =======================================================
+Clinify — Layout (sidebar + header)
+Componente padrão para ser incluído em todas as telas (css/layout.css + js/layout.js)
+   ======================================================= */
+
+:root {
+    --ink: #1e1b2e;
+    --purple: #5b3e96;
+    --purple-dark: #46307a;
+    --purple-soft: #efeafc;
+    --blue: #2f6fed;
+    --blue-soft: #eaf0ff;
+    --bg: #f6f6fc;
+    --surface: #ffffff;
+    --muted: #726f85;
+    --border: #e6e5f0;
+
+    --sidebar-w: 248px;
+    --sidebar-w-collapsed: 76px;
+    --topbar-h: 68px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+/* ---------- Shell ---------- */
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+    position: relative;
+    flex: 0 0 var(--sidebar-w);
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 22px 16px;
+    transition: width 0.2s ease, flex-basis 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 10px 26px;
+    overflow: hidden;
+}
+
+.sidebar__mark {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 18px;
+}
+
+.sidebar__brand-text {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar__eyebrow {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.2;
+}
+
+.sidebar__wordmark {
+    display: block;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.2;
+    color: var(--ink);
+}
+
+.sidebar__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.sidebar__link svg {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar__link:hover {
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.sidebar__link.is-active {
+    background: var(--purple-soft);
+    color: var(--purple);
+}
+
+.sidebar__link-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Collapse toggle tab on the sidebar edge */
+
+.sidebar__toggle {
+    position: absolute;
+    top: 26px;
+    right: -13px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.2s;
+}
+
+.sidebar__toggle:hover {
+    color: var(--purple);
+}
+
+.sidebar__toggle svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ---------- Collapsed state (desktop) ---------- */
+
+.app-shell.is-collapsed .sidebar {
+    flex-basis: var(--sidebar-w-collapsed);
+    width: var(--sidebar-w-collapsed);
+}
+
+.app-shell.is-collapsed .sidebar__brand-text,
+.app-shell.is-collapsed .sidebar__link-text {
+    display: none;
+}
+
+.app-shell.is-collapsed .sidebar__brand {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.app-shell.is-collapsed .sidebar__link {
+    justify-content: center;
+}
+
+.app-shell.is-collapsed .sidebar__toggle svg {
+    transform: rotate(180deg);
+}
+
+/* ---------- Main column ---------- */
+
+.app-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar {
+    height: var(--topbar-h);
+    flex: 0 0 var(--topbar-h);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar__menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.topbar__menu-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.topbar__search {
+    flex: 1 1 auto;
+    max-width: 480px;
+    position: relative;
+}
+
+.topbar__search svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 17px;
+    color: var(--muted);
+}
+
+.topbar__search input {
+    width: 100%;
+    height: 40px;
+    padding: 0 14px 0 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.topbar__search input:focus {
+    border-color: var(--blue);
+    background: var(--surface);
+}
+
+.topbar__search input::placeholder {
+    color: #a3a0b3;
+}
+
+.topbar__spacer {
+    flex: 1 1 auto;
+}
+
+.topbar__bell {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.topbar__bell svg {
+    width: 18px;
+    height: 18px;
+}
+
+.topbar__bell .dot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+    border: 1.5px solid var(--surface);
+}
+
+/* ---------- Page content area ---------- */
+
+.app-content {
+    flex: 1 1 auto;
+    padding: 32px;
+}
+
+/* ---------- Mobile drawer ---------- */
+
+.sidebar__backdrop {
+    display: none;
+}
+
+@media (max-width: 880px) {
+    .topbar__menu-btn {
+        display: inline-flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 40;
+        transform: translateX(-100%);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .sidebar__toggle {
+        display: none;
+    }
+
+    .app-shell.is-mobile-open .sidebar {
+        transform: translateX(0);
+        box-shadow: 20px 0 40px rgba(30, 27, 46, 0.12);
+    }
+
+    .app-shell.is-mobile-open .sidebar__backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(30, 27, 46, 0.35);
+        z-index: 30;
+    }
+
+    .app-shell.is-collapsed .sidebar {
+        width: var(--sidebar-w);
+        flex-basis: var(--sidebar-w);
+    }
+
+    .app-shell.is-collapsed .sidebar__brand-text,
+    .app-shell.is-collapsed .sidebar__link-text {
+        display: block;
+    }
+
+    .app-content {
+        padding: 22px 18px;
+    }
+}

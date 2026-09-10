@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinify - Perfil</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f5ff;
+            color: #172052;
+        }
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e8e5f5;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            padding: 25px 18px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 0 12px 35px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            border: 2px solid #987cff;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo-small {
+            font-size: 7px;
+            letter-spacing: 3px;
+            color: #888da5;
+        }
+
+        .logo-name {
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        /* MENU */
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .menu-item {
+            border: none;
+            background: transparent;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            font-size: 14px;
+            color: #555a75;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f2efff;
+            color: #6246e5;
+        }
+
+        .menu-item.active {
+            background: #eee9ff;
+            color: #6246e5;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            width: 22px;
+            text-align: center;
+        }
+
+        /* =========================
+           CONTEÚDO
+        ========================= */
+
+        .main {
+            width: calc(100% - 250px);
+            margin-left: 250px;
+
+            padding: 35px;
+        }
+
+        /* =========================
+           HEADER PERFIL
+        ========================= */
+
+        .profile-header {
+            min-height: 220px;
+
+            border-radius: 18px;
+
+            background: linear-gradient(
+                120deg,
+                #efecff,
+                #fbfaff,
+                #f0edff
+            );
+
+            border: 1px solid #e6e1f5;
+
+            display: flex;
+            align-items: center;
+
+            padding: 35px 45px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(72, 57, 145, 0.08);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        /* AVATAR */
+
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar {
+            width: 125px;
+            height: 125px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #4ac8d7,
+                #3bb7ca
+            );
+
+            border: 4px solid white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 48px;
+        }
+
+        .edit-avatar {
+            position: absolute;
+
+            right: 0;
+            bottom: 2px;
+
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            background: white;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,.1);
+        }
+
+        /* INFORMAÇÕES DO PERFIL */
+
+        .profile-info h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .level {
+            color: #6246e5;
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            margin-bottom: 13px;
+        }
+
+        /* XP */
+
+        .xp-container {
+            width: 310px;
+        }
+
+        .xp-bar {
+            width: 100%;
+            height: 9px;
+
+            background: #dddbe7;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .xp-progress {
+            width: 82%;
+            height: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #5041ff,
+                #b05cf0
+            );
+
+            border-radius: 20px;
+        }
+
+        .xp-text {
+            font-size: 11px;
+
+            color: #70748b;
+
+            margin-top: 8px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e8e5f5;
+
+            border-radius: 16px;
+
+            box-shadow: 0 8px 24px rgba(72,57,145,.07);
+        }
+
+        /* =========================
+           CONQUISTAS
+        ========================= */
+
+        .achievements {
+            margin-top: 28px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 20px 24px 12px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 18px;
+        }
+
+        .card-title-icon {
+            color: #6246e5;
+        }
+
+        .link {
+            border: none;
+            background: transparent;
+
+            color: #6246e5;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .achievement-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            padding: 10px 22px 22px;
+        }
+
+        .achievement {
+            background: #f8f7ff;
+
+            border-radius: 15px;
+
+            padding: 17px;
+
+            min-height: 105px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .achievement:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(90,70,200,.1);
+        }
+
+        .badge {
+            width: 58px;
+            height: 58px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #e5e2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+        .badge.green {
+            background: #dcf8ed;
+        }
+
+        .badge.purple {
+            background: #eee3ff;
+        }
+
+        .badge.gray {
+            background: #e9edf5;
+        }
+
+        .achievement-title {
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .achievement-description {
+            font-size: 10px;
+
+            color: #81859b;
+        }
+
+        /* =========================
+           GRID INFERIOR
+        ========================= */
+
+        .content-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+
+            margin-top: 25px;
+        }
+
+        /* =========================
+           INFORMAÇÕES
+        ========================= */
+
+        .info-card {
+            padding: 0 24px 20px;
+        }
+
+        .info-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #efedf7;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #f3f0ff;
+
+            color: #6246e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-label {
+            font-size: 10px;
+
+            color: #85899e;
+
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+        /* =========================
+           PROGRESSO
+        ========================= */
+
+        .progress-card {
+            padding: 0 24px 22px;
+        }
+
+        .progress-content {
+            display: grid;
+
+            grid-template-columns: 150px 1fr;
+
+            gap: 22px;
+
+            align-items: center;
+        }
+
+        /* DONUT */
+
+        .donut {
+            width: 135px;
+            height: 135px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            background: conic-gradient(
+                #6246e5 68%,
+                #e9e8f0 0
+            );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .donut::after {
+            content: "";
+
+            position: absolute;
+
+            width: 98px;
+            height: 98px;
+
+            background: white;
+
+            border-radius: 50%;
+        }
+
+        .donut-text {
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+        }
+
+        .donut-number {
+            display: block;
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+        .donut-label {
+            font-size: 10px;
+
+            color: #85899e;
+        }
+
+        /* MÉTRICAS */
+
+        .metric {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 10px 0;
+
+            border-bottom: 1px solid #efedf7;
+
+            font-size: 12px;
+        }
+
+        .metric-name {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #777c95;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #6246e5;
+        }
+
+        .dot.green {
+            background: #2fc58d;
+        }
+
+        .dot.orange {
+            background: #f59e0b;
+        }
+
+        /* =========================
+           SEMANA
+        ========================= */
+
+        .week {
+            grid-column: 1 / -1;
+
+            background: #fbfaff;
+
+            border: 1px solid #eeeaf9;
+
+            border-radius: 12px;
+
+            padding: 12px;
+        }
+
+        .week-title {
+            font-size: 11px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+        }
+
+        .days {
+            display: grid;
+
+            grid-template-columns: repeat(7, 1fr);
+
+            text-align: center;
+        }
+
+        .day-name {
+            display: block;
+
+            font-size: 9px;
+
+            color: #85899e;
+
+            margin-bottom: 7px;
+        }
+
+        .day-circle {
+            width: 23px;
+            height: 23px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            border: 1px solid #d8d6e8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 10px;
+        }
+
+        .day.completed .day-circle {
+            background: #6246e5;
+
+            border-color: #6246e5;
+
+            color: white;
+        }
+
+        /* =========================
+           ATIVIDADES
+        ========================= */
+
+        .activity {
+            margin-top: 22px;
+
+            padding-bottom: 10px;
+        }
+
+        .activity-list {
+            padding: 0 24px;
+        }
+
+        .activity-item {
+            display: grid;
+
+            grid-template-columns: 35px 1fr auto;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #efedf7;
+
+            cursor: pointer;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 30px;
+            height: 30px;
+
+            border-radius: 50%;
+
+            background: #2fc58d;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-icon.purple {
+            background: #6246e5;
+        }
+
+        .activity-icon.blue {
+            background: #3b82f6;
+        }
+
+        .activity-title {
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .activity-description {
+            font-size: 10px;
+
+            color: #85899e;
+
+            margin-top: 3px;
+        }
+
+        .activity-time {
+            font-size: 10px;
+
+            color: #85899e;
+        }
+
+        /* =========================
+           TOAST
+        ========================= */
+
+        .toast {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            background: #172052;
+
+            color: white;
+
+            padding: 14px 18px;
+
+            border-radius: 10px;
+
+            opacity: 0;
+
+            transform: translateY(20px);
+
+            pointer-events: none;
+
+            transition: .3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .achievement-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                width: 70px;
+            }
+
+            .logo-text,
+            .logo-small,
+            .menu-text {
+                display: none;
+            }
+
+            .logo {
+                justify-content: center;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .menu-item {
+                justify-content: center;
+            }
+
+            .main {
+                width: calc(100% - 70px);
+
+                margin-left: 70px;
+
+                padding: 18px;
+            }
+
+            .profile-header {
+                padding: 25px;
+            }
+
+            .avatar {
+                width: 90px;
+                height: 90px;
+
+                font-size: 35px;
+            }
+
+            .profile-info h1 {
+                font-size: 23px;
+            }
+
+            .xp-container {
+                width: 220px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile {
+                gap: 15px;
+            }
+
+            .profile-header {
+                padding: 20px;
+            }
+
+            .avatar {
+                width: 75px;
+                height: 75px;
+            }
+
+            .profile-info h1 {
+                font-size: 19px;
+            }
+
+            .level {
+                font-size: 16px;
+            }
+
+            .xp-container {
+                width: 170px;
+            }
+
+            .progress-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                C
+            </div>
+
+            <div>
+                <div class="logo-small">
+                    PROJETO
+                </div>
+
+                <div class="logo-name">
+                    CLINIFY
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="menu">
+
+            <button class="menu-item" onclick="navegar('Home')">
+                <span class="menu-icon">⌂</span>
+                <span class="menu-text">Home</span>
+            </button>
+
+            <button class="menu-item" onclick="navegar('Simulação Clínica')">
+                <span class="menu-icon">♧</span>
+                <span class="menu-text">Simulação Clínica</span>
+            </button>
+
+            <button class="menu-item" onclick="navegar('Estudos')">
+                <span class="menu-icon">▣</span>
+                <span class="menu-text">Estudos</span>
+            </button>
+
+            <button class="menu-item" onclick="navegar('Desempenho')">
+                <span class="menu-icon">↗</span>
+                <span class="menu-text">Desempenho</span>
+            </button>
+
+            <button class="menu-item active" onclick="navegar('Perfil')">
+                <span class="menu-icon">♙</span>
+                <span class="menu-text">Perfil</span>
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================= -->
+
+    <main class="main">
+
+        <!-- PERFIL -->
+
+        <section class="profile-header">
+
+            <div class="profile">
+
+                <div class="avatar-container">
+
+                    <div class="avatar">
+                        E
+                    </div>
+
+                    <button
+                        class="edit-avatar"
+                        onclick="mostrarMensagem('Editar foto do perfil')">
+                        ✎
+                    </button>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <h1>
+                        Estudante
+                    </h1>
+
+                    <div class="level">
+                        Nível 5
+                    </div>
+
+                    <div class="xp-container">
+
+                        <div class="xp-bar">
+
+                            <div class="xp-progress"></div>
+
+                        </div>
+
+                        <div class="xp-text">
+                            2.450 / 3.000 XP
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONQUISTAS -->
+
+        <section class="card achievements">
+
+            <div class="card-header">
+
+                <h2 class="card-title">
+                    <span class="card-title-icon">♢</span>
+                    Conquistas
+                </h2>
+
+                <button
+                    class="link"
+                    onclick="mostrarMensagem('Abrindo todas as conquistas...')">
+                    Ver todas ›
+                </button>
+
+            </div>
+
+
+            <div class="achievement-grid">
+
+                <div
+                    class="achievement"
+                    onclick="mostrarMensagem('Primeiros Passos desbloqueada!')">
+
+                    <div class="badge">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <div class="achievement-title">
+                            Primeiros Passos
+                        </div>
+
+                        <div class="achievement-description">
+                            Concluiu 5 estudos
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    onclick="mostrarMensagem('Disciplina desbloqueada!')">
+
+                    <div class="badge green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <div class="achievement-title">
+                            Disciplina
+                        </div>
+
+                        <div class="achievement-description">
+                            7 dias seguidos
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    onclick="mostrarMensagem('Bom Desempenho desbloqueada!')">
+
+                    <div class="badge purple">
+                        ✿
+                    </div>
+
+                    <div>
+
+                        <div class="achievement-title">
+                            Bom Desempenho
+                        </div>
+
+                        <div class="achievement-description">
+                            85%+ de acertos
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    onclick="mostrarMensagem('Explorador desbloqueada!')">
+
+                    <div class="badge gray">
+                        ♜
+                    </div>
+
+                    <div>
+
+                        <div class="achievement-title">
+                            Explorador
+                        </div>
+
+                        <div class="achievement-description">
+                            10 casos concluídos
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CARDS -->
+
+        <div class="content-grid">
+
+            <!-- INFORMAÇÕES -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <h2 class="card-title">
+                        <span class="card-title-icon">♙</span>
+                        Informações
+                    </h2>
+
+                    <button
+                        class="link"
+                        onclick="mostrarMensagem('Modo de edição ativado')">
+                        ✎
+                    </button>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            ♙
+                        </div>
+
+                        <div>
+
+                            <div class="info-label">
+                                Nome Completo
+                            </div>
+
+                            <div class="info-value">
+                                Estudante
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            ✉
+                        </div>
+
+                        <div>
+
+                            <div class="info-label">
+                                Email
+                            </div>
+
+                            <div class="info-value">
+                                estudante@example.com
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <div class="info-icon">
+                            ▣
+                        </div>
+
+                        <div>
+
+                            <div class="info-label">
+                                Semestre
+                            </div>
+
+                            <div class="info-value">
+                                1º Semestre - Medicina
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROGRESSO -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <h2 class="card-title">
+                        <span class="card-title-icon">▥</span>
+                        Progresso de estudos
+                    </h2>
+
+                    <button
+                        class="link"
+                        onclick="mostrarMensagem('Detalhes do progresso')">
+                        Ver detalhes ›
+                    </button>
+
+                </div>
+
+
+                <div class="progress-card">
+
+                    <div class="progress-content">
+
+
+                        <div class="donut">
+
+                            <div class="donut-text">
+
+                                <span class="donut-number">
+                                    68%
+                                </span>
+
+                                <span class="donut-label">
+                                    da semana
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="metric">
+
+                                <span class="metric-name">
+                                    <span class="dot"></span>
+                                    Estudos
+                                </span>
+
+                                <strong>
+                                    12 / 18
+                                </strong>
+
+                            </div>
+
+
+                            <div class="metric">
+
+                                <span class="metric-name">
+                                    <span class="dot green"></span>
+                                    Casos resolvidos
+                                </span>
+
+                                <strong>
+                                    8 / 12
+                                </strong>
+
+                            </div>
+
+
+                            <div class="metric">
+
+                                <span class="metric-name">
+                                    <span class="dot orange"></span>
+                                    Revisões
+                                </span>
+
+                                <strong>
+                                    4 / 6
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SEMANA -->
+
+                        <div class="week">
+
+                            <div class="week-title">
+                                Semana atual
+                            </div>
+
+                            <div class="days">
+
+                                <div class="day completed">
+                                    <span class="day-name">S</span>
+                                    <span class="day-circle">✓</span>
+                                </div>
+
+                                <div class="day completed">
+                                    <span class="day-name">T</span>
+                                    <span class="day-circle">✓</span>
+                                </div>
+
+                                <div class="day completed">
+                                    <span class="day-name">Q</span>
+                                    <span class="day-circle">✓</span>
+                                </div>
+
+                                <div class="day completed">
+                                    <span class="day-name">Q</span>
+                                    <span class="day-circle">✓</span>
+                                </div>
+
+                                <div class="day completed">
+                                    <span class="day-name">S</span>
+                                    <span class="day-circle">✓</span>
+                                </div>
+
+                                <div class="day">
+                                    <span class="day-name">S</span>
+                                    <span class="day-circle"></span>
+                                </div>
+
+                                <div class="day">
+                                    <span class="day-name">D</span>
+                                    <span class="day-circle"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ATIVIDADE RECENTE -->
+
+        <section class="card activity">
+
+            <div class="card-header">
+
+                <h2 class="card-title">
+                    <span class="card-title-icon">◷</span>
+                    Atividade recente
+                </h2>
+
+                <button
+                    class="link"
+                    onclick="mostrarMensagem('Abrindo histórico completo')">
+                    Ver tudo ›
+                </button>
+
+            </div>
+
+
+            <div class="activity-list">
+
+
+                <div
+                    class="activity-item"
+                    onclick="mostrarMensagem('Estudo concluído')">
+
+                    <div class="activity-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <div class="activity-title">
+                            Estudo concluído
+                        </div>
+
+                        <div class="activity-description">
+                            Cardiologia - Insuficiência Cardíaca
+                        </div>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Hoje, 14:32 ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="activity-item"
+                    onclick="mostrarMensagem('Caso clínico resolvido')">
+
+                    <div class="activity-icon purple">
+                        ●
+                    </div>
+
+                    <div>
+
+                        <div class="activity-title">
+                            Caso resolvido
+                        </div>
+
+                        <div class="activity-description">
+                            Caso clínico - Dor abdominal
+                        </div>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Hoje, 11:20 ›
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="activity-item"
+                    onclick="mostrarMensagem('Novo estudo liberado')">
+
+                    <div class="activity-icon blue">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <div class="activity-title">
+                            Novo estudo liberado
+                        </div>
+
+                        <div class="activity-description">
+                            Pediatria - Febre em crianças
+                        </div>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Ontem, 17:45 ›
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+    /*
+    ==========================================
+    SISTEMA DE NAVEGAÇÃO
+    ==========================================
+    */
+
+    function navegar(pagina) {
+
+        document.querySelectorAll(".menu-item")
+            .forEach(item => {
+                item.classList.remove("active");
+            });
+
+        event.currentTarget.classList.add("active");
+
+        mostrarMensagem(
+            "Você selecionou: " + pagina
+        );
+    }
+
+
+    /*
+    ==========================================
+    MENSAGENS
+    ==========================================
+    */
+
+    let timeout;
+
+    function mostrarMensagem(mensagem) {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = mensagem;
+
+        toast.classList.add("show");
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2500);
+    }
+
+</script>
+
+</body>
+</html>

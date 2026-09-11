@@ -1,0 +1,155 @@
+.content-page {
+    padding: 26px 38px 40px;
+    max-width: 900px;
+}
+
+.content-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: var(--muted);
+    text-decoration: none;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+
+    margin-bottom: 18px;
+}
+
+.content-back svg {
+    width: 15px;
+    height: 15px;
+}
+
+.content-back:hover {
+    color: var(--text);
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 28px;
+}
+
+.content-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.content-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.content-header h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 3px;
+    color: var(--text);
+}
+
+.content-header p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* módulos */
+
+.content-modules {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content-module {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 14px 16px;
+
+    background: #fafafa;
+    border: 1px solid #d6d3d9;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: inherit;
+
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.content-module:hover {
+    border-color: #9b97a2;
+    transform: translateX(2px);
+}
+
+.content-module__status {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    background: #e6e4e6;
+    color: #918d95;
+}
+
+.content-module__status svg {
+    width: 14px;
+    height: 14px;
+}
+
+.content-module.is-done .content-module__status {
+    background: #d7f0c9;
+    color: #3f7a2a;
+}
+
+.content-module.is-current .content-module__status {
+    background: #ece0f7;
+    color: #7a3bc4;
+}
+
+.content-module__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.content-module__body h3 {
+    margin: 0 0 2px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #29272b;
+}
+
+.content-module__body span {
+    font-size: 11.5px;
+    color: #918d95;
+}
+
+.content-module__arrow {
+    color: #918d95;
+    flex-shrink: 0;
+}
+
+@media (max-width: 650px) {
+    .content-page {
+        padding: 20px 15px 30px;
+    }
+}

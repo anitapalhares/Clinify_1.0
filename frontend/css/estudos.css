@@ -1,0 +1,481 @@
+.studies-page {
+    padding: 28px 38px 40px;
+    max-width: 1250px;
+}
+
+
+/* TÍTULO */
+
+.page-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    color: var(--text);
+}
+
+.page-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 0 25px;
+}
+
+
+/* =========================================================
+   FILTROS — toolbar única, com divisores em vez de "pílulas"
+   soltas, pra parecer uma única barra de controle.
+   ========================================================= */
+
+.study-filters {
+    width: 100%;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 4px 14px 4px 16px;
+
+    background: #ffffff;
+    border: 1px solid #c9c6ce;
+    border-radius: 10px;
+
+    box-shadow: 0 1px 2px rgba(40, 36, 45, 0.05);
+
+    box-sizing: border-box;
+
+    margin-bottom: 25px;
+}
+
+.filter-divider {
+    width: 1px;
+    height: 24px;
+    background: #e2e0e3;
+    margin: 0 12px;
+    flex-shrink: 0;
+}
+
+
+/* busca */
+
+.filter-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex: 1.4;
+    min-width: 0;
+}
+
+.filter-search svg {
+    width: 17px;
+    height: 17px;
+    color: #918d95;
+    flex-shrink: 0;
+}
+
+.filter-search input {
+    width: 100%;
+
+    border: 0;
+    outline: none;
+    background: transparent;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.filter-search input::placeholder {
+    color: #a7a3ab;
+}
+
+
+/* selects (especialidade / ordenar) */
+
+.filter-select {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+.filter-select--order {
+    flex: 0 0 auto;
+}
+
+.filter-select svg {
+    width: 15px;
+    height: 15px;
+    color: #918d95;
+    flex-shrink: 0;
+}
+
+.study-filters select {
+    height: 32px;
+    width: 100%;
+
+    border: 0;
+    background: transparent;
+
+    color: #3e3b40;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+
+    padding: 0 4px;
+
+    outline: none;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.filter-select--order select {
+    width: auto;
+}
+
+.study-empty {
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 30px 0;
+}
+
+
+/* =========================================================
+   GRID DOS CARDS
+   ========================================================= */
+
+.study-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px 12px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.study-card {
+    min-height: 148px;
+
+    padding: 14px;
+
+    background: #fafafa;
+
+    border: 1px solid #b8b5bd;
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 2px rgba(40, 36, 45, 0.1);
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.study-card:hover {
+    transform: translateY(-2px);
+    border-color: #9b97a2;
+
+    box-shadow:
+        0 6px 14px rgba(40, 36, 45, 0.12);
+}
+
+
+/* =========================================================
+   CABEÇALHO DO CARD
+   ========================================================= */
+
+.study-card__header {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* =========================================================
+   ÍCONES
+   ========================================================= */
+
+.study-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.study-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* cores — levemente mais suaves que puro/saturado */
+
+.study-icon--red {
+    background: #f1483f;
+    color: white;
+}
+
+.study-icon--blue {
+    background: #6464d9;
+    color: white;
+}
+
+.study-icon--purple {
+    background: #9146d5;
+    color: white;
+}
+
+.study-icon--green {
+    background: #6fb84f;
+    color: #eafce0;
+}
+
+.study-icon--orange {
+    background: #e08b52;
+    color: #fdf1e8;
+}
+
+.study-icon--yellow {
+    background: #d8b93a;
+    color: #3f3712;
+}
+
+
+/* =========================================================
+   TEXTO DO CARD
+   ========================================================= */
+
+.study-card__header h2 {
+    margin: 0;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13.5px;
+    font-weight: 600;
+
+    color: #29272b;
+
+    line-height: 1.3;
+}
+
+.study-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 3px;
+
+    color: #77747a;
+
+    font-size: 9.5px;
+}
+
+.study-tag {
+    padding: 1px 6px;
+
+    background: #e9e7e8;
+    border-radius: 4px;
+
+    color: #55525a;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   PROGRESSO
+   ========================================================= */
+
+.study-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.study-progress__bar {
+    flex: 1;
+    height: 5px;
+
+    background: #e6e4e6;
+    border-radius: 3px;
+
+    overflow: hidden;
+}
+
+.study-progress__bar span {
+    display: block;
+    height: 100%;
+
+    background: #9146d5;
+    border-radius: 3px;
+}
+
+.study-progress__label {
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #918d95;
+
+    min-width: 26px;
+    text-align: right;
+}
+
+
+/* =========================================================
+   OPÇÕES
+   ========================================================= */
+
+.study-options {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: auto;
+}
+
+
+/* cada botão */
+
+.study-option {
+    min-height: 27px;
+
+    padding: 0 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+    text-decoration: none;
+
+    color: #363338;
+
+    background: #e3e1e2;
+
+    border-radius: 6px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    font-weight: 500;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.study-option:hover {
+    background: #d8d6d8;
+    transform: translateX(1px);
+}
+
+.study-option > span:first-child {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* ícone da opção */
+
+.option-icon {
+    width: 13px;
+    height: 13px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #4d4a4e;
+}
+
+.option-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* seta */
+
+.option-arrow {
+    color: #666268;
+
+    font-size: 13px;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .studies-page {
+        padding: 25px;
+    }
+
+    .study-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .studies-page {
+        padding: 20px 15px 30px;
+    }
+
+    .study-filters {
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .filter-divider {
+        width: 100%;
+        height: 1px;
+        margin: 2px 0;
+    }
+
+    .filter-select--order {
+        flex: 1;
+    }
+
+    .filter-select--order select {
+        width: 100%;
+    }
+
+    .study-grid {
+        grid-template-columns: 1fr;
+    }
+}

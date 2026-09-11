@@ -1,0 +1,171 @@
+.simulado-page {
+    padding: 26px 38px 40px;
+    max-width: 900px;
+}
+
+.content-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: var(--muted);
+    text-decoration: none;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+
+    margin-bottom: 18px;
+}
+
+.content-back svg {
+    width: 15px;
+    height: 15px;
+}
+
+.content-back:hover {
+    color: var(--text);
+}
+
+.content-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 28px;
+}
+
+.content-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.content-icon svg {
+    width: 27px;
+    height: 27px;
+}
+
+.content-header h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 3px;
+    color: var(--text);
+}
+
+.content-header p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* lista de simulados */
+
+.exam-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.exam-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 16px 18px;
+
+    background: #fafafa;
+    border: 1px solid #d6d3d9;
+    border-radius: 10px;
+}
+
+.exam-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.exam-card__body h3 {
+    margin: 0 0 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #29272b;
+}
+
+.exam-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    font-size: 11.5px;
+    color: #918d95;
+}
+
+.exam-card__meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.exam-card__meta svg {
+    width: 13px;
+    height: 13px;
+}
+
+.exam-card__score {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: #e9e7e8;
+    color: #55525a;
+    flex-shrink: 0;
+}
+
+.exam-card__score.is-empty {
+    background: transparent;
+    border: 1px dashed #c9c6ce;
+    color: #a7a3ab;
+}
+
+.exam-card__cta {
+    flex-shrink: 0;
+
+    padding: 9px 16px;
+
+    background: #2f2b33;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 7px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: background 0.15s ease;
+}
+
+.exam-card__cta:hover {
+    background: #46404b;
+}
+
+@media (max-width: 650px) {
+    .simulado-page {
+        padding: 20px 15px 30px;
+    }
+
+    .exam-card {
+        flex-wrap: wrap;
+    }
+}

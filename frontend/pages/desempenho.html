@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Desempenho</title>
+
+    <!-- CSS Local -->
+    <link rel="stylesheet" href="../../frontend/css/desempenho.css">
+
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header class="main-header">
+    <div>
+        <h1>Painel de Desempenho Técnico</h1>
+        <p>Métricas de vazão, erros e tempo de resposta em tempo real</p>
+    </div>
+</header>
+
+<!-- Métricas Principais -->
+<section class="kpi-grid">
+    <div class="kpi-card">
+        <div class="kpi-title">Tempo de Resposta Médio</div>
+        <div class="kpi-value" id="kpi-latency">142 ms</div>
+        <div class="kpi-status positive">↓ 12ms em relação a ontem</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Taxa de Erro (HTTP 5xx)</div>
+        <div class="kpi-value" id="kpi-error">0.04%</div>
+        <div class="kpi-status positive">Dentro do SLA (&lt; 0.1%)</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Requisições / Minuto</div>
+        <div class="kpi-value" id="kpi-throughput">12.4k</div>
+        <div class="kpi-status positive">↑ 8% no horário de pico</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-title">Uso de Memória (Heap)</div>
+        <div class="kpi-value" id="kpi-memory">78.2%</div>
+        <div class="kpi-status negative">↑ Alerta prévio em 85%</div>
+    </div>
+</section>
+
+<!-- Gráficos -->
+<section class="charts-grid">
+    <div class="chart-container">
+        <h2>Latência do Sistema (ms) - Últimas 24 Horas</h2>
+        <canvas id="latencyChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2>Distribuição de Status de Resposta</h2>
+        <canvas id="statusChart"></canvas>
+    </div>
+</section>
+
+<!-- JavaScript Local (carregado ao final do DOM) -->
+<script src="../../frontend/js/desempenho.js"></script>
+</body>
+</html>

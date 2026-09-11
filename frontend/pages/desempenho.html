@@ -1,62 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Desempenho</title>
 
-    <!-- CSS Local -->
-    <link rel="stylesheet" href="../../frontend/css/desempenho.css">
+    <title>Clinify | Desempenho</title>
 
-    <!-- Chart.js para gráficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/desempenho.css">
 </head>
+
 <body>
 
-<header class="main-header">
-    <div>
-        <h1>Painel de Desempenho Técnico</h1>
-        <p>Métricas de vazão, erros e tempo de resposta em tempo real</p>
-    </div>
-</header>
+<div class="app-shell">
 
-<!-- Métricas Principais -->
-<section class="kpi-grid">
-    <div class="kpi-card">
-        <div class="kpi-title">Tempo de Resposta Médio</div>
-        <div class="kpi-value" id="kpi-latency">142 ms</div>
-        <div class="kpi-status positive">↓ 12ms em relação a ontem</div>
-    </div>
-    <div class="kpi-card">
-        <div class="kpi-title">Taxa de Erro (HTTP 5xx)</div>
-        <div class="kpi-value" id="kpi-error">0.04%</div>
-        <div class="kpi-status positive">Dentro do SLA (&lt; 0.1%)</div>
-    </div>
-    <div class="kpi-card">
-        <div class="kpi-title">Requisições / Minuto</div>
-        <div class="kpi-value" id="kpi-throughput">12.4k</div>
-        <div class="kpi-status positive">↑ 8% no horário de pico</div>
-    </div>
-    <div class="kpi-card">
-        <div class="kpi-title">Uso de Memória (Heap)</div>
-        <div class="kpi-value" id="kpi-memory">78.2%</div>
-        <div class="kpi-status negative">↑ Alerta prévio em 85%</div>
-    </div>
-</section>
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+        <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+        </button>
 
-<!-- Gráficos -->
-<section class="charts-grid">
-    <div class="chart-container">
-        <h2>Latência do Sistema (ms) - Últimas 24 Horas</h2>
-        <canvas id="latencyChart"></canvas>
-    </div>
-    <div class="chart-container">
-        <h2>Distribuição de Status de Resposta</h2>
-        <canvas id="statusChart"></canvas>
-    </div>
-</section>
+        <div class="sidebar__brand">
+            <span class="sidebar__mark">C</span>
+            <span class="sidebar__brand-text">
+                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__wordmark">Clinify</span>
+                </span>
+        </div>
 
-<!-- JavaScript Local (carregado ao final do DOM) -->
-<script src="../../frontend/js/desempenho.js"></script>
+        <ul class="sidebar__nav">
+            <li>
+                <a href="home.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10" /></svg>
+                    <span class="sidebar__link-text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="simulacao-clinica.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" /></svg>
+                    <span class="sidebar__link-text">Simulação Clínica</span>
+                </a>
+            </li>
+            <li>
+                <a href="estudos.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg>
+                    <span class="sidebar__link-text">Estudos</span>
+                </a>
+            </li>
+            <li>
+                <a href="desempenho.html" class="sidebar__link is-active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
+                    <span class="sidebar__link-text">Desempenho</span>
+                </a>
+            </li>
+            <li>
+                <a href="perfil.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5" /><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" /></svg>
+                    <span class="sidebar__link-text">Perfil</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+    <!-- ============ /SIDEBAR ============ -->
+
+    <div class="app-main">
+
+        <!-- ============ HEADER ============ -->
+        <header class="topbar">
+            <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
+            </button>
+
+            <div class="topbar__search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <input type="text" placeholder="Buscar…" aria-label="Buscar">
+            </div>
+
+            <div class="topbar__spacer"></div>
+
+            <button class="topbar__bell" type="button" aria-label="Notificações">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
+                <span class="dot"></span>
+            </button>
+        </header>
+        <!-- ============ /HEADER ============ -->
+
+        <main class="app-content">
+
+            <h1 class="page-title">Meu Desempenho</h1>
+            <p class="page-subtitle">Acompanhe suas estatísticas de aprendizado e evolução clínica</p>
+
+            <!-- Cards de Métricas Principais -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                        <span class="stat-card__icon stat-card__icon--purple">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" /></svg>
+                        </span>
+                    <span class="stat-card__value">Nível 12</span>
+                    <span class="stat-card__label">Nível de Experiência</span>
+                    <div class="stat-card__bar"><span style="width: 60%"></span></div>
+                    <span class="stat-card__hint">2.400 / 4.000 XP para o Nível 13</span>
+                </div>
+
+                <div class="stat-card">
+                        <span class="stat-card__icon stat-card__icon--gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" /></svg>
+                        </span>
+                    <span class="stat-card__value">14.400</span>
+                    <span class="stat-card__label">XP Total Acumulado</span>
+                    <span class="stat-card__hint stat-card__hint--up">+850 XP esta semana</span>
+                </div>
+
+                <div class="stat-card">
+                        <span class="stat-card__icon stat-card__icon--lilac">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                        </span>
+                    <span class="stat-card__value">89%</span>
+                    <span class="stat-card__label">Taxa de Acertos</span>
+                    <span class="stat-card__hint">Média das últimas 10 simulações</span>
+                </div>
+
+                <div class="stat-card">
+                        <span class="stat-card__icon stat-card__icon--blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                        </span>
+                    <span class="stat-card__value">38</span>
+                    <span class="stat-card__label">Simulações Concluídas</span>
+                    <span class="stat-card__hint">Tempo médio: 14 min</span>
+                </div>
+            </div>
+
+            <!-- Seção das Áreas da Medicina -->
+            <section class="performance-section">
+                <div class="performance-section__header">
+                    <h2 class="performance-section__title">Áreas Mais Simuladas</h2>
+                    <span class="performance-section__subtitle">Distribuição por especialidade clínica</span>
+                </div>
+
+                <div class="specialties-list">
+                    <div class="specialty-item">
+                        <div class="specialty-item__info">
+                            <span class="specialty-item__name">Cardiologia</span>
+                            <span class="specialty-item__count">14 simulações (37%)</span>
+                        </div>
+                        <div class="specialty-item__bar-container">
+                            <div class="specialty-item__bar" style="width: 37%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="specialty-item">
+                        <div class="specialty-item__info">
+                            <span class="specialty-item__name">Neurologia</span>
+                            <span class="specialty-item__count">10 simulações (26%)</span>
+                        </div>
+                        <div class="specialty-item__bar-container">
+                            <div class="specialty-item__bar" style="width: 26%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="specialty-item">
+                        <div class="specialty-item__info">
+                            <span class="specialty-item__name">Pediatria</span>
+                            <span class="specialty-item__count">7 simulações (18%)</span>
+                        </div>
+                        <div class="specialty-item__bar-container">
+                            <div class="specialty-item__bar" style="width: 18%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="specialty-item">
+                        <div class="specialty-item__info">
+                            <span class="specialty-item__name">Clínica Médica</span>
+                            <span class="specialty-item__count">5 simulações (13%)</span>
+                        </div>
+                        <div class="specialty-item__bar-container">
+                            <div class="specialty-item__bar" style="width: 13%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="specialty-item">
+                        <div class="specialty-item__info">
+                            <span class="specialty-item__name">Pneumologia</span>
+                            <span class="specialty-item__count">2 simulações (6%)</span>
+                        </div>
+                        <div class="specialty-item__bar-container">
+                            <div class="specialty-item__bar" style="width: 6%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<script src="../js/desempenho.js"></script>
 </body>
+
 </html>

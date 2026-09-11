@@ -1,107 +1,194 @@
-:root {
-    --bg-primary: #0f172a;
-    --bg-card: #1e293b;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #38bdf8;
-    --accent-green: #4ade80;
-    --accent-red: #f87171;
-    --border-color: #334155;
+/* =======================================================
+   Clinify — Desempenho
+   Depende de css/layout.css para as variáveis de cor.
+   ======================================================= */
+
+.page-title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 0 6px;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.page-subtitle {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin: 0 0 24px;
 }
 
-body {
-    background-color: var(--bg-primary);
-    color: var(--text-main);
-    padding: 24px;
-}
-
-.main-header {
-    margin-bottom: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main-header h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.main-header p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* KPIs Layout */
-.kpi-grid {
+.stat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-bottom: 32px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
 }
 
-.kpi-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-.kpi-title {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.kpi-value {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.kpi-status {
-    font-size: 0.85rem;
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 4px;
 }
 
-.kpi-status.positive { color: var(--accent-green); }
-.kpi-status.negative { color: var(--accent-red); }
-
-/* Charts Layout */
-.charts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 24px;
+.stat-card__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
 }
 
-.chart-container {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    position: relative;
-    min-height: 320px;
+.stat-card__icon svg {
+    width: 18px;
+    height: 18px;
 }
 
-.chart-container h2 {
-    font-size: 1.1rem;
-    margin-bottom: 16px;
-    color: var(--text-main);
+.stat-card__icon--purple {
+    background: var(--purple-soft);
+    color: var(--purple);
 }
 
-@media (max-width: 480px) {
-    .charts-grid {
+.stat-card__icon--gold {
+    background: #fff8e6;
+    color: #d97706;
+}
+
+.stat-card__icon--blue {
+    background: var(--blue-soft);
+    color: var(--blue);
+}
+
+.stat-card__icon--lilac {
+    background: #f2ecff;
+    color: #8b5cf6;
+}
+
+.stat-card__value {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.stat-card__label {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.stat-card__hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.stat-card__hint--up {
+    color: #1f9d55;
+}
+
+.stat-card__bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.stat-card__bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    border-radius: 3px;
+}
+
+/* =======================================================
+   Seção Áreas Médicas / Especialidades
+   ======================================================= */
+
+.performance-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 28px;
+}
+
+.performance-section__header {
+    margin-bottom: 20px;
+}
+
+.performance-section__title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+}
+
+.performance-section__subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+}
+
+.specialties-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.specialty-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.specialty-item__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+}
+
+.specialty-item__name {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.specialty-item__count {
+    color: var(--muted);
+    font-size: 12.5px;
+}
+
+.specialty-item__bar-container {
+    height: 8px;
+    width: 100%;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.specialty-item__bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* =======================================================
+   Breakpoints Responsivos
+   ======================================================= */
+
+@media (max-width: 1180px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .stat-grid {
         grid-template-columns: 1fr;
     }
 }

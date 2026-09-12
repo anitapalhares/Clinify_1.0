@@ -528,10 +528,6 @@ function renderizarQuestoes(questoes) {
 }
 
 
-// ======================================================
-// EVENTOS
-// ======================================================
-
 function configurarEventos() {
 
     const finishQuestions =

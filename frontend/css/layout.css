@@ -38,10 +38,10 @@ body {
     min-height: 100vh;
 }
 
-/* ---------- Sidebar ---------- */
+/* ---------- Sidebar ----------  */
 
 .sidebar {
-    position: relative;
+    
     flex: 0 0 var(--sidebar-w);
     width: var(--sidebar-w);
     background: var(--surface);
@@ -50,7 +50,13 @@ body {
     flex-direction: column;
     padding: 22px 16px;
     transition: width 0.2s ease, flex-basis 0.2s ease, transform 0.2s ease;
+    position: fixed;       /* fixa na tela */
+    top: 0;                /* começa no topo */
+    left: 0;               /* encostada à esquerda */
+    height: 100vh;         /* ocupa toda a altura da janela */
+    z-index: 20;           /* fica acima do fundo mas abaixo do conteúdo modal */
 }
+
 
 .sidebar__brand {
     display: flex;
@@ -201,10 +207,18 @@ body {
     display: flex;
     flex-direction: column;
 }
+.app-main {
+    margin-left: var(--sidebar-w);
+}
 
+/* Quando colapsada */
+.app-shell.is-collapsed .app-main {
+    margin-left: var(--sidebar-w-collapsed);
+}
 /* ---------- Topbar ---------- */
 
 .topbar {
+    
     height: var(--topbar-h);
     flex: 0 0 var(--topbar-h);
     display: flex;

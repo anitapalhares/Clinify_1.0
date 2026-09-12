@@ -1,70 +1,5 @@
-.content-page {
-    padding: 26px 38px 40px;
-    max-width: 900px;
-}
-
-.content-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-
-    color: var(--muted);
-    text-decoration: none;
-
-    font-family: 'Inter', sans-serif;
-    font-size: 12.5px;
-    font-weight: 500;
-
-    margin-bottom: 18px;
-}
-
-.content-back svg {
-    width: 15px;
-    height: 15px;
-}
-
-.content-back:hover {
-    color: var(--text);
-}
-
-.content-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    margin-bottom: 28px;
-}
-
-.content-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.content-icon svg {
-    width: 27px;
-    height: 27px;
-}
-
-.content-header h1 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 26px;
-    font-weight: 500;
-    margin: 0 0 3px;
-    color: var(--text);
-}
-
-.content-header p {
-    margin: 0;
-    font-size: 13px;
-    color: var(--muted);
-}
-
+/* Regras de cabeçalho/voltar/container comuns vivem em content-shared.css.
+   Este arquivo só tem o que é exclusivo da tela de lista de módulos. */
 
 /* módulos */
 
@@ -146,10 +81,4 @@
 .content-module__arrow {
     color: #918d95;
     flex-shrink: 0;
-}
-
-@media (max-width: 650px) {
-    .content-page {
-        padding: 20px 15px 30px;
-    }
 }

@@ -1,149 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Clinify | Home</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/home.css">
-</head>
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="app-shell">
+      <!-- ============ SIDEBAR (padrão — copiar em todas as telas) ============ -->
+      <aside class="sidebar">
+        <button
+          class="sidebar__toggle"
+          type="button"
+          data-sidebar-collapse
+          aria-label="Recolher menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
 
-        <!-- ============ SIDEBAR (padrão — copiar em todas as telas) ============ -->
-        <aside class="sidebar">
-            <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
-            </button>
+        <div class="sidebar__brand">
+          <span class="sidebar__mark">C</span>
+          <span class="sidebar__brand-text">
+            <span class="sidebar__eyebrow">Projeto</span>
+            <span class="sidebar__wordmark">Clinify</span>
+          </span>
+        </div>
 
-            <div class="sidebar__brand">
-                <span class="sidebar__mark">C</span>
-                <span class="sidebar__brand-text">
-                    <span class="sidebar__eyebrow">Projeto</span>
-                    <span class="sidebar__wordmark">Clinify</span>
-                </span>
+        <ul class="sidebar__nav">
+          <li>
+            <a href="home.html" class="sidebar__link is-active">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11.5 12 4l9 7.5" />
+                <path
+                  d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10"
+                />
+              </svg>
+              <span class="sidebar__link-text">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="./home_simulacao.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" />
+              </svg>
+              <span class="sidebar__link-text">Simulação Clínica</span>
+            </a>
+          </li>
+          <li>
+            <a href="estudos.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"
+                />
+                <path
+                  d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"
+                />
+              </svg>
+              <span class="sidebar__link-text">Estudos</span>
+            </a>
+          </li>
+          <li>
+            <a href="desempenho.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="3 17 9 11 13 15 21 7" />
+                <polyline points="14 7 21 7 21 14" />
+              </svg>
+              <span class="sidebar__link-text">Desempenho</span>
+            </a>
+          </li>
+          <li>
+            <a href="perfil.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
+              </svg>
+              <span class="sidebar__link-text">Perfil</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+      <!-- ============ /SIDEBAR ============ -->
+
+      <div class="app-main">
+        <!-- ============ HEADER (padrão — copiar em todas as telas) ============ -->
+        <header class="topbar">
+          <button
+            class="topbar__menu-btn"
+            type="button"
+            data-sidebar-mobile-toggle
+            aria-label="Abrir menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+          </button>
+
+          <div class="topbar__search">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" placeholder="Buscar…" aria-label="Buscar" />
+          </div>
+
+          <div class="topbar__spacer"></div>
+
+          <button class="topbar__bell" type="button" aria-label="Notificações">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" />
+              <path d="M10 20a2 2 0 0 0 4 0" />
+            </svg>
+            <span class="dot"></span>
+          </button>
+        </header>
+        <!-- ============ /HEADER ============ -->
+
+        <main class="app-content">
+          <h1 class="page-title">Bem-vindo!</h1>
+          <p class="page-subtitle">
+            Continue sua jornada de aprendizado médico
+          </p>
+
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-card__icon stat-card__icon--flame">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c1 1 2 2.5 2 4.5A5 5 0 0 1 7 15c0-5 5-6 5-13Z"
+                  />
+                </svg>
+              </span>
+              <span class="stat-card__value">7</span>
+              <span class="stat-card__label">Dias consecutivos</span>
+              <span class="stat-card__hint">Recorde pessoal</span>
             </div>
 
-            <ul class="sidebar__nav">
-                <li>
-                    <a href="home.html" class="sidebar__link is-active">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10" /></svg>
-                        <span class="sidebar__link-text">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="simulacao-clinica.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" /></svg>
-                        <span class="sidebar__link-text">Simulação Clínica</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../pages/estudos.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg>
-                        <span class="sidebar__link-text">Estudos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="desempenho.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
-                        <span class="sidebar__link-text">Desempenho</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="perfil.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5" /><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" /></svg>
-                        <span class="sidebar__link-text">Perfil</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
+            <div class="stat-card">
+              <span class="stat-card__icon stat-card__icon--purple">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M8 21h8" />
+                  <path d="M12 17v4" />
+                  <path d="M7 4h10v4a5 5 0 0 1-10 0Z" />
+                  <path d="M7 5H4v1a4 4 0 0 0 4 4" />
+                  <path d="M17 5h3v1a4 4 0 0 1-4 4" />
+                </svg>
+              </span>
+              <span class="stat-card__value">12</span>
+              <span class="stat-card__label">Nível atual</span>
+              <div class="stat-card__bar"><span style="width: 60%"></span></div>
+            </div>
 
-        <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        <!-- ============ /SIDEBAR ============ -->
+            <div class="stat-card">
+              <span class="stat-card__icon stat-card__icon--blue">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+              <span class="stat-card__value">75%</span>
+              <span class="stat-card__label">Meta diária</span>
+            </div>
 
-        <div class="app-main">
+            <div class="stat-card">
+              <span class="stat-card__icon stat-card__icon--lilac">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
+              <span class="stat-card__value">89%</span>
+              <span class="stat-card__label">Taxa de acertos</span>
+              <span class="stat-card__hint stat-card__hint--up"
+                >+5% esta semana</span
+              >
+            </div>
 
-            <!-- ============ HEADER (padrão — copiar em todas as telas) ============ -->
-            <header class="topbar">
-                <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
-                </button>
-
-                <div class="topbar__search">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-                    <input type="text" placeholder="Buscar…" aria-label="Buscar">
-                </div>
-
-                <div class="topbar__spacer"></div>
-
-                <button class="topbar__bell" type="button" aria-label="Notificações">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
-                    <span class="dot"></span>
-                </button>
-            </header>
-            <!-- ============ /HEADER ============ -->
-
-            <main class="app-content">
-
-                <h1 class="page-title">Bem-vindo!</h1>
-                <p class="page-subtitle">Continue sua jornada de aprendizado médico</p>
-
-                <div class="stat-grid">
-                    <div class="stat-card">
-                        <span class="stat-card__icon stat-card__icon--flame">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c1 1 2 2.5 2 4.5A5 5 0 0 1 7 15c0-5 5-6 5-13Z" /></svg>
-                        </span>
-                        <span class="stat-card__value">7</span>
-                        <span class="stat-card__label">Dias consecutivos</span>
-                        <span class="stat-card__hint">Recorde pessoal</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-card__icon stat-card__icon--purple">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8" /><path d="M12 17v4" /><path d="M7 4h10v4a5 5 0 0 1-10 0Z" /><path d="M7 5H4v1a4 4 0 0 0 4 4" /><path d="M17 5h3v1a4 4 0 0 1-4 4" /></svg>
-                        </span>
-                        <span class="stat-card__value">12</span>
-                        <span class="stat-card__label">Nível atual</span>
-                        <div class="stat-card__bar"><span style="width: 60%"></span></div>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-card__icon stat-card__icon--blue">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /></svg>
-                        </span>
-                        <span class="stat-card__value">75%</span>
-                        <span class="stat-card__label">Meta diária</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <span class="stat-card__icon stat-card__icon--lilac">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-                        </span>
-                        <span class="stat-card__value">89%</span>
-                        <span class="stat-card__label">Taxa de acertos</span>
-                        <span class="stat-card__hint stat-card__hint--up">+5% esta semana</span>
-                    </div>
-
-                    <div class="stat-card stat-card--cta">
-                        <span class="stat-card__cta-label">Desafio Diário</span>
-                        <button type="button" class="stat-card__cta-btn">Iniciar</button>
-                    </div>
-                </div>
-
-            </main>
-        </div>
+            <div class="stat-card stat-card--cta">
+              <span class="stat-card__cta-label">Desafio Diário</span>
+              <button type="button" class="stat-card__cta-btn">Iniciar</button>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
 
     <script src="../js/layout.js"></script>
-</body>
-
+  </body>
 </html>

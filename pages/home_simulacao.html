@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Clinify | Simulação Clínica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/simulacao-clinica.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <button
+          class="sidebar__toggle"
+          type="button"
+          data-sidebar-collapse
+          aria-label="Recolher menu"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <div class="sidebar__brand">
+          <span class="sidebar__mark">C</span>
+          <span class="sidebar__brand-text">
+            <span class="sidebar__eyebrow">Projeto</span>
+            <span class="sidebar__wordmark">Clinify</span>
+          </span>
+        </div>
+
+        <ul class="sidebar__nav">
+          <li>
+            <a href="home.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 11.5 12 4l9 7.5" />
+                <path
+                  d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10"
+                />
+              </svg>
+              <span class="sidebar__link-text">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="simulacao-clinica.html" class="sidebar__link is-active">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" />
+              </svg>
+              <span class="sidebar__link-text">Simulação Clínica</span>
+            </a>
+          </li>
+          <li>
+            <a href="estudos.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"
+                />
+                <path
+                  d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"
+                />
+              </svg>
+              <span class="sidebar__link-text">Estudos</span>
+            </a>
+          </li>
+          <li>
+            <a href="desempenho.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="3 17 9 11 13 15 21 7" />
+                <polyline points="14 7 21 7 21 14" />
+              </svg>
+              <span class="sidebar__link-text">Desempenho</span>
+            </a>
+          </li>
+          <li>
+            <a href="perfil.html" class="sidebar__link">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
+              </svg>
+              <span class="sidebar__link-text">Perfil</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+
+      <div class="app-main">
+        <header class="topbar">
+          <button
+            class="topbar__menu-btn"
+            type="button"
+            data-sidebar-mobile-toggle
+            aria-label="Abrir menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+          </button>
+
+          <div class="topbar__spacer"></div>
+        </header>
+
+        <main class="app-content simulation-page">
+          <section class="simulation-panel" aria-labelledby="simulation-title">
+            <h1 id="simulation-title" class="simulation-title">
+              Simulação Clínica
+            </h1>
+
+            <a href="#" class="new-case-link">Comece um novo desafio</a>
+
+            <div class="case-list">
+              <article class="case-card">
+                <span class="case-card__avatar" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <circle cx="24" cy="15" r="7" />
+                    <path d="M8 40c1.8-9 8.5-14 16-14s14.2 5 16 14" />
+                  </svg>
+                </span>
+
+                <div class="case-card__body">
+                  <h2>
+                    Homem, 45 anos, Forte dor no peito após exercício físico
+                    (João)
+                  </h2>
+                  <span class="difficulty difficulty--easy">Fácil</span>
+                </div>
+
+                <a href="#" class="continue-btn">
+                  <span>Continue</span>
+                  <svg
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 4.5 13 9l-7 4.5Z" />
+                  </svg>
+                </a>
+              </article>
+
+              <article class="case-card">
+                <span class="case-card__avatar" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  >
+                    <circle cx="24" cy="15" r="7" />
+                    <path d="M8 40c1.8-9 8.5-14 16-14s14.2 5 16 14" />
+                  </svg>
+                </span>
+
+                <div class="case-card__body">
+                  <h2>
+                    Mulher, 28 anos, Fadiga constante e falta de ar em pequenos
+                    esforços (Maria)
+                  </h2>
+                  <span class="difficulty difficulty--hard">Difícil</span>
+                </div>
+
+                <a href="#" class="continue-btn">
+                  <span>Continue</span>
+                  <svg
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 4.5 13 9l-7 4.5Z" />
+                  </svg>
+                </a>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <footer class="site-footer">
+          <div class="site-footer__content">
+            <div class="site-footer__about">
+              <div class="footer-brand">
+                <span class="footer-brand__mark">C</span>
+                <span class="footer-brand__text">
+                  <span class="footer-brand__eyebrow">Projeto</span>
+                  <span class="footer-brand__wordmark">Clinify</span>
+                </span>
+              </div>
+
+              <p>
+                Transformando a aprendizagem médica através da tecnologia,
+                gamificação e simulações clínicas interativas, aproximando
+                teoria e prática de forma moderna, acessível e inovadora.
+              </p>
+
+              <h2>Desenvolvedores</h2>
+
+              <ul class="social-list">
+                <li>
+                  <a href="#">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                      <circle cx="12" cy="12" r="3.8" />
+                      <circle
+                        cx="17.2"
+                        cy="6.8"
+                        r="0.8"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                    <span>@anitapz_</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                      <circle cx="12" cy="12" r="3.8" />
+                      <circle
+                        cx="17.2"
+                        cy="6.8"
+                        r="0.8"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                    <span>@coelhokauap</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                      <circle cx="12" cy="12" r="3.8" />
+                      <circle
+                        cx="17.2"
+                        cy="6.8"
+                        r="0.8"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                    <span>@vitoria_kereski</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="site-footer__links">
+              <h2>Saiba mais...</h2>
+              <ul>
+                <li><a href="#">Hospital moinhos de vento...</a></li>
+                <li><a href="#">Faculdade moinhos de vento...</a></li>
+                <li><a href="#">FIAP...</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="site-footer__copy">
+            © 2026 Clinify. Todos os direitos reservados.
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="../js/layout.js"></script>
+  </body>
+</html>

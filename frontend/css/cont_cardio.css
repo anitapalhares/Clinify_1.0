@@ -1,0 +1,1078 @@
+:root {
+
+    --white: #ffffff;
+
+    --background: #fafaff;
+
+    --text: #292a35;
+    --text-soft: #717381;
+
+    --purple: #7773a8;
+    --purple-dark: #575477;
+    --purple-light: #eeedf8;
+
+    --blue: #7b9bc5;
+    --blue-light: #edf4fb;
+
+    --border: #e7e7ee;
+
+    --success: #6c9a83;
+    --success-light: #edf7f1;
+
+    --warning: #a18a5d;
+    --warning-light: #faf6eb;
+
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family: "Inter", sans-serif;
+
+}
+
+
+button,
+input {
+
+    font-family: inherit;
+
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+#studyPage {
+
+    width: min(1100px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 55px 0 90px;
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.study-header {
+
+    margin-bottom: 40px;
+
+}
+
+
+.breadcrumb {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-bottom: 45px;
+
+    font-size: 12px;
+
+    color: #9697a3;
+
+}
+
+
+.header-content {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 40px;
+
+}
+
+
+.eyebrow {
+
+    margin: 0 0 8px;
+
+    color: var(--purple);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+}
+
+
+.study-header h1 {
+
+    margin: 0;
+
+    font-family: "Newsreader", serif;
+
+    font-size: clamp(52px, 7vw, 82px);
+
+    line-height: .9;
+
+    font-weight: 400;
+
+    letter-spacing: -3px;
+
+}
+
+
+.study-header h1 em {
+
+    color: var(--purple);
+
+    font-style: italic;
+
+}
+
+
+.description {
+
+    max-width: 520px;
+
+    margin: 26px 0 0;
+
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+.module-info {
+
+    display: flex;
+
+    gap: 10px;
+
+    color: #898a96;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   VÍDEO
+========================================= */
+
+.lesson-video {
+
+    margin-bottom: 30px;
+
+}
+
+
+.video-placeholder {
+
+    position: relative;
+
+    height: 490px;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    background:
+
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(255,255,255,.95),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(132,156,203,.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #e8e6f5,
+            #e9f1f8
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid rgba(120,120,160,.12);
+
+}
+
+
+/*
+    Pequenas formas decorativas
+    no fundo do vídeo.
+*/
+
+.video-decoration {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.video-decoration span {
+
+    position: absolute;
+
+    display: block;
+
+    border-radius: 50%;
+
+    filter: blur(1px);
+
+}
+
+
+.video-decoration span:nth-child(1) {
+
+    width: 180px;
+    height: 180px;
+
+    top: -80px;
+    right: 80px;
+
+    background: rgba(125,118,176,.12);
+
+}
+
+
+.video-decoration span:nth-child(2) {
+
+    width: 120px;
+    height: 120px;
+
+    bottom: 30px;
+    left: 70px;
+
+    background: rgba(115,154,199,.14);
+
+}
+
+
+.video-decoration span:nth-child(3) {
+
+    width: 65px;
+    height: 65px;
+
+    top: 80px;
+    left: 30%;
+
+    background: rgba(255,255,255,.6);
+
+}
+
+
+.play-button {
+
+    position: relative;
+    z-index: 2;
+
+    width: 78px;
+    height: 78px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: var(--purple);
+
+    font-size: 20px;
+
+    padding-left: 4px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 35px rgba(75,75,110,.15);
+
+    transition: transform .2s ease;
+
+}
+
+
+.play-button:hover {
+
+    transform: scale(1.06);
+
+}
+
+
+.video-info {
+
+    position: absolute;
+
+    bottom: 27px;
+    left: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.video-info span {
+
+    color: var(--purple);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.video-info strong {
+
+    color: #3d3e4a;
+
+    font-size: 15px;
+
+}
+
+
+/* vídeo real */
+
+.real-video {
+
+    width: 100%;
+
+    height: 490px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 26px;
+
+    background: #eeeef4;
+
+}
+
+
+/* =========================================
+   PROFESSOR
+========================================= */
+
+.teacher {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px 5px 40px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.teacher-avatar {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--purple-light);
+
+    color: var(--purple-dark);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.teacher-label {
+
+    margin: 0 0 3px;
+
+    color: #9a9ba6;
+
+    font-size: 10px;
+
+}
+
+
+.teacher h2 {
+
+    margin: 0 0 3px;
+
+    font-size: 14px;
+
+}
+
+
+.teacher p:last-child {
+
+    margin: 0;
+
+    color: #888994;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.lesson-content {
+
+    max-width: 720px;
+
+    margin: 65px auto;
+
+}
+
+
+.lesson-content h2 {
+
+    margin: 0 0 25px;
+
+    font-family: "Newsreader", serif;
+
+    font-size: 39px;
+
+    font-weight: 400;
+
+    letter-spacing: -.5px;
+
+}
+
+
+.lesson-content > p:not(.eyebrow) {
+
+    color: #686a77;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================
+   CONCEITO-CHAVE
+========================================= */
+
+.highlight {
+
+    margin-top: 35px;
+
+    padding: 25px 27px;
+
+    border-radius: 15px;
+
+    background: var(--blue-light);
+
+    border-left: 3px solid var(--blue);
+
+}
+
+
+.highlight span {
+
+    color: #6683a8;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+}
+
+
+.highlight p {
+
+    margin: 10px 0 0;
+
+    color: #4e5d70;
+
+    font-family: "Newsreader", serif;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   QUESTÕES
+========================================= */
+
+.questions-section {
+
+    margin-top: 60px;
+
+}
+
+
+.questions {
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.questions summary {
+
+    list-style: none;
+
+    cursor: pointer;
+
+    padding: 25px 5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.questions summary::-webkit-details-marker {
+
+    display: none;
+
+}
+
+
+.summary-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.question-number {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--purple-light);
+
+    color: var(--purple-dark);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.summary-left h2 {
+
+    margin: 0;
+
+    font-family: "Newsreader", serif;
+
+    font-size: 31px;
+
+    font-weight: 400;
+
+}
+
+
+.arrow {
+
+    color: var(--purple);
+
+    font-size: 20px;
+
+    transition: transform .25s ease;
+
+}
+
+
+.questions[open] .arrow {
+
+    transform: rotate(180deg);
+
+}
+
+
+/* =========================================
+   CONTEÚDO DAS QUESTÕES
+========================================= */
+
+.questions-content {
+
+    padding: 5px 5px 40px;
+
+}
+
+
+.question {
+
+    padding: 30px 0;
+
+    border-top: 1px solid #eeeeF2;
+
+}
+
+
+.question-label {
+
+    color: var(--purple);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+}
+
+
+.question h3 {
+
+    max-width: 700px;
+
+    margin: 12px 0 22px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================
+   ALTERNATIVAS
+========================================= */
+
+.alternatives {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+}
+
+
+.alternatives label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: white;
+
+    cursor: pointer;
+
+    color: #6c6e7b;
+
+    font-size: 13px;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+
+.alternatives label:hover {
+
+    transform: translateX(2px);
+
+    border-color: #c8c7dc;
+
+    background: #fcfcff;
+
+}
+
+
+.alternatives input {
+
+    position: absolute;
+
+    opacity: 0;
+
+}
+
+
+.alternative-letter {
+
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2f2f6;
+
+    color: #777987;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.alternative-text {
+
+    line-height: 1.4;
+
+}
+
+
+.alternatives label:has(input:checked) {
+
+    border-color: #aaa8c9;
+
+    background: var(--purple-light);
+
+}
+
+
+.alternatives label:has(input:checked)
+.alternative-letter {
+
+    background: var(--purple);
+
+    color: white;
+
+}
+
+
+/* =========================================
+   BOTÃO QUESTÕES
+========================================= */
+
+.finish-questions {
+
+    margin-top: 22px;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--purple-dark);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: transform .2s ease;
+
+}
+
+
+.finish-questions:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================
+   FEEDBACK
+========================================= */
+
+.feedback {
+
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+.feedback strong {
+
+    margin-right: 4px;
+
+}
+
+
+.feedback.success {
+
+    display: block;
+
+    background: var(--success-light);
+
+    color: var(--success);
+
+}
+
+
+.feedback.warning {
+
+    display: block;
+
+    background: var(--warning-light);
+
+    color: var(--warning);
+
+}
+
+
+/* =========================================
+   FINALIZAR MÓDULO
+========================================= */
+
+.finish-module {
+
+    margin-top: 65px;
+
+    padding: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    border: 1px solid #e5e4ef;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #f1f0f8,
+            #f2f7fb
+        );
+
+}
+
+
+.finish-module h2 {
+
+    margin: 0 0 7px;
+
+    font-family: "Newsreader", serif;
+
+    font-size: 27px;
+
+    font-weight: 400;
+
+}
+
+
+.finish-module p:last-child {
+
+    margin: 0;
+
+    color: #7c7e8b;
+
+    font-size: 12px;
+
+}
+
+
+#finishModule {
+
+    padding: 13px 19px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--purple-dark);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+#finishModule span {
+
+    margin-left: 8px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 700px) {
+
+    #studyPage {
+
+        width: min(100% - 30px, 600px);
+
+        padding-top: 35px;
+
+    }
+
+
+    .breadcrumb {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .header-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .study-header h1 {
+
+        font-size: 55px;
+
+    }
+
+
+    .module-info {
+
+        margin-top: 5px;
+
+    }
+
+
+    .video-placeholder,
+    .real-video {
+
+        height: 300px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .lesson-content {
+
+        margin: 45px auto;
+
+    }
+
+
+    .finish-module {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    #finishModule {
+
+        width: 100%;
+
+    }
+
+}

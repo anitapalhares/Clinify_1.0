@@ -1,0 +1,637 @@
+const conteudos = {
+
+    cardiologia: {
+
+        modulo: "Módulo 01",
+
+        titulo: "Introdução à",
+        tituloDestaque: "Cardiologia",
+
+        descricao:
+            "Aprenda os principais conceitos relacionados ao funcionamento do coração e do sistema cardiovascular.",
+
+        duracao: "45 min",
+        nivel: "Nível básico",
+
+        professor: {
+            iniciais: "DR",
+            nome: "Prof. Daniel Ribeiro",
+            especialidade: "Professor de Cardiologia · Faculdade de Medicina"
+        },
+
+        video: {
+            titulo: "Fundamentos do sistema cardiovascular",
+
+            // Quando vocês tiverem o vídeo real,
+            // podem colocar o caminho aqui.
+            src: "",
+
+            thumbnail: ""
+        },
+
+        introducao: {
+            titulo: "Entendendo o sistema cardiovascular",
+
+            paragrafos: [
+                "O sistema cardiovascular é responsável por transportar sangue, oxigênio e nutrientes para os tecidos do organismo. Ele é formado principalmente pelo coração e pelos vasos sanguíneos.",
+
+                "O coração funciona como uma bomba que mantém o sangue circulando pelo corpo. Compreender sua estrutura e seu funcionamento é fundamental para o estudo das doenças cardiovasculares."
+            ],
+
+            conceitoChave:
+                "O coração possui quatro câmaras: dois átrios e dois ventrículos, responsáveis pela circulação pulmonar e sistêmica."
+        },
+
+        questoes: [
+
+            {
+                pergunta:
+                    "Qual é a principal função do coração no sistema cardiovascular?",
+
+                alternativas: [
+                    "Produzir células sanguíneas.",
+                    "Bombear o sangue pelo organismo.",
+                    "Filtrar substâncias tóxicas do sangue.",
+                    "Produzir oxigênio para os tecidos."
+                ],
+
+                correta: 1
+            },
+
+            {
+                pergunta:
+                    "Quantas câmaras principais existem no coração humano?",
+
+                alternativas: [
+                    "Duas.",
+                    "Três.",
+                    "Quatro.",
+                    "Cinco."
+                ],
+
+                correta: 2
+            },
+
+            {
+                pergunta:
+                    "Qual das estruturas abaixo faz parte do coração?",
+
+                alternativas: [
+                    "Átrio direito.",
+                    "Alvéolo.",
+                    "Traqueia.",
+                    "Esôfago."
+                ],
+
+                correta: 0
+            }
+
+        ]
+
+    }
+
+};
+
+
+// ======================================================
+// CONFIGURAÇÃO DO CONTEÚDO
+// ======================================================
+
+// Por enquanto, mostramos Cardiologia.
+// Depois vocês podem trocar para:
+// "neurologia"
+// "pneumologia"
+// "gastroenterologia"
+// etc.
+
+const conteudoAtual = conteudos.cardiologia;
+
+
+// ======================================================
+// ELEMENTO PRINCIPAL
+// ======================================================
+
+const studyPage = document.getElementById("studyPage");
+
+
+// ======================================================
+// RENDERIZAÇÃO
+// ======================================================
+
+function renderizarConteudo(conteudo) {
+
+    studyPage.innerHTML = `
+
+        <!-- CABEÇALHO -->
+
+        <header class="study-header">
+
+            <div class="breadcrumb">
+
+                <span>Estudos</span>
+                <span>/</span>
+                <span>${conteudo.tituloDestaque}</span>
+
+            </div>
+
+
+            <div class="header-content">
+
+                <div>
+
+                    <p class="eyebrow">
+                        ${conteudo.modulo}
+                    </p>
+
+                    <h1>
+                        ${conteudo.titulo}<br>
+                        <em>${conteudo.tituloDestaque}</em>
+                    </h1>
+
+                    <p class="description">
+                        ${conteudo.descricao}
+                    </p>
+
+                </div>
+
+
+                <div class="module-info">
+
+                    <span>${conteudo.duracao}</span>
+
+                    <span>•</span>
+
+                    <span>${conteudo.nivel}</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- VÍDEO -->
+
+        ${renderizarVideo(conteudo.video)}
+
+
+        <!-- PROFESSOR -->
+
+        ${renderizarProfessor(conteudo.professor)}
+
+
+        <!-- CONTEÚDO DA AULA -->
+
+        ${renderizarIntroducao(conteudo.introducao)}
+
+
+        <!-- QUESTÕES -->
+
+        ${renderizarQuestoes(conteudo.questoes)}
+
+
+        <!-- FINALIZAR MÓDULO -->
+
+        <section class="finish-module">
+
+            <div>
+
+                <p class="eyebrow">
+                    ${conteudo.modulo}
+                </p>
+
+                <h2>
+                    Você chegou ao final deste conteúdo.
+                </h2>
+
+                <p>
+                    Revise suas respostas antes de finalizar o módulo.
+                </p>
+
+            </div>
+
+
+            <button id="finishModule">
+
+                Finalizar módulo
+
+                <span>→</span>
+
+            </button>
+
+        </section>
+
+    `;
+
+
+    configurarEventos();
+
+}
+
+
+// ======================================================
+// VÍDEO
+// ======================================================
+
+function renderizarVideo(video) {
+
+    // Se existir um vídeo real, mostramos o <video>.
+    // Se não existir, mostramos o placeholder.
+
+    if (video.src) {
+
+        return `
+
+            <section class="lesson-video">
+
+                <video
+                    class="real-video"
+                    controls
+                    poster="${video.thumbnail}"
+                >
+
+                    <source
+                        src="${video.src}"
+                        type="video/mp4"
+                    >
+
+                    Seu navegador não suporta vídeos.
+
+                </video>
+
+            </section>
+
+        `;
+
+    }
+
+
+    return `
+
+        <section class="lesson-video">
+
+            <div class="video-placeholder">
+
+                <div class="video-decoration">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <button
+                    class="play-button"
+                    aria-label="Reproduzir vídeo"
+                >
+                    ▶
+                </button>
+
+
+                <div class="video-info">
+
+                    <span>AULA 01</span>
+
+                    <strong>
+                        ${video.titulo}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    `;
+}
+
+
+// ======================================================
+// PROFESSOR
+// ======================================================
+
+function renderizarProfessor(professor) {
+
+    return `
+
+        <section class="teacher">
+
+            <div class="teacher-avatar">
+
+                ${professor.iniciais}
+
+            </div>
+
+
+            <div>
+
+                <p class="teacher-label">
+                    Conteúdo disponibilizado por
+                </p>
+
+                <h2>
+                    ${professor.nome}
+                </h2>
+
+                <p>
+                    ${professor.especialidade}
+                </p>
+
+            </div>
+
+        </section>
+
+    `;
+
+}
+
+
+// ======================================================
+// INTRODUÇÃO
+// ======================================================
+
+function renderizarIntroducao(introducao) {
+
+    const paragrafos = introducao.paragrafos
+        .map(paragrafo => `<p>${paragrafo}</p>`)
+        .join("");
+
+
+    return `
+
+        <section class="lesson-content">
+
+            <p class="eyebrow">
+                Sobre a aula
+            </p>
+
+            <h2>
+                ${introducao.titulo}
+            </h2>
+
+            ${paragrafos}
+
+
+            <div class="highlight">
+
+                <span>
+                    CONCEITO-CHAVE
+                </span>
+
+                <p>
+                    ${introducao.conceitoChave}
+                </p>
+
+            </div>
+
+        </section>
+
+    `;
+
+}
+
+
+// ======================================================
+// QUESTÕES
+// ======================================================
+
+function renderizarQuestoes(questoes) {
+
+    const perguntasHTML = questoes
+        .map((questao, index) => {
+
+            const alternativasHTML =
+                questao.alternativas
+                    .map((alternativa, alternativaIndex) => {
+
+                        const letra =
+                            String.fromCharCode(65 + alternativaIndex);
+
+                        return `
+
+                            <label>
+
+                                <input
+                                    type="radio"
+                                    name="question-${index}"
+                                    value="${alternativaIndex}"
+                                >
+
+                                <span class="alternative-letter">
+                                    ${letra}
+                                </span>
+
+                                <span class="alternative-text">
+                                    ${alternativa}
+                                </span>
+
+                            </label>
+
+                        `;
+
+                    })
+                    .join("");
+
+
+            return `
+
+                <article class="question">
+
+                    <span class="question-label">
+                        QUESTÃO ${String(index + 1).padStart(2, "0")}
+                    </span>
+
+
+                    <h3>
+                        ${questao.pergunta}
+                    </h3>
+
+
+                    <div class="alternatives">
+
+                        ${alternativasHTML}
+
+                    </div>
+
+                </article>
+
+            `;
+
+        })
+        .join("");
+
+
+    return `
+
+        <section class="questions-section">
+
+            <details class="questions">
+
+                <summary>
+
+                    <div class="summary-left">
+
+                        <span class="question-number">
+                            ${questoes.length}
+                        </span>
+
+
+                        <div>
+
+                            <p class="eyebrow">
+                                Avaliação
+                            </p>
+
+                            <h2>
+                                Questões
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="arrow">
+                        ↓
+                    </span>
+
+                </summary>
+
+
+                <div class="questions-content">
+
+                    ${perguntasHTML}
+
+
+                    <button
+                        class="finish-questions"
+                        id="finishQuestions"
+                    >
+                        Finalizar questões
+                    </button>
+
+
+                    <div
+                        class="feedback"
+                        id="feedback"
+                    ></div>
+
+                </div>
+
+            </details>
+
+        </section>
+
+    `;
+
+}
+
+
+// ======================================================
+// EVENTOS
+// ======================================================
+
+function configurarEventos() {
+
+    const finishQuestions =
+        document.getElementById("finishQuestions");
+
+    const finishModule =
+        document.getElementById("finishModule");
+
+
+    // -----------------------------
+    // FINALIZAR QUESTÕES
+    // -----------------------------
+
+    finishQuestions.addEventListener("click", () => {
+
+        let acertos = 0;
+        let respondidas = 0;
+
+
+        conteudoAtual.questoes.forEach((questao, index) => {
+
+            const resposta =
+                document.querySelector(
+                    `input[name="question-${index}"]:checked`
+                );
+
+
+            if (resposta) {
+
+                respondidas++;
+
+                if (
+                    Number(resposta.value) ===
+                    questao.correta
+                ) {
+
+                    acertos++;
+
+                }
+
+            }
+
+        });
+
+
+        const feedback =
+            document.getElementById("feedback");
+
+
+        if (
+            respondidas <
+            conteudoAtual.questoes.length
+        ) {
+
+            feedback.innerHTML = `
+                <strong>Quase lá!</strong>
+                Responda todas as questões antes de finalizar.
+            `;
+
+            feedback.className =
+                "feedback warning";
+
+            return;
+        }
+
+
+        feedback.innerHTML = `
+            <strong>${acertos}/${conteudoAtual.questoes.length}</strong>
+            questões respondidas corretamente.
+        `;
+
+        feedback.className =
+            "feedback success";
+
+    });
+
+
+    // -----------------------------
+    // FINALIZAR MÓDULO
+    // -----------------------------
+
+    finishModule.addEventListener("click", () => {
+
+        const confirmar = confirm(
+            "Deseja finalizar este módulo?"
+        );
+
+
+        if (confirmar) {
+
+            alert(
+                "Módulo finalizado! Seu progresso foi atualizado."
+            );
+
+        }
+
+    });
+
+}
+
+
+
+renderizarConteudo(conteudoAtual);

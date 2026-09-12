@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinify | Início</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/admin e prof/admin_prof.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- ============ SIDEBAR (professor) ============ -->
+        <aside class="sidebar">
+            <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+            </button>
+
+            <div class="sidebar__brand">
+                <span class="sidebar__mark">C</span>
+                <span class="sidebar__brand-text">
+                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__wordmark">Clinify</span>
+                </span>
+            </div>
+
+            <ul class="sidebar__nav">
+                <li>
+                    <a href="home_prof.html" class="sidebar__link is-active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10" /></svg>
+                        <span class="sidebar__link-text">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="turmas.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="10" cy="7" r="4" /><path d="M22 20v-2a4 4 0 0 0-3-3.9" /><path d="M16 3.1a4 4 0 0 1 0 7.8" /></svg>
+                        <span class="sidebar__link-text">Minhas turmas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alunos.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M20 8v6" /><path d="M23 11h-6" /></svg>
+                        <span class="sidebar__link-text">Gerenciar alunos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="estudos_prof.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg>
+                        <span class="sidebar__link-text">Área de Estudo</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="desempenho_prof.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
+                        <span class="sidebar__link-text">Desempenho</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="simulacao_prof.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" /></svg>
+                        <span class="sidebar__link-text">Simulação Clínica</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+        <!-- ============ /SIDEBAR ============ -->
+
+        <div class="app-main">
+
+            <!-- ============ HEADER ============ -->
+            <header class="topbar">
+                <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
+                </button>
+
+                <div class="topbar__spacer"></div>
+
+                <button class="topbar__bell" type="button" aria-label="Notificações" id="bell-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" />
+                        <path d="M10 20a2 2 0 0 0 4 0" />
+                    </svg>
+                    <span class="dot"></span>
+                </button>
+
+                <div class="notifications" id="notifications">
+                    <h4>Notificações</h4>
+                    <ul>
+                        <li>2 alunos concluíram Cardiologia essa semana</li>
+                        <li>Nova tentativa registrada em Pneumologia</li>
+                        <li>Simulação SIM-7K21 tem novos acessos</li>
+                    </ul>
+                </div>
+
+                <a href="perfil.html" class="topbar__avatar" aria-label="Ir para o meu perfil" title="Meu perfil">
+                    <span class="topbar__avatar-initials">PR</span>
+                </a>
+            </header>
+            <!-- ============ /HEADER ============ -->
+
+            <main class="panel-page">
+
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Olá, professor(a)</h1>
+                        <p class="page-subtitle">Aqui está um resumo das suas turmas e da atividade recente dos alunos</p>
+                    </div>
+                </div>
+
+                <!-- ESTATÍSTICAS -->
+                <section class="stat-grid" id="stat-grid">
+                    <div class="stat-card">
+                        <p class="stat-card__label">Turmas ativas</p>
+                        <p class="stat-card__value" id="stat-turmas">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-card__label">Alunos matriculados</p>
+                        <p class="stat-card__value" id="stat-alunos">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-card__label">Simulações criadas</p>
+                        <p class="stat-card__value" id="stat-simulacoes">—</p>
+                    </div>
+                </section>
+
+                <!-- MINHAS TURMAS -->
+                <section style="margin-bottom: 28px;">
+                    <div class="page-header" style="margin-bottom: 14px;">
+                        <h2 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:#29272b; margin:0;">Minhas turmas</h2>
+                        <a href="turmas.html" class="btn btn--ghost btn--sm">Ver todas</a>
+                    </div>
+                    <div class="stat-grid" id="turmas-preview"></div>
+                </section>
+
+                <!-- ATIVIDADE RECENTE -->
+                <section>
+                    <h2 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:#29272b; margin:0 0 14px;">Atividade recente</h2>
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Aluno</th>
+                                    <th>Ação</th>
+                                    <th>Quando</th>
+                                </tr>
+                            </thead>
+                            <tbody id="atividade-recente"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/layout.js"></script>
+    <script src="../../js/professor/home_prof.js"></script>
+</body>
+
+</html>

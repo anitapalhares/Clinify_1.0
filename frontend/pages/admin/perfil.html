@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinify | Meu perfil</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar">
+            <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+            </button>
+            <div class="sidebar__brand">
+                <span class="sidebar__mark">C</span>
+                <span class="sidebar__brand-text">
+                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__wordmark">Clinify</span>
+                </span>
+            </div>
+            <ul class="sidebar__nav">
+                <li><a href="dashboard.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1" /><rect x="14" y="3" width="7" height="5" rx="1" /><rect x="14" y="12" width="7" height="9" rx="1" /><rect x="3" y="16" width="7" height="5" rx="1" /></svg>
+                    <span class="sidebar__link-text">Dashboard</span>
+                </a></li>
+                <li><a href="professores.html" class="sidebar__link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M20 8v6" /><path d="M23 11h-6" /></svg>
+                    <span class="sidebar__link-text">Gerenciar professores</span>
+                </a></li>
+            </ul>
+        </aside>
+
+        <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+
+        <div class="app-main">
+            <header class="topbar">
+                <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
+                </button>
+                <div class="topbar__spacer"></div>
+                <a href="perfil.html" class="topbar__avatar is-active" aria-label="Meu perfil" title="Meu perfil">
+                    <span class="topbar__avatar-initials">AD</span>
+                </a>
+            </header>
+
+            <main class="panel-page" style="max-width: 560px;">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Meu perfil</h1>
+                        <p class="page-subtitle">Suas informações de administrador(a) no Clinify</p>
+                    </div>
+                </div>
+
+                <div class="stat-card" style="padding: 24px;">
+                    <div style="display:flex; align-items:center; gap:14px; margin-bottom: 20px;">
+                        <div style="width:52px; height:52px; border-radius:50%; background:#9146d5; color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-weight:600; font-size:16px;">AD</div>
+                        <div>
+                            <p style="margin:0; font-family:'Inter',sans-serif; font-weight:600; font-size:14.5px; color:#29272b;">Administrador(a)</p>
+                            <p style="margin:2px 0 0; font-family:'Inter',sans-serif; font-size:12.5px; color:#918d95;">admin@clinify.com</p>
+                        </div>
+                    </div>
+                    <div class="modal-field">
+                        <label for="perfil-nome">Nome</label>
+                        <input type="text" id="perfil-nome" value="Administrador(a)">
+                    </div>
+                    <div class="modal-field">
+                        <label for="perfil-email">E-mail</label>
+                        <input type="email" id="perfil-email" value="admin@clinify.com">
+                    </div>
+                    <button type="button" class="btn btn--primary">Salvar alterações</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/layout.js"></script>
+</body>
+
+</html>

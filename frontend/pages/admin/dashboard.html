@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clinify | Dashboard Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- ============ SIDEBAR (admin) ============ -->
+        <aside class="sidebar">
+            <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+            </button>
+
+            <div class="sidebar__brand">
+                <span class="sidebar__mark">C</span>
+                <span class="sidebar__brand-text">
+                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__wordmark">Clinify</span>
+                </span>
+            </div>
+
+            <ul class="sidebar__nav">
+                <li>
+                    <a href="dashboard.html" class="sidebar__link is-active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1" /><rect x="14" y="3" width="7" height="5" rx="1" /><rect x="14" y="12" width="7" height="9" rx="1" /><rect x="3" y="16" width="7" height="5" rx="1" /></svg>
+                        <span class="sidebar__link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="professores.html" class="sidebar__link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M20 8v6" /><path d="M23 11h-6" /></svg>
+                        <span class="sidebar__link-text">Gerenciar professores</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="sidebar__backdrop" data-sidebar-backdrop></div>
+        <!-- ============ /SIDEBAR ============ -->
+
+        <div class="app-main">
+
+            <!-- ============ HEADER ============ -->
+            <header class="topbar">
+                <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
+                </button>
+                <div class="topbar__spacer"></div>
+                <a href="perfil.html" class="topbar__avatar" aria-label="Ir para o meu perfil" title="Meu perfil">
+                    <span class="topbar__avatar-initials">AD</span>
+                </a>
+            </header>
+            <!-- ============ /HEADER ============ -->
+
+            <main class="panel-page">
+
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-subtitle">Visão geral do Clinify</p>
+                    </div>
+                </div>
+
+                <section class="stat-grid">
+                    <div class="stat-card">
+                        <p class="stat-card__label">Professores cadastrados</p>
+                        <p class="stat-card__value" id="stat-professores">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-card__label">Turmas ativas</p>
+                        <p class="stat-card__value" id="stat-turmas">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-card__label">Alunos matriculados</p>
+                        <p class="stat-card__value" id="stat-alunos">—</p>
+                    </div>
+                </section>
+
+                <section style="margin-top: 24px;">
+                    <h2 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:#29272b; margin:0 0 14px;">Professores</h2>
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="professores-preview"></tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top:14px;">
+                        <a href="professores.html" class="btn btn--ghost btn--sm">Gerenciar professores</a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/layout.js"></script>
+    <script src="../../js/mock-data.js"></script>
+    <script src="../../js/admin/dashboard.js"></script>
+</body>
+
+</html>

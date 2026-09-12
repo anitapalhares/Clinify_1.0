@@ -11,9 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/topbar-extra.css">
-    <link rel="stylesheet" href="../css/estudos.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/estudante/estudos.css">
 </head>
 
 <body>
@@ -74,11 +73,25 @@
                 </button>
 
                 <div class="topbar__spacer"></div>
-
-                <button class="topbar__bell" type="button" aria-label="Notificações">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
+                
+                <button class="topbar__bell" type="button" aria-label="Notificações" id="bell-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6" />
+                        <path d="M10 20a2 2 0 0 0 4 0" />
+                    </svg>
                     <span class="dot"></span>
                 </button>
+
+                <div class="notifications" id="notifications">
+                    <h4>Notificações</h4>
+                    <ul>
+                        <li>Nova mensagem de estudos</li>
+                        <li>Atualização de desempenho</li>
+                        <li>Simulação clínica disponível</li>
+                    </ul>
+                </div>
+
 
                 <a href="perfil.html" class="topbar__avatar" aria-label="Ir para o meu perfil" title="Meu perfil">
                     <span class="topbar__avatar-initials">ES</span>
@@ -410,8 +423,8 @@
         </div>
     </div>
 
-    <script src="../js/layout.js"></script>
-    <script src="../js/estudos.js"></script>
+    <script src="../../js/layout.js"></script>
+    <script src="../../js/estudante/estudos.js"></script>
 </body>
 
 </html>

@@ -66,3 +66,24 @@
         if (!isMobile()) closeMobile();
     });
 })();
+const bellBtn = document.getElementById('bell-btn');
+const notifications = document.getElementById('notifications');
+const dot = bellBtn.querySelector('.dot');
+
+bellBtn.addEventListener('click', () => {
+  // alterna o dropdown
+  notifications.style.display =
+    notifications.style.display === 'block' ? 'none' : 'block';
+
+  // remove a bolinha azul (marca como lido)
+  if (dot) {
+    dot.style.display = 'none';
+  }
+});
+
+// Fecha ao clicar fora
+document.addEventListener('click', (e) => {
+  if (!bellBtn.contains(e.target) && !notifications.contains(e.target)) {
+    notifications.style.display = 'none';
+  }
+});

@@ -231,7 +231,7 @@ function renderizarVideo(video) {
 
                 <button
                     class="play-button"
-                    disabled aria-label="Vídeo não disponível na demonstração"
+                    disabled aria-label="Vídeo ainda não disponível"
                 >
                     ▶
                 </button>
@@ -523,7 +523,8 @@ function configurarEventos() {
 
             if (ClinifyUI.salvar(chaveProgresso, {concluido: true, data: new Date().toISOString()})) {
                 finishModule.textContent = 'Módulo concluído · Revisar';
-                ClinifyUI.mensagem('Módulo finalizado. Progresso salvo neste navegador.');
+                var xpGanho = ClinifyJornada.registrar(chaveProgresso, 'modulo');
+                ClinifyUI.mensagem('Módulo concluído. Seu progresso foi atualizado.' + (xpGanho ? ' +' + xpGanho + ' XP! Confira suas conquistas no perfil.' : ''));
             }
 
         }
@@ -537,5 +538,5 @@ if (conteudoAtual) {
     if (parametros.get('tipo') === 'questoes') document.querySelector('.questions').open = true;
     if (ClinifyUI.ler(chaveProgresso, null)) document.getElementById('finishModule').textContent = 'Módulo concluído · Revisar';
 } else {
-    studyPage.innerHTML = '<header class="study-header"><h1>Conteúdo em preparação</h1><p>Esta especialidade ainda não tem uma aula publicada na demonstração.</p><a href="estudos.html">Voltar aos estudos</a></header>';
+    studyPage.innerHTML = '<header class="study-header"><h1>Conteúdo em preparação</h1><p>As aulas desta especialidade estarão disponíveis em breve.</p><a href="estudos.html">Voltar aos estudos</a></header>';
 }

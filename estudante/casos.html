@@ -12,7 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="../assets/css/estrutura.css" />
     <link rel="stylesheet" href="../assets/css/simulacao.css" />
   </head>
@@ -39,14 +39,18 @@
         </button>
 
         <div class="sidebar__brand">
-          <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
+          <span class="sidebar__mark"
+            ><img src="../assets/img/clinify.svg" alt="" width="38" height="38"
+          /></span>
           <span class="sidebar__brand-text">
             <span class="sidebar__eyebrow">Hospital Moinhos de Vento</span>
             <span class="sidebar__wordmark">Clinify</span>
           </span>
         </div>
 
-        <nav aria-label="Navegação principal"><ul class="sidebar__nav" data-navigation></ul></nav>
+        <nav aria-label="Navegação principal">
+          <ul class="sidebar__nav" data-navigation></ul>
+        </nav>
       </aside>
 
       <div class="sidebar__backdrop" data-sidebar-backdrop></div>
@@ -83,20 +87,20 @@
                 <h1 id="simulation-title" class="simulation-title">
                   Simulação Clínica
                 </h1>
-                <p>Explore os casos fictícios da demonstração.</p>
               </div>
             </div>
 
-            <p class="empty-state">Demonstração: todos os cards abrem o mesmo cenário. Código de teste: MOINHOS01. O gerador de IA é apenas uma interface visual.</p>
             <form class="case-code" data-code-form>
-              <label for="caseCode">Entrar com código personalizado</label>
+              <label for="nomeAluno">Seu nome na sala</label><input id="nomeAluno" name="nomeAluno" type="text" maxlength="60" placeholder="Como o professor deve identificar você?" autocomplete="name">
+              <label for="caseCode">Código da sala</label>
               <div class="case-code__entry">
                 <input
                   id="caseCode"
                   name="caseCode"
                   type="text"
-                  placeholder="MOINHOS01"
-                  maxlength="12" required
+                  placeholder="Digite o código"
+                  maxlength="12"
+                  required
                   autocomplete="off"
                 />
                 <button type="submit">Abrir</button>
@@ -176,7 +180,7 @@
                   <span class="difficulty difficulty--easy">Fácil</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Abrir demonstração</span></a
+                  ><span>Iniciar simulação</span></a
                 >
               </article>
 
@@ -199,7 +203,7 @@
                   <span class="difficulty difficulty--hard">Difícil</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Abrir demonstração</span></a
+                  ><span>Iniciar simulação</span></a
                 >
               </article>
 
@@ -316,7 +320,7 @@
                   <span class="difficulty difficulty--medium">Médio</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Abrir demonstração</span></a
+                  ><span>Iniciar simulação</span></a
                 >
               </article>
 
@@ -364,7 +368,9 @@
                   &times;
                 </button>
                 <span class="ai-modal__eyebrow">IA Clinify</span>
-                <h2 id="ai-modal-title">Abrir cenário demonstrativo personalizado</h2>
+                <h2 id="ai-modal-title">
+                  Iniciar caso personalizado
+                </h2>
                 <label>
                   Especialidade
                   <select data-ai-specialty>
@@ -400,16 +406,18 @@
                   </select>
                 </label>
                 <button class="ai-modal__random" type="button" data-ai-random>
-                  Abrir cenário demonstrativo aleatório
+                  Iniciar caso aleatório
                 </button>
                 <button class="ai-modal__create" type="button" data-ai-case>
-                  Abrir demonstração
+                  Iniciar simulação
                 </button>
               </div>
             </div>
 
             <button class="floating-ai" type="button" data-ai-open>
-              <span class="floating-ai__text">Abrir cenário demonstrativo com IA</span>
+              <span class="floating-ai__text"
+                >Configurar caso clínico</span
+              >
               <span class="floating-ai__robot" aria-hidden="true">
                 <span></span>
               </span>
@@ -438,8 +446,16 @@
             <div class="site-footer__links">
               <h2>Saiba mais...</h2>
               <ul>
-                <li><a href="https://www.hospitalmoinhos.org.br/">Hospital Moinhos de Vento</a></li>
-                <li><a href="https://www.hospitalmoinhos.org.br/">Faculdade Moinhos de Vento</a></li>
+                <li>
+                  <a href="https://www.hospitalmoinhos.org.br/"
+                    >Hospital Moinhos de Vento</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.hospitalmoinhos.org.br/"
+                    >Faculdade Moinhos de Vento</a
+                  >
+                </li>
                 <li><a href="https://www.fiap.com.br/">FIAP</a></li>
               </ul>
             </div>
@@ -454,6 +470,7 @@
 
     <script src="../assets/js/shared/components.js"></script>
     <script src="../assets/js/shared/layout.js"></script>
+    <script src="../assets/js/shared/rooms.js"></script>
     <script src="../assets/js/student/simulation.js"></script>
   </body>
 </html>

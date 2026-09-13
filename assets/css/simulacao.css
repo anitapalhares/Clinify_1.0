@@ -969,3 +969,69 @@
 @media (min-width: 821px) {
     .site-footer__content { grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); }
 }
+
+/* Salas de simulação do professor: convite por código e análise da turma. */
+.pagina-salas .salas-page { width: min(100%, 1180px); margin: 0 auto; padding: 28px 18px 44px; }
+.pagina-salas .salas-cabecalho { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
+.pagina-salas .salas-eyebrow { color: var(--primary); font-size: .75rem; font-weight: 700; letter-spacing: 1px; margin: 0 0 10px; }
+.pagina-salas h1 { font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.15; font-weight: 500; color: var(--ink-strong); margin: 0 0 12px; }
+.pagina-salas .salas-cabecalho p:not(.salas-eyebrow), .pagina-salas .sala-cenario { color: var(--muted); margin: 0; }
+.pagina-salas .salas-guia { display: grid; gap: 22px; padding: 24px; background: var(--primary-soft); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 24px; }
+.pagina-salas .salas-guia span { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--surface); color: var(--primary); font-size: .75rem; font-weight: 700; margin-right: 10px; }
+.pagina-salas .salas-guia strong { font-size: .875rem; }
+.pagina-salas .salas-guia p { margin: 8px 0 0; color: var(--muted); font-size: .8125rem; }
+.pagina-salas .salas-indicadores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 32px; }
+.pagina-salas .salas-indicadores article { padding: 16px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; justify-content: space-between; gap: 10px; }
+.pagina-salas .salas-indicadores span { color: var(--muted); font-size: .75rem; }
+.pagina-salas .salas-indicadores strong { color: var(--primary-dark); font-size: 1.75rem; }
+.pagina-salas .salas-lista-cabecalho { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.pagina-salas h2 { color: var(--ink-strong); font-size: 1.25rem; margin: 0; }
+.pagina-salas #salas-contagem { font-size: .8125rem; color: var(--muted); }
+.pagina-salas .salas-filtros { display: grid; gap: 14px; margin-bottom: 20px; }
+.pagina-salas .salas-filtros label { display: grid; gap: 6px; font-size: .8125rem; color: var(--muted); }
+.pagina-salas .salas-filtros input, .pagina-salas .salas-filtros select, .pagina-salas textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--ink); padding: 10px 12px; font: inherit; }
+.pagina-salas textarea { resize: vertical; }
+.pagina-salas .salas-grid { display: grid; gap: 18px; }
+.pagina-salas .sala-card { min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-soft); }
+.pagina-salas .sala-card__topo { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; }
+.pagina-salas .sala-status { font-size: .6875rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 5px 8px; border-radius: 99px; }
+.pagina-salas .sala-status--encerrada { color: var(--muted); background: var(--surface-alt); }
+.pagina-salas .sala-turma { font-size: .75rem; color: var(--muted); overflow-wrap: anywhere; }
+.pagina-salas .sala-card h3 { margin: 18px 0 8px; font-size: 1.0625rem; color: var(--ink-strong); overflow-wrap: anywhere; }
+.pagina-salas .sala-cenario, .pagina-salas .sala-participacao { font-size: .8125rem; color: var(--muted); }
+.pagina-salas .sala-convite { display: grid; justify-items: center; gap: 6px; padding: 18px; margin: 20px 0 16px; border: 1px dashed var(--border-strong); border-radius: var(--radius); background: var(--primary-soft); }
+.pagina-salas .sala-convite span { font-size: .625rem; color: var(--primary); font-weight: 700; letter-spacing: 1.5px; }
+.pagina-salas .sala-convite strong { font-size: 1.875rem; letter-spacing: 5px; color: var(--primary-dark); font-variant-numeric: tabular-nums; }
+.pagina-salas .sala-convite button { border: 0; background: transparent; color: var(--primary); font-size: .8125rem; font-weight: 600; cursor: pointer; padding: 6px 12px; }
+.pagina-salas .sala-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
+.pagina-salas .sala-acoes .btn--primary { flex: 1; }
+.pagina-salas .sala-acoes-secundarias { display: flex; justify-content: space-between; margin-top: 14px; border-top: 1px solid var(--border); padding-top: 8px; }
+.pagina-salas .sala-acoes-secundarias button { border: 0; padding: 8px 0; background: transparent; color: var(--muted); font: inherit; font-size: .75rem; cursor: pointer; }
+.pagina-salas .sala-acoes-secundarias [data-acao="excluir"] { color: var(--rose); }
+.pagina-salas .salas-vazio { padding: 40px 24px; text-align: center; border: 1px dashed var(--border-strong); background: var(--surface); border-radius: var(--radius); }
+.pagina-salas .salas-vazio > span { font-size: 2.5rem; color: var(--primary); }
+.pagina-salas .salas-vazio h3 { margin: 8px 0; color: var(--ink-strong); }
+.pagina-salas .salas-vazio p { color: var(--muted); font-size: .875rem; }
+.pagina-salas .salas-nota { margin-top: 24px; color: var(--muted); font-size: .75rem; }
+.pagina-salas .salas-modal { width: min(100%, 520px); max-height: 90dvh; overflow-y: auto; }
+.pagina-salas .salas-modal h2 { margin-bottom: 12px; }
+.pagina-salas .salas-modal > p { color: var(--muted); font-size: .875rem; }
+.pagina-salas .salas-modal--analise { width: min(100%, 760px); }
+.pagina-salas .sala-orientacoes { padding: 16px; border-radius: var(--radius); background: var(--primary-soft); overflow-wrap: anywhere; }
+.pagina-salas .sala-tentativa { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-top: 12px; font-size: .875rem; overflow-wrap: anywhere; }
+.pagina-salas .sala-tentativa summary { cursor: pointer; }
+.pagina-salas .sala-tentativa summary span { display: block; color: var(--muted); font-size: .75rem; margin-top: 4px; }
+.pagina-salas .sala-tentativa li { margin-bottom: 8px; white-space: pre-wrap; }
+@media (min-width: 681px) {
+    .pagina-salas .salas-page { padding: 36px 32px 48px; }
+    .pagina-salas .salas-cabecalho { flex-direction: row; align-items: center; justify-content: space-between; }
+    .pagina-salas .salas-guia { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pagina-salas .salas-filtros { grid-template-columns: minmax(0, 1fr) 210px; }
+    .pagina-salas .salas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.convite-sala { grid-column: 1 / -1; padding: 18px; background: var(--primary-soft); border-left: 4px solid var(--primary); border-radius: var(--radius); overflow-wrap: anywhere; }
+.convite-sala p { margin: 8px 0 0; white-space: pre-wrap; font-size: .875rem; }
+.case-code > #nomeAluno { width: 100%; border: 1px solid var(--border); padding: 12px; margin: 8px 0 14px; color: var(--ink); background: var(--surface); border-radius: var(--radius); }
+.pagina-salas .salas-modal--analise h3 { margin: 24px 0 12px; }
+.pagina-salas .salas-modal .salas-indicadores { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 561px) { .pagina-salas .salas-modal .salas-indicadores { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

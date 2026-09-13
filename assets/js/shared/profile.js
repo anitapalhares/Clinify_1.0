@@ -18,7 +18,7 @@
         nome.value = nome.value.trim();
         if (!form.reportValidity()) return;
         if (ClinifyUI.salvar(chave, {nome: nome.value, email: email.value.trim()})) {
-            atualizar(); ClinifyUI.mensagem('Perfil salvo neste navegador.');
+            atualizar(); ClinifyUI.mensagem('Perfil atualizado com sucesso.');
         }
     });
 })();

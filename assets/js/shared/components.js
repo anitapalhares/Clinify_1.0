@@ -5,7 +5,7 @@
     var pagina = window.location.pathname.split('/').pop() || 'index.html';
     var menus = {
         estudante: [['index.html', 'Início'], ['casos.html', 'Simulação clínica'], ['estudos.html', 'Estudos'], ['desempenho.html', 'Desempenho'], ['perfil.html', 'Meu perfil']],
-        professor: [['index.html', 'Início'], ['turmas.html', 'Minhas turmas'], ['alunos.html', 'Alunos'], ['estudo.html', 'Área de estudo'], ['desempenho.html', 'Desempenho'], ['simulacao.html', 'Simulações'], ['perfil.html', 'Meu perfil']],
+        professor: [['index.html', 'Início'], ['turmas.html', 'Minhas turmas'], ['alunos.html', 'Alunos'], ['estudo.html', 'Área de estudo'], ['desempenho.html', 'Desempenho'], ['casos.html', 'Salas de simulação'], ['perfil.html', 'Meu perfil']],
         administrador: [['index.html', 'Início'], ['professores.html', 'Professores'], ['perfil.html', 'Meu perfil']]
     };
     function escapar(texto) {
@@ -36,7 +36,7 @@
     }
     function salvar(chave, valor) {
         try { localStorage.setItem('clinify:' + chave, JSON.stringify(valor)); return true; }
-        catch (erro) { mensagem('Não foi possível salvar neste navegador. Verifique o armazenamento.', true); return false; }
+        catch (erro) { mensagem('Não foi possível salvar. Tente novamente.', true); return false; }
     }
     window.ClinifyUI = { escapar: escapar, mensagem: mensagem, ler: ler, salvar: salvar };
     var lateral = document.querySelector('.sidebar');
@@ -51,7 +51,15 @@
             var ativa = pagina === item[0] || (pagina === 'cardiologia.html' && item[0] === 'estudos.html');
             var icone = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 15h5"/></svg>';
             return '<li><a href="' + item[0] + '" class="sidebar__link' + (ativa ? ' is-active' : '') + '"' + (ativa ? ' aria-current="page"' : '') + '>' + icone + '<span class="sidebar__link-text">' + item[1] + '</span></a></li>';
-        }).join('') + '<li><a href="../login.html" class="sidebar__link"><span class="sidebar__link-text">Voltar ao login</span></a></li>';
+        }).join('');
+        var voltar = document.createElement('a');
+        voltar.href = '../index.html';
+        voltar.className = 'sidebar__link sidebar__login';
+        voltar.setAttribute('aria-label', 'Voltar ao login');
+        voltar.title = 'Voltar ao login';
+        voltar.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 4H4v16h6M14 8l4 4-4 4M8 12h10"/></svg><span class="sidebar__link-text">Voltar ao login</span>';
+        if (lateral && lateral.contains(alvo)) lateral.appendChild(voltar);
+        else { var itemVoltar = document.createElement('li'); itemVoltar.appendChild(voltar); alvo.appendChild(itemVoltar); }
     });
     var principal = document.querySelector('main');
     if (area === 'estudante' && (pagina === 'index.html' || pagina === 'desempenho.html')) {
@@ -60,9 +68,9 @@
         progresso.setAttribute('aria-label', 'Seu progresso salvo');
         var modulo = ler('modulo:cardiologia', null);
         var simulacao = ler('resultado-simulacao', null);
-        var titulo = document.createElement('h2'); titulo.textContent = 'Seu progresso neste navegador';
+        var titulo = document.createElement('h2'); titulo.textContent = 'Seu progresso';
         var detalhe = document.createElement('p');
-        detalhe.textContent = 'Cardiologia: ' + (modulo && modulo.concluido ? 'módulo concluído.' : 'módulo ainda não concluído.') + ' ' + (simulacao && typeof simulacao.pontos === 'number' ? 'Última simulação: ' + simulacao.pontos + ' pontos demonstrativos.' : 'Nenhuma simulação finalizada.');
+        detalhe.textContent = 'Cardiologia: ' + (modulo && modulo.concluido ? 'módulo concluído.' : 'módulo ainda não concluído.') + ' ' + (simulacao && typeof simulacao.pontos === 'number' ? 'Última simulação: ' + simulacao.pontos + ' pontos.' : 'Nenhuma simulação finalizada.');
         progresso.append(titulo, detalhe);
         principal.prepend(progresso);
     }
@@ -78,13 +86,13 @@
     if (!document.querySelector('footer')) {
         var rodape = document.createElement('footer');
         rodape.className = 'rodape-compartilhado';
-        rodape.textContent = 'Clinify · Challenge Hospital Moinhos de Vento · FIAP 2026 · Dados fictícios para demonstração';
+        rodape.textContent = 'Clinify · Hospital Moinhos de Vento';
         (document.querySelector('.app-main') || document.body).appendChild(rodape);
     }
     document.querySelectorAll('svg:not([role="img"])').forEach(function (svg) { svg.setAttribute('aria-hidden', 'true'); });
     document.querySelectorAll('.empty-state, .feedback, [data-case-counter]').forEach(function (alvo) { alvo.setAttribute('role', 'status'); });
     document.querySelectorAll('.topbar__bell:not(#bell-btn)').forEach(function (botao) {
-        botao.addEventListener('click', function () { mensagem('Nenhuma nova notificação nesta demonstração.'); });
+        botao.addEventListener('click', function () { mensagem('Nenhuma nova notificação.'); });
     });
     document.querySelectorAll('.topbar__search').forEach(function (busca) {
         var entrada = busca.querySelector('input');

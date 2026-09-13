@@ -12,13 +12,13 @@ HTML5 semântico, CSS3 (Flexbox, Grid e media queries) e JavaScript.
 
 ## Como executar
 
-Abra `login.html` no navegador ou utilize a extensão Live Server do VS Code. Também é possível executar com Python:
+Abra `index.html` no navegador ou utilize a extensão Live Server do VS Code. Também é possível executar com Python:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Depois acesse <http://localhost:8000/login.html>.
+Depois acesse <http://localhost:8000/index.html>.
 
 ## Contas de teste
 
@@ -36,7 +36,7 @@ O login é uma demonstração em JavaScript. Não há autenticação de servidor
 
 ```text
 index.html                 Redireciona para o login
-login.html                 Entrada do site
+index.html                 Entrada do site
 estudante/                 Estudos, questões, casos, desempenho e perfil
 professor/                 Turmas, alunos, estudos, desempenho e perfil
 administrador/             Painel, professores e perfil
@@ -55,15 +55,19 @@ As variáveis visuais ficam em `root.css`. Menus, rodapé e mensagens de retorno
 2. Abra Meu perfil, altere o nome e salve. Recarregue para conferir o resultado.
 3. Entre como estudante. Teste os filtros e a ordenação dos estudos, inclusive uma busca sem resultados.
 4. Abra Cardiologia, responda às questões e finalize o módulo. O progresso é salvo no navegador.
-5. Abra Simulação clínica. Teste os filtros e o código `MOINHOS01`, envie uma resposta e finalize a consulta. O último resultado fica salvo.
+5. Como professor, abra Salas de simulação, crie uma sala e copie o código. Em outra aba do mesmo navegador, entre como estudante, informe seu nome e esse código em Simulação clínica. Envie uma resposta, finalize e analise a sala na aba do professor. Teste também editar, encerrar e reabrir a sala. Para explorar sem sala, use `MOINHOS01`.
 6. Confira o site em larguras de 375px, 768px e 1440px. Teste o menu no celular e navegue usando Tab e Escape.
 
 ## Dados e limites da demonstração
 
-Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. Os cards de casos abrem o mesmo cenário demonstrativo; a pontuação é ilustrativa e o gerador de IA não está integrado a um modelo real.
+Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. As salas personalizadas guardam nome, turma, orientações, código e tentativas; podem ser editadas, encerradas, reabertas e excluídas. Funcionam entre abas do mesmo navegador e origem, sem sincronização entre dispositivos. Os cards e as salas usam o mesmo cenário demonstrativo; a pontuação é ilustrativa e o gerador de IA não está integrado a um modelo real.
 
 ## Uso de Inteligência Artificial
 
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o site não utiliza uma IA real para analisar decisões clínicas ou realizar diagnósticos.
+
+## Jornada do estudante
+
+O perfil oferece níveis, XP e seis ícones colecionáveis para usar como avatar. Cada caso ou sala concluída concede 100 XP uma vez; cada módulo concede 150 XP uma vez. A cada 250 XP, o estudante sobe de nível. Revisões não repetem XP. As conquistas reconhecem a prática e não representam habilitação clínica.

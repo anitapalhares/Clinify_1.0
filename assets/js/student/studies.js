@@ -15,7 +15,7 @@
         card.dataset.progress = String(progresso);
         card.querySelector('.study-progress__bar span').style.width = progresso + '%';
         card.querySelector('.study-progress__label').textContent = progresso + '%';
-        card.querySelector('.study-progress').setAttribute('aria-label', progresso + '% do conteúdo concluído neste navegador');
+        card.querySelector('.study-progress').setAttribute('aria-label', progresso + '% do conteúdo concluído');
     });
 
     function normalize(text) {

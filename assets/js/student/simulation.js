@@ -73,9 +73,13 @@
         if (codeForm) {
             codeForm.addEventListener('submit', function (event) {
                 event.preventDefault();
-                var codigo = codeForm.querySelector('input').value.trim().toUpperCase();
-                if (codigo !== 'MOINHOS01') { ClinifyUI.mensagem('Código não encontrado. Para testar, use MOINHOS01.', true); return; }
-                window.location.href = 'simulacao.html';
+                var codigo = codeForm.querySelector('[name="caseCode"]').value.trim().toUpperCase();
+                if (codigo === 'MOINHOS01') { window.location.href = 'simulacao.html'; return; }
+                try {
+                    var aluno = document.getElementById('nomeAluno').value.trim();
+                    var tentativa = ClinifySalas.entrar(codigo, aluno);
+                    window.location.href = 'simulacao.html?sala=' + encodeURIComponent(codigo) + '&tentativa=' + encodeURIComponent(tentativa.id);
+                } catch (erro) { ClinifyUI.mensagem(erro.message, true); }
             });
         }
 
@@ -133,6 +137,26 @@
         var finalizado = false;
         var intervalo;
         var points = Number(score ? score.textContent : 64);
+        var parametros = new URLSearchParams(window.location.search);
+        var codigoSala = parametros.get('sala');
+        var idTentativa = parametros.get('tentativa');
+        if (codigoSala) {
+            var sala = ClinifySalas.localizar(codigoSala);
+            var tentativa = sala && sala.tentativas.find(function (t) { return t.id === idTentativa; });
+            if (!sala || sala.status !== 'aberta' || !tentativa || tentativa.estado !== 'em andamento') {
+                document.querySelector('main').innerHTML = '<section class="record-card"><h1>Sala indisponível</h1><p>A sala foi encerrada, não existe ou esta tentativa já foi finalizada.</p><a href="casos.html">Voltar e entrar com outro código</a></section>';
+                return;
+            }
+            var convite = document.createElement('section');
+            convite.className = 'convite-sala';
+            convite.innerHTML = '<strong>' + ClinifyUI.escapar(sala.nome) + '</strong><p>' + ClinifyUI.escapar(sala.turma) + ' · Código ' + ClinifyUI.escapar(sala.codigo) + ' · ' + ClinifyUI.escapar(tentativa.aluno) + '</p>' + (sala.instrucoes ? '<p>' + ClinifyUI.escapar(sala.instrucoes) + '</p>' : '');
+            document.querySelector('main').prepend(convite);
+            tentativa.respostas.forEach(function (r) { addMessage('doctor', r.texto); });
+            points = Math.min(100, 64 + tentativa.respostas.length * 4);
+            if (score) score.textContent = points;
+            seconds = Math.max(0, Math.floor((Date.now() - new Date(tentativa.inicio).getTime()) / 1000));
+        }
+
 
         function addMessage(className, text) {
             if (!thread) return;
@@ -168,9 +192,13 @@
                 if (finalizado) return;
                 var text = input ? input.value.trim() : '';
                 if (!text) return;
+                if (codigoSala) {
+                    try { ClinifySalas.responder(codigoSala, idTentativa, text); }
+                    catch (erro) { ClinifyUI.mensagem(erro.message, true); return; }
+                }
                 addMessage('doctor', text);
                 addLog('Resposta enviada na consulta simulada.');
-                addMessage('ai-feedback', 'Resposta registrada para revisão pelo professor. Esta demonstração não analisa decisões médicas com IA.');
+                addMessage('ai-feedback', 'Resposta registrada para revisão pelo professor.');
                 bumpScore(4);
                 if (input) input.value = '';
             });
@@ -179,21 +207,39 @@
         if (finish) {
             finish.addEventListener('click', function () {
                 if (finalizado || !confirm('Deseja finalizar a simulação e salvar o resultado?')) return;
-                if (!ClinifyUI.salvar('resultado-simulacao', {pontos: points, segundos: seconds, data: new Date().toISOString()})) return;
+                if (codigoSala) {
+                    try { ClinifySalas.finalizar(codigoSala, idTentativa, {pontos: points, segundos: seconds}); }
+                    catch (erro) { ClinifyUI.mensagem(erro.message, true); return; }
+                }
+                var salvo = ClinifyUI.salvar('resultado-simulacao', {pontos: points, segundos: seconds, data: new Date().toISOString()});
+                if (!salvo && !codigoSala) return;
                 finalizado = true;
                 clearInterval(intervalo);
                 if (input) input.disabled = true;
                 if (form) form.querySelector('[type="submit"]').disabled = true;
                 finish.disabled = true;
-                ClinifyUI.mensagem('Simulação finalizada. Resultado salvo neste navegador.');
-                if (history) history.textContent = 'Caso finalizado com ' + points + ' pontos neste dispositivo.';
+                var xpGanho = ClinifyJornada.registrar(codigoSala ? 'sala:' + codigoSala : 'caso:cefaleia', 'caso');
+                ClinifyUI.mensagem('Simulação concluída. Resultado registrado.' + (xpGanho ? ' +' + xpGanho + ' XP! Confira suas conquistas no perfil.' : ''));
+                if (history) history.textContent = 'Caso finalizado com ' + points + ' pontos.';
                 addLog('Caso finalizado.');
             });
         }
 
+        if (codigoSala) window.addEventListener('storage', function (evento) {
+            if (evento.key !== 'clinify:salas' && evento.key !== null) return;
+            var atual = ClinifySalas.localizar(codigoSala);
+            var indisponivel = !atual || atual.status !== 'aberta';
+            if (!finalizado) {
+                if (input) input.disabled = indisponivel;
+                if (form) form.querySelector('[type="submit"]').disabled = indisponivel;
+                if (finish) finish.disabled = indisponivel;
+                ClinifyUI.mensagem(indisponivel ? 'A sala foi encerrada ou excluída pelo professor.' : 'A sala está aberta novamente.', indisponivel);
+            }
+        });
+
         if (history) {
             var resultado = ClinifyUI.ler('resultado-simulacao', null);
-            if (resultado && typeof resultado.pontos === 'number') history.textContent = 'Última simulação: ' + resultado.pontos + ' pontos (pontuação demonstrativa).';
+            if (resultado && typeof resultado.pontos === 'number') history.textContent = 'Última simulação: ' + resultado.pontos + ' pontos.';
         }
 
         if (timer) {

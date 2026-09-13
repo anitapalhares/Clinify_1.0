@@ -3,7 +3,7 @@
     if (!form) return;
 
     var routes = {
-        admin: 'admin/dashboard.html',
+        admin: 'administrador/dashboard.html',
         professor: 'professor/home_prof.html',
         aluno: 'estudante/home_es.html'
     };

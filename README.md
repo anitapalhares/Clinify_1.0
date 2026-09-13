@@ -67,7 +67,3 @@ Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perf
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o site não utiliza uma IA real para analisar decisões clínicas ou realizar diagnósticos.
-
-## Jornada do estudante
-
-O perfil oferece níveis, XP e seis ícones colecionáveis para usar como avatar. Cada caso ou sala concluída concede 100 XP uma vez; cada módulo concede 150 XP uma vez. A cada 250 XP, o estudante sobe de nível. Revisões não repetem XP. As conquistas reconhecem a prática e não representam habilitação clínica.

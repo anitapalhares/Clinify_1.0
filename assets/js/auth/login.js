@@ -1,43 +1,29 @@
 (function () {
+    'use strict';
     var form = document.getElementById('loginForm');
     if (!form) return;
-
-    var routes = {
-        admin: 'administrador/dashboard.html',
-        professor: 'professor/home_prof.html',
-        aluno: 'estudante/home_es.html'
+    var contas = {
+        'admin@clinify.com': 'administrador/index.html',
+        'professor@clinify.com': 'professor/index.html',
+        '12345678900@gmail.com': 'estudante/index.html'
     };
-
-    function goTo(route) {
-        window.location.href = route;
-    }
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        var email = document.getElementById('email').value.trim();
-        var password = document.getElementById('password').value;
-
-        if (email === 'admin@clinify.com' && password === '123456') {
-            var escolha = prompt('Entrar como: admin, professor ou aluno?');
-            if (routes[escolha]) {
-                goTo(routes[escolha]);
-                return;
-            }
-            alert('Opção inválida.');
+    var email = document.getElementById('email');
+    var lembrar = document.getElementById('remember');
+    var feedback = document.getElementById('login-feedback');
+    var salvo = ClinifyUI.ler('email-lembrado', '');
+    if (typeof salvo === 'string' && salvo) { email.value = salvo; lembrar.checked = true; }
+    document.querySelector('[data-login-help]').addEventListener('click', function () {
+        feedback.textContent = 'Senha de teste: 123456. E-mails: admin@clinify.com, professor@clinify.com ou 12345678900@gmail.com.';
+    });
+    form.addEventListener('submit', function (evento) {
+        evento.preventDefault();
+        var endereco = email.value.trim().toLowerCase();
+        if (!form.reportValidity()) return;
+        if (!contas[endereco] || document.getElementById('password').value !== '123456') {
+            feedback.textContent = 'E-mail ou senha incorretos. Consulte os dados de teste.';
             return;
         }
-
-        if (email === 'professor@clinify.com' && password === '123456') {
-            goTo(routes.professor);
-            return;
-        }
-
-        if (email === '12345678900@gmail.com' && password === '123456') {
-            goTo(routes.aluno);
-            return;
-        }
-
-        alert('Credenciais inválidas.');
+        ClinifyUI.salvar('email-lembrado', lembrar.checked ? endereco : '');
+        window.location.href = contas[endereco];
     });
 })();

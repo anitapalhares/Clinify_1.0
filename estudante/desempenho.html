@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/clinify.svg">
 
     <title>Clinify | Desempenho</title>
 
@@ -11,62 +12,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/layout.css">
-    <link rel="stylesheet" href="../assets/css/performance.css">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css">
+
 </head>
 
-<body>
+<body class="pagina-desempenho" data-area="estudante">
     <div class="app-shell">
 
-        
+
         <aside class="sidebar">
             <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
             </button>
 
             <div class="sidebar__brand">
-                <span class="sidebar__mark">C</span>
+                <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
                 <span class="sidebar__brand-text">
-                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__eyebrow">Hospital Moinhos de Vento</span>
                     <span class="sidebar__wordmark">Clinify</span>
                 </span>
             </div>
 
-            <ul class="sidebar__nav">
-                <li>
-                    <a href="home_es.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10" /></svg>
-                        <span class="sidebar__link-text">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="home_simulacao.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" /></svg>
-                        <span class="sidebar__link-text">Simulação Clínica</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="estudos.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg>
-                        <span class="sidebar__link-text">Estudos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="desempenho.html" class="sidebar__link is-active">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
-                        <span class="sidebar__link-text">Desempenho</span>
-                    </a>
-                </li>
-            </ul>
+            <nav aria-label="Navegação principal"><ul class="sidebar__nav" data-navigation></ul></nav>
         </aside>
 
 
         <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        
+
 
         <div class="app-main">
 
-            
+
             <header class="topbar">
                 <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
@@ -83,13 +60,13 @@
                     <span class="topbar__avatar-initials">ES</span>
                 </a>
             </header>
-            
+
             <main class="app-content">
 
                 <h1 class="page-title">Meu Desempenho</h1>
                 <p class="page-subtitle">Acompanhe suas estatísticas de aprendizado e evolução clínica</p>
 
-                
+
                 <div class="stat-grid">
                     <div class="stat-card">
                             <span class="stat-card__icon stat-card__icon--purple">
@@ -129,7 +106,7 @@
                     </div>
                 </div>
 
-                
+
                 <section class="performance-section">
                     <div class="performance-section__header">
                         <h2 class="performance-section__title">Áreas Mais Simuladas</h2>
@@ -193,7 +170,8 @@
         </div>
     </div>
 
-<script src="../assets/js/shared/layout.js"></script>
+<script src="../assets/js/shared/components.js"></script>
+    <script src="../assets/js/shared/layout.js"></script>
 </body>
 
 </html>

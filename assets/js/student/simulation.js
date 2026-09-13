@@ -73,6 +73,8 @@
         if (codeForm) {
             codeForm.addEventListener('submit', function (event) {
                 event.preventDefault();
+                var codigo = codeForm.querySelector('input').value.trim().toUpperCase();
+                if (codigo !== 'MOINHOS01') { ClinifyUI.mensagem('Código não encontrado. Para testar, use MOINHOS01.', true); return; }
                 window.location.href = 'simulacao.html';
             });
         }
@@ -128,6 +130,8 @@
         var quickResponses = Array.from(document.querySelectorAll('[data-quick-response]'));
         var history = document.querySelector('[data-history-summary]');
         var seconds = 0;
+        var finalizado = false;
+        var intervalo;
         var points = Number(score ? score.textContent : 64);
 
         function addMessage(className, text) {
@@ -161,10 +165,12 @@
         if (form) {
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
+                if (finalizado) return;
                 var text = input ? input.value.trim() : '';
                 if (!text) return;
                 addMessage('doctor', text);
                 addLog('Resposta enviada na consulta simulada.');
+                addMessage('ai-feedback', 'Resposta registrada para revisão pelo professor. Esta demonstração não analisa decisões médicas com IA.');
                 bumpScore(4);
                 if (input) input.value = '';
             });
@@ -172,18 +178,26 @@
 
         if (finish) {
             finish.addEventListener('click', function () {
-                localStorage.setItem('clinify:last-simulation', 'Caso finalizado com ' + points + ' pontos.');
+                if (finalizado || !confirm('Deseja finalizar a simulação e salvar o resultado?')) return;
+                if (!ClinifyUI.salvar('resultado-simulacao', {pontos: points, segundos: seconds, data: new Date().toISOString()})) return;
+                finalizado = true;
+                clearInterval(intervalo);
+                if (input) input.disabled = true;
+                if (form) form.querySelector('[type="submit"]').disabled = true;
+                finish.disabled = true;
+                ClinifyUI.mensagem('Simulação finalizada. Resultado salvo neste navegador.');
                 if (history) history.textContent = 'Caso finalizado com ' + points + ' pontos neste dispositivo.';
                 addLog('Caso finalizado.');
             });
         }
 
         if (history) {
-            history.textContent = localStorage.getItem('clinify:last-simulation') || history.textContent;
+            var resultado = ClinifyUI.ler('resultado-simulacao', null);
+            if (resultado && typeof resultado.pontos === 'number') history.textContent = 'Última simulação: ' + resultado.pontos + ' pontos (pontuação demonstrativa).';
         }
 
         if (timer) {
-            window.setInterval(function () {
+            intervalo = window.setInterval(function () {
                 seconds += 1;
                 var minutes = Math.floor(seconds / 60).toString().padStart(2, '0');
                 var rest = (seconds % 60).toString().padStart(2, '0');

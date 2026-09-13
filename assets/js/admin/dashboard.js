@@ -20,8 +20,8 @@
         } else {
             tbody.innerHTML = professores.slice(0, 5).map((p) => `
                 <tr>
-                    <td>${p.nome}</td>
-                    <td>${p.email}</td>
+                    <td>${ClinifyUI.escapar(p.nome)}</td>
+                    <td>${ClinifyUI.escapar(p.email)}</td>
                     <td><span class="badge ${p.status === 'ativo' ? 'badge--ativo' : 'badge--inativo'}">${p.status === 'ativo' ? 'Ativo' : 'Inativo'}</span></td>
                 </tr>
             `).join('');

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/img/clinify.svg">
 
     <title>Clinify | Login</title>
 
@@ -11,7 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/root.css">
+    <link rel="stylesheet" href="assets/css/estrutura.css">
+    <link rel="stylesheet" href="assets/css/acesso.css">
 </head>
 
 <body>
@@ -20,6 +23,7 @@
 
         <aside class="brand-panel">
             <div class="brand-panel__content">
+                <p class="brand-panel__institution">Hospital Moinhos de Vento</p>
                 <h1 class="brand-panel__logo">Clinify</h1>
                 <p class="brand-panel__tagline">Aprenda. Pratique. Evolua.</p>
 
@@ -41,12 +45,13 @@
                 <p class="form-panel__subtitle">Entre para continuar seus estudos.</p>
 
                 <form id="loginForm">
+                    <p id="login-feedback" class="feedback" role="status" aria-live="polite"></p>
                     <div class="field">
                         <label for="email">E-mail</label>
                         <input
                             type="email"
                             id="email"
-                            name="email"
+                            name="email" autocomplete="username"
                             placeholder="voce@exemplo.com"
                             required
                         >
@@ -57,7 +62,7 @@
                         <input
                             type="password"
                             id="password"
-                            name="password"
+                            name="password" autocomplete="current-password"
                             placeholder="Digite sua senha"
                             required
                         >
@@ -66,23 +71,24 @@
                     <div class="options">
                         <label class="remember">
                             <input type="checkbox" id="remember">
-                            <span>Lembrar de mim</span>
+                            <span>Lembrar meu e-mail</span>
                         </label>
 
-                        <a href="#" class="forgot-password">Esqueci minha senha</a>
+                        <button type="button" class="forgot-password" data-login-help>Dados de teste</button>
                     </div>
 
                     <button type="submit" class="login-button">Entrar</button>
                 </form>
 
                 <p class="register">
-                    Ainda não possui uma conta? <a href="#">Criar conta</a>
+                    Demonstração acadêmica. Utilize uma das contas de teste.
                 </p>
             </div>
         </main>
 
     </div>
 
+    <script src="assets/js/shared/components.js"></script>
     <script src="assets/js/auth/login.js"></script>
 
 </body>

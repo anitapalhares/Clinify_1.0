@@ -4,22 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/clinify.svg">
     <title>Clinify | Minhas turmas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/layout.css">
-    <link rel="stylesheet" href="../assets/css/panel.css">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css">
+
 </head>
 
-<body>
+<body class="pagina-painel" data-area="professor">
+    <header class="cabecalho-simples"><a href="index.html">Clinify</a><nav aria-label="Navegação principal"><ul class="sidebar__nav" data-navigation></ul></nav></header>
     <main class="panel-page">
         <div class="page-header">
             <div>
                 <h1 class="page-title">Minhas turmas</h1>
                 <p class="page-subtitle">Acompanhamento das turmas atribuídas ao professor.</p>
             </div>
-            <a href="home_prof.html" class="btn btn--ghost">Voltar</a>
+            <a href="index.html" class="btn btn--ghost">Voltar</a>
         </div>
         <section class="stat-grid">
             <article class="stat-card">
@@ -39,6 +42,7 @@
             </article>
         </section>
     </main>
-</body>
+<script src="../assets/js/shared/components.js"></script>
+    </body>
 
 </html>

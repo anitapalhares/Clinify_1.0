@@ -11,11 +11,11 @@
             { id: 'turma-3', nome: 'Internato Clínica', alunos: 29, simulacoes: 16 }
         ],
         alunos: [
-            { id: 'aluno-1', nome: 'Ana Costa' },
-            { id: 'aluno-2', nome: 'Bruno Lima' },
-            { id: 'aluno-3', nome: 'Luiza Nunes' },
-            { id: 'aluno-4', nome: 'Rafael Melo' },
-            { id: 'aluno-5', nome: 'Sofia Prado' }
+            { id: 'aluno-1', nome: 'Ana Costa', turma: 'Medicina 6A' },
+            { id: 'aluno-2', nome: 'Bruno Lima', turma: 'Medicina 7B' },
+            { id: 'aluno-3', nome: 'Luiza Nunes', turma: 'Internato Clínica' },
+            { id: 'aluno-4', nome: 'Rafael Melo', turma: 'Medicina 6A' },
+            { id: 'aluno-5', nome: 'Sofia Prado', turma: 'Medicina 7B' }
         ],
         atividades: [
             { aluno: 'Ana Costa', acao: 'concluiu Cardiologia', quando: 'Hoje' },
@@ -25,21 +25,22 @@
     };
 
     function read(key) {
-        var saved = localStorage.getItem('clinify:' + key);
-        if (!saved) return seed[key].slice();
         try {
-            return JSON.parse(saved);
+            var saved = localStorage.getItem('clinify:' + key);
+            if (!saved) return seed[key].slice();
+            var dados = JSON.parse(saved);
+            return Array.isArray(dados) && dados.every(function (item) { return item && typeof item === 'object' && Object.keys(seed[key][0]).every(function (campo) { return typeof item[campo] === typeof seed[key][0][campo]; }); }) ? dados : seed[key].slice();
         } catch (error) {
             return seed[key].slice();
         }
     }
 
     function write(key, value) {
-        localStorage.setItem('clinify:' + key, JSON.stringify(value));
+        if (!ClinifyUI.salvar(key, value)) throw new Error('Não foi possível salvar os dados.');
     }
 
     function uid(prefix) {
-        return prefix + '-' + Date.now().toString(36);
+        return prefix + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
     }
 
     window.ClinifyDB = {

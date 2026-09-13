@@ -9,6 +9,15 @@
 
     const cards = Array.from(grid.querySelectorAll('.study-card'));
 
+    cards.forEach((card) => {
+        const salvo = ClinifyUI.ler('modulo:' + card.dataset.specialty, null);
+        const progresso = salvo && salvo.concluido ? 100 : 0;
+        card.dataset.progress = String(progresso);
+        card.querySelector('.study-progress__bar span').style.width = progresso + '%';
+        card.querySelector('.study-progress__label').textContent = progresso + '%';
+        card.querySelector('.study-progress').setAttribute('aria-label', progresso + '% do conteúdo concluído neste navegador');
+    });
+
     function normalize(text) {
         return text
             .toLowerCase()
@@ -42,7 +51,7 @@
 
     function applyOrder() {
         const order = orderSelect ? orderSelect.value : 'default';
-        if (order === 'default') return;
+        if (order === 'default') { cards.forEach((card) => grid.appendChild(card)); return; }
 
         const sorted = [...cards].sort((a, b) => {
             if (order === 'name') {
@@ -60,8 +69,12 @@
         sorted.forEach((card) => grid.appendChild(card));
     }
 
-    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    if (searchInput) {
+        searchInput.value = new URLSearchParams(window.location.search).get('busca') || '';
+        searchInput.addEventListener('input', applyFilters);
+    }
     if (specialtySelect) specialtySelect.addEventListener('change', applyFilters);
     if (orderSelect) orderSelect.addEventListener('change', applyOrder);
+    applyFilters();
 })();
 

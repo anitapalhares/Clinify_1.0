@@ -46,12 +46,12 @@
 
         tbody.innerHTML = professores.map((p) => `
             <tr>
-                <td>${p.nome}</td>
-                <td>${p.email}</td>
+                <td>${ClinifyUI.escapar(p.nome)}</td>
+                <td>${ClinifyUI.escapar(p.email)}</td>
                 <td><span class="badge ${p.status === 'ativo' ? 'badge--ativo' : 'badge--inativo'}">${p.status === 'ativo' ? 'Ativo' : 'Inativo'}</span></td>
                 <td class="data-table__actions">
-                    <button type="button" class="btn btn--ghost btn--sm" data-editar="${p.id}">Editar</button>
-                    <button type="button" class="btn ${p.status === 'ativo' ? 'btn--danger' : 'btn--ghost'} btn--sm" data-alternar="${p.id}">
+                    <button type="button" class="btn btn--ghost btn--sm" data-editar="${ClinifyUI.escapar(p.id)}">Editar</button>
+                    <button type="button" class="btn ${p.status === 'ativo' ? 'btn--danger' : 'btn--ghost'} btn--sm" data-alternar="${ClinifyUI.escapar(p.id)}">
                         ${p.status === 'ativo' ? 'Desativar' : 'Ativar'}
                     </button>
                 </td>
@@ -105,8 +105,11 @@
                 return;
             }
             if (btnAlternar) {
-                ClinifyDB.professores.alternarStatus(btnAlternar.getAttribute('data-alternar'));
-                render();
+                if (!confirm('Deseja alterar o status deste professor?')) return;
+                try {
+                    ClinifyDB.professores.alternarStatus(btnAlternar.getAttribute('data-alternar'));
+                    render(); ClinifyUI.mensagem('Status atualizado.');
+                } catch (erro) { ClinifyUI.mensagem(erro.message, true); }
             }
         });
     }
@@ -118,6 +121,10 @@
             const nome = inputNome.value.trim();
             const email = inputEmail.value.trim();
             const id = inputId.value;
+            if (!nome || !form.reportValidity()) return;
+            const duplicado = ClinifyDB.professores.listar().some((p) => p.id !== id && p.email.toLowerCase() === email.toLowerCase());
+            if (duplicado) { ClinifyUI.mensagem('Já existe um professor com esse e-mail.', true); return; }
+            try {
 
             if (id) {
                 ClinifyDB.professores.editar(id, { nome, email });
@@ -127,6 +134,8 @@
 
             fecharModal();
             render();
+            ClinifyUI.mensagem('Professor salvo com sucesso.');
+            } catch (erro) { ClinifyUI.mensagem(erro.message, true); }
         });
     }
 

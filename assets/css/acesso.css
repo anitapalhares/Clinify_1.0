@@ -1,20 +1,4 @@
-:root {
-    --ink: #123246;
-    --ink-strong: #08263a;
-    --primary: #00679e;
-    --primary-dark: #004b78;
-    --primary-soft: #e7f4fa;
-    --accent: #12a08b;
-    --accent-soft: #e6f7f3;
-    --warm: #f28c4b;
-    --bg: #f4f8fa;
-    --surface: #ffffff;
-    --muted: #607283;
-    --border: #d8e6ec;
-    --shadow: 0 16px 38px rgba(7, 45, 68, 0.08);
-    --radius: 8px;
-}
-
+/* Tela de acesso */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,7 +7,7 @@
 
 body {
     min-height: 100vh;
-    font-family: Inter, Arial, sans-serif;
+    font-family: var(--font-body);
     color: var(--ink);
     background: var(--bg);
 }
@@ -36,7 +20,7 @@ input {
 .page {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: minmax(320px, 470px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .brand-panel {
@@ -54,7 +38,7 @@ input {
 .brand-panel__logo {
     margin-bottom: 14px;
     color: #ffffff;
-    font-family: Newsreader, Georgia, serif;
+    font-family: var(--font-display);
     font-size: 46px;
     font-weight: 500;
 }
@@ -118,7 +102,7 @@ input {
 .form-panel__content h2 {
     margin-bottom: 8px;
     color: var(--ink-strong);
-    font-family: Newsreader, Georgia, serif;
+    font-family: var(--font-display);
     font-size: 30px;
     font-weight: 500;
 }
@@ -274,4 +258,17 @@ input {
         align-items: flex-start;
         flex-direction: column;
     }
+}
+
+.brand-panel { background: linear-gradient(145deg, var(--primary-dark), var(--primary)); border-top: 6px solid var(--accent); }
+.brand-panel__institution { margin-bottom: 24px; font-size: 14px; font-weight: 600; line-height: 1.5; letter-spacing: 0.4px; }
+.brand-panel__logo { font-family: var(--font-body); font-weight: 700; letter-spacing: -1.5px; }
+:where(a, button, input):focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+/* Mobile first: acesso em uma coluna; painel lateral no desktop. */
+.forgot-password { border: 0; padding: 0; background: transparent; color: var(--primary-dark); cursor: pointer; }
+.feedback:empty { display: none; }
+.feedback { margin-bottom: 16px; font-size: 0.875rem; color: var(--primary-dark); }
+@media (min-width: 881px) {
+    .page { grid-template-columns: minmax(320px, 470px) minmax(0, 1fr); }
 }

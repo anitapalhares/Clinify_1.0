@@ -12,11 +12,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/layout.css" />
-    <link rel="stylesheet" href="../assets/css/simulation.css" />
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css" />
+    <link rel="stylesheet" href="../assets/css/simulacao.css" />
   </head>
 
-  <body>
+  <body data-area="estudante">
     <div class="app-shell">
       <aside class="sidebar">
         <button
@@ -38,100 +39,14 @@
         </button>
 
         <div class="sidebar__brand">
-          <span class="sidebar__mark">C</span>
+          <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
           <span class="sidebar__brand-text">
-            <span class="sidebar__eyebrow">Projeto</span>
+            <span class="sidebar__eyebrow">Hospital Moinhos de Vento</span>
             <span class="sidebar__wordmark">Clinify</span>
           </span>
         </div>
 
-        <ul class="sidebar__nav">
-          <li>
-            <a href="home_es.html" class="sidebar__link">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M3 11.5 12 4l9 7.5" />
-                <path
-                  d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10"
-                />
-              </svg>
-              <span class="sidebar__link-text">Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="home_simulacao.html" class="sidebar__link is-active">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" />
-              </svg>
-              <span class="sidebar__link-text">Simulação Clínica</span>
-            </a>
-          </li>
-          <li>
-            <a href="estudos.html" class="sidebar__link">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z"
-                />
-                <path
-                  d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z"
-                />
-              </svg>
-              <span class="sidebar__link-text">Estudos</span>
-            </a>
-          </li>
-          <li>
-            <a href="desempenho.html" class="sidebar__link">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="3 17 9 11 13 15 21 7" />
-                <polyline points="14 7 21 7 21 14" />
-              </svg>
-              <span class="sidebar__link-text">Desempenho</span>
-            </a>
-          </li>
-          <li>
-            <a href="perfil.html" class="sidebar__link">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="8" r="3.5" />
-                <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
-              </svg>
-              <span class="sidebar__link-text">Perfil</span>
-            </a>
-          </li>
-        </ul>
+        <nav aria-label="Navegação principal"><ul class="sidebar__nav" data-navigation></ul></nav>
       </aside>
 
       <div class="sidebar__backdrop" data-sidebar-backdrop></div>
@@ -168,10 +83,11 @@
                 <h1 id="simulation-title" class="simulation-title">
                   Simulação Clínica
                 </h1>
-                <p>Lobby ao vivo para casos clínicos em turma.</p>
+                <p>Explore os casos fictícios da demonstração.</p>
               </div>
             </div>
 
+            <p class="empty-state">Demonstração: todos os cards abrem o mesmo cenário. Código de teste: MOINHOS01. O gerador de IA é apenas uma interface visual.</p>
             <form class="case-code" data-code-form>
               <label for="caseCode">Entrar com código personalizado</label>
               <div class="case-code__entry">
@@ -179,8 +95,8 @@
                   id="caseCode"
                   name="caseCode"
                   type="text"
-                  placeholder="EX: CARDIO45"
-                  maxlength="12"
+                  placeholder="MOINHOS01"
+                  maxlength="12" required
                   autocomplete="off"
                 />
                 <button type="submit">Abrir</button>
@@ -260,7 +176,7 @@
                   <span class="difficulty difficulty--easy">Fácil</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Continue</span></a
+                  ><span>Abrir demonstração</span></a
                 >
               </article>
 
@@ -283,7 +199,7 @@
                   <span class="difficulty difficulty--hard">Difícil</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Continue</span></a
+                  ><span>Abrir demonstração</span></a
                 >
               </article>
 
@@ -400,7 +316,7 @@
                   <span class="difficulty difficulty--medium">Médio</span>
                 </div>
                 <a href="simulacao.html" class="continue-btn"
-                  ><span>Continue</span></a
+                  ><span>Abrir demonstração</span></a
                 >
               </article>
 
@@ -448,7 +364,7 @@
                   &times;
                 </button>
                 <span class="ai-modal__eyebrow">IA Clinify</span>
-                <h2 id="ai-modal-title">Criar caso personalizado</h2>
+                <h2 id="ai-modal-title">Abrir cenário demonstrativo personalizado</h2>
                 <label>
                   Especialidade
                   <select data-ai-specialty>
@@ -484,16 +400,16 @@
                   </select>
                 </label>
                 <button class="ai-modal__random" type="button" data-ai-random>
-                  Gerar caso aleatório
+                  Abrir cenário demonstrativo aleatório
                 </button>
                 <button class="ai-modal__create" type="button" data-ai-case>
-                  Criar com IA
+                  Abrir demonstração
                 </button>
               </div>
             </div>
 
             <button class="floating-ai" type="button" data-ai-open>
-              <span class="floating-ai__text">Criar caso com IA</span>
+              <span class="floating-ai__text">Abrir cenário demonstrativo com IA</span>
               <span class="floating-ai__robot" aria-hidden="true">
                 <span></span>
               </span>
@@ -522,9 +438,9 @@
             <div class="site-footer__links">
               <h2>Saiba mais...</h2>
               <ul>
-                <li><a href="#">Hospital moinhos de vento...</a></li>
-                <li><a href="#">Faculdade moinhos de vento...</a></li>
-                <li><a href="#">FIAP...</a></li>
+                <li><a href="https://www.hospitalmoinhos.org.br/">Hospital Moinhos de Vento</a></li>
+                <li><a href="https://www.hospitalmoinhos.org.br/">Faculdade Moinhos de Vento</a></li>
+                <li><a href="https://www.fiap.com.br/">FIAP</a></li>
               </ul>
             </div>
           </div>
@@ -536,6 +452,7 @@
       </div>
     </div>
 
+    <script src="../assets/js/shared/components.js"></script>
     <script src="../assets/js/shared/layout.js"></script>
     <script src="../assets/js/student/simulation.js"></script>
   </body>

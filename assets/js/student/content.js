@@ -22,8 +22,6 @@ const conteudos = {
         video: {
             titulo: "Fundamentos do sistema cardiovascular",
 
-            
-            
             src: "",
 
             thumbnail: ""
@@ -92,37 +90,16 @@ const conteudos = {
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-const conteudoAtual = conteudos.cardiologia;
-
-
-
-
-
+const parametros = new URLSearchParams(window.location.search);
+const especialidade = parametros.get('especialidade') || 'cardiologia';
+const chaveProgresso = 'modulo:' + especialidade;
+const conteudoAtual = conteudos[especialidade];
 
 const studyPage = document.getElementById("studyPage");
-
-
-
-
-
 
 function renderizarConteudo(conteudo) {
 
     studyPage.innerHTML = `
-
-        
 
         <header class="study-header">
 
@@ -133,7 +110,6 @@ function renderizarConteudo(conteudo) {
                 <span>${conteudo.tituloDestaque}</span>
 
             </div>
-
 
             <div class="header-content">
 
@@ -154,7 +130,6 @@ function renderizarConteudo(conteudo) {
 
                 </div>
 
-
                 <div class="module-info">
 
                     <span>${conteudo.duracao}</span>
@@ -169,28 +144,13 @@ function renderizarConteudo(conteudo) {
 
         </header>
 
-
-        
-
         ${renderizarVideo(conteudo.video)}
-
-
-        
 
         ${renderizarProfessor(conteudo.professor)}
 
-
-        
-
         ${renderizarIntroducao(conteudo.introducao)}
 
-
-        
-
         ${renderizarQuestoes(conteudo.questoes)}
-
-
-        
 
         <section class="finish-module">
 
@@ -210,7 +170,6 @@ function renderizarConteudo(conteudo) {
 
             </div>
 
-
             <button id="finishModule">
 
                 Finalizar módulo
@@ -223,20 +182,11 @@ function renderizarConteudo(conteudo) {
 
     `;
 
-
     configurarEventos();
 
 }
 
-
-
-
-
-
 function renderizarVideo(video) {
-
-    
-    
 
     if (video.src) {
 
@@ -265,7 +215,6 @@ function renderizarVideo(video) {
 
     }
 
-
     return `
 
         <section class="lesson-video">
@@ -280,18 +229,16 @@ function renderizarVideo(video) {
 
                 </div>
 
-
                 <button
                     class="play-button"
-                    aria-label="Reproduzir vídeo"
+                    disabled aria-label="Vídeo não disponível na demonstração"
                 >
                     ▶
                 </button>
 
-
                 <div class="video-info">
 
-                    <span>AULA 01</span>
+                    <span>AULA 01 · VÍDEO EM PREPARAÇÃO</span>
 
                     <strong>
                         ${video.titulo}
@@ -306,11 +253,6 @@ function renderizarVideo(video) {
     `;
 }
 
-
-
-
-
-
 function renderizarProfessor(professor) {
 
     return `
@@ -322,7 +264,6 @@ function renderizarProfessor(professor) {
                 ${professor.iniciais}
 
             </div>
-
 
             <div>
 
@@ -346,17 +287,11 @@ function renderizarProfessor(professor) {
 
 }
 
-
-
-
-
-
 function renderizarIntroducao(introducao) {
 
     const paragrafos = introducao.paragrafos
         .map(paragrafo => `<p>${paragrafo}</p>`)
         .join("");
-
 
     return `
 
@@ -371,7 +306,6 @@ function renderizarIntroducao(introducao) {
             </h2>
 
             ${paragrafos}
-
 
             <div class="highlight">
 
@@ -390,11 +324,6 @@ function renderizarIntroducao(introducao) {
     `;
 
 }
-
-
-
-
-
 
 function renderizarQuestoes(questoes) {
 
@@ -433,7 +362,6 @@ function renderizarQuestoes(questoes) {
                     })
                     .join("");
 
-
             return `
 
                 <article class="question">
@@ -442,11 +370,9 @@ function renderizarQuestoes(questoes) {
                         QUESTÃO ${String(index + 1).padStart(2, "0")}
                     </span>
 
-
                     <h3>
                         ${questao.pergunta}
                     </h3>
-
 
                     <div class="alternatives">
 
@@ -460,7 +386,6 @@ function renderizarQuestoes(questoes) {
 
         })
         .join("");
-
 
     return `
 
@@ -476,7 +401,6 @@ function renderizarQuestoes(questoes) {
                             ${questoes.length}
                         </span>
 
-
                         <div>
 
                             <p class="eyebrow">
@@ -491,18 +415,15 @@ function renderizarQuestoes(questoes) {
 
                     </div>
 
-
                     <span class="arrow">
                         ↓
                     </span>
 
                 </summary>
 
-
                 <div class="questions-content">
 
                     ${perguntasHTML}
-
 
                     <button
                         class="finish-questions"
@@ -511,10 +432,9 @@ function renderizarQuestoes(questoes) {
                         Finalizar questões
                     </button>
 
-
                     <div
                         class="feedback"
-                        id="feedback"
+                        id="feedback" role="status" aria-live="polite"
                     ></div>
 
                 </div>
@@ -527,7 +447,6 @@ function renderizarQuestoes(questoes) {
 
 }
 
-
 function configurarEventos() {
 
     const finishQuestions =
@@ -536,16 +455,10 @@ function configurarEventos() {
     const finishModule =
         document.getElementById("finishModule");
 
-
-    
-    
-    
-
     finishQuestions.addEventListener("click", () => {
 
         let acertos = 0;
         let respondidas = 0;
-
 
         conteudoAtual.questoes.forEach((questao, index) => {
 
@@ -553,7 +466,6 @@ function configurarEventos() {
                 document.querySelector(
                     `input[name="question-${index}"]:checked`
                 );
-
 
             if (resposta) {
 
@@ -572,10 +484,8 @@ function configurarEventos() {
 
         });
 
-
         const feedback =
             document.getElementById("feedback");
-
 
         if (
             respondidas <
@@ -593,7 +503,6 @@ function configurarEventos() {
             return;
         }
 
-
         feedback.innerHTML = `
             <strong>${acertos}/${conteudoAtual.questoes.length}</strong>
             questões respondidas corretamente.
@@ -604,23 +513,18 @@ function configurarEventos() {
 
     });
 
-
-    
-    
-    
-
     finishModule.addEventListener("click", () => {
 
         const confirmar = confirm(
             "Deseja finalizar este módulo?"
         );
 
-
         if (confirmar) {
 
-            alert(
-                "Módulo finalizado! Seu progresso foi atualizado."
-            );
+            if (ClinifyUI.salvar(chaveProgresso, {concluido: true, data: new Date().toISOString()})) {
+                finishModule.textContent = 'Módulo concluído · Revisar';
+                ClinifyUI.mensagem('Módulo finalizado. Progresso salvo neste navegador.');
+            }
 
         }
 
@@ -628,6 +532,10 @@ function configurarEventos() {
 
 }
 
-
-
-renderizarConteudo(conteudoAtual);
+if (conteudoAtual) {
+    renderizarConteudo(conteudoAtual);
+    if (parametros.get('tipo') === 'questoes') document.querySelector('.questions').open = true;
+    if (ClinifyUI.ler(chaveProgresso, null)) document.getElementById('finishModule').textContent = 'Módulo concluído · Revisar';
+} else {
+    studyPage.innerHTML = '<header class="study-header"><h1>Conteúdo em preparação</h1><p>Esta especialidade ainda não tem uma aula publicada na demonstração.</p><a href="estudos.html">Voltar aos estudos</a></header>';
+}

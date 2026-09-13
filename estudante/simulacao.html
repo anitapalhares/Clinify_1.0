@@ -10,15 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:wght@500&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/layout.css" />
-    <link rel="stylesheet" href="../assets/css/simulation.css" />
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css" />
+    <link rel="stylesheet" href="../assets/css/simulacao.css" />
   </head>
 
-  <body class="consultation-body" data-simulation-consultation>
+  <body class="consultation-body" data-simulation-consultation data-area="estudante">
     <div class="consultation-page">
       <header class="consultation-topbar">
-        <a class="consultation-brand" href="home_simulacao.html">
-          <span class="sidebar__mark">C</span>
+        <a class="consultation-brand" href="casos.html">
+          <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
           <span>
             <small>Clinify</small>
             <strong>Consulta simulada</strong>
@@ -26,15 +27,15 @@
         </a>
 
         <nav class="consultation-nav" aria-label="Navegação da simulação">
-          <a href="home_es.html">Home</a>
-          <a href="home_simulacao.html">Casos</a>
+          <a href="index.html">Início</a>
+          <a href="casos.html">Casos</a>
           <span>Paciente fictício</span>
         </nav>
       </header>
 
       <main class="consultation-layout">
         <aside class="case-brief">
-          <a class="back-link" href="home_simulacao.html">
+          <a class="back-link" href="casos.html">
             <span>&lt;</span>
             Voltar para casos
           </a>
@@ -93,7 +94,7 @@
               <h2 id="case-title">Cefaleia intensa inédita</h2>
               <p>
                 Treine anamnese, segurança e orientação em uma consulta
-                simulada com feedback imediato.
+                simulada com registro das respostas. A pontuação é ilustrativa.
               </p>
             </div>
 
@@ -104,7 +105,7 @@
             </div>
           </header>
 
-          <div class="decision-strip" aria-label="Competências avaliadas">
+          <div class="decision-strip" aria-label="Indicadores demonstrativos">
             <article>
               <span>Acolhimento</span>
               <strong data-empathy-score>66%</strong>
@@ -131,7 +132,7 @@
             </article>
 
             <article class="ai-feedback">
-              <h3>IA Clinify</h3>
+              <h3>Exemplo de feedback</h3>
               <p>
                 Começo adequado: você acolheu a queixa e sinalizou que vai
                 investigar segurança clínica. Continue buscando dados antes de
@@ -141,7 +142,7 @@
           </section>
 
           <div class="coach-panel" data-coach-panel>
-            <strong>Próximo foco sugerido</strong>
+            <strong>Roteiro fictício para prática</strong>
             <p>
               Pergunte sobre sinais de alerta: início súbito, febre, vômitos,
               rigidez de nuca, alteração visual ou déficit neurológico.
@@ -173,6 +174,8 @@
             <button type="button" data-finish-case aria-label="Finalizar caso">✓</button>
             <input
               data-sim-input
+              name="fala"
+              autocomplete="off"
               type="text"
               placeholder="Digite sua próxima fala..."
               autocomplete="off"
@@ -194,7 +197,7 @@
 
           <section class="feedback-card" aria-labelledby="feedback-title">
             <div class="panel-title">
-              <span>Correção automática</span>
+              <span>Critérios demonstrativos</span>
               <h2 id="feedback-title">Critérios avaliados</h2>
             </div>
             <div class="rubric-item is-complete">
@@ -228,6 +231,7 @@
       </main>
     </div>
 
+    <script src="../assets/js/shared/components.js"></script>
     <script src="../assets/js/student/simulation.js"></script>
   </body>
 </html>

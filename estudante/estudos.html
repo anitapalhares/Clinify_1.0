@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/clinify.svg">
 
     <title>Clinify | Estudos</title>
 
@@ -11,69 +12,45 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/layout.css">
-    <link rel="stylesheet" href="../assets/css/studies.css">
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css">
+    <link rel="stylesheet" href="../assets/css/estudos.css">
 </head>
 
-<body>
+<body class="pagina-estudos" data-area="estudante">
 
     <div class="app-shell">
 
-        
+
         <aside class="sidebar">
             <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
             </button>
 
             <div class="sidebar__brand">
-                <span class="sidebar__mark">C</span>
+                <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
                 <span class="sidebar__brand-text">
-                    <span class="sidebar__eyebrow">Projeto</span>
+                    <span class="sidebar__eyebrow">Hospital Moinhos de Vento</span>
                     <span class="sidebar__wordmark">Clinify</span>
                 </span>
             </div>
 
-            <ul class="sidebar__nav">
-                <li>
-                    <a href="home_es.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1V15a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4.5a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1V10" /></svg>
-                        <span class="sidebar__link-text">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="home_simulacao.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 7 12 9.5 5 14.5 19 17 12 22 12" /></svg>
-                        <span class="sidebar__link-text">Simulação Clínica</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="estudos.html" class="sidebar__link is-active">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg>
-                        <span class="sidebar__link-text">Estudos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="desempenho.html" class="sidebar__link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
-                        <span class="sidebar__link-text">Desempenho</span>
-                    </a>
-                </li>
-            </ul>
+            <nav aria-label="Navegação principal"><ul class="sidebar__nav" data-navigation></ul></nav>
         </aside>
 
         <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        
+
 
         <div class="app-main">
 
-            
+
             <header class="topbar">
                 <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
                 </button>
 
                 <div class="topbar__spacer"></div>
-                
+
                 <button class="topbar__bell" type="button" aria-label="Notificações" id="bell-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -97,7 +74,7 @@
                     <span class="topbar__avatar-initials">ES</span>
                 </a>
             </header>
-            
+
 
             <main class="studies-page">
 
@@ -106,7 +83,7 @@
                     <p class="page-subtitle">Escolha uma especialidade para revisar o conteúdo ou treinar com questões</p>
                 </div>
 
-                
+
                 <section class="study-filters">
 
                     <div class="filter-search">
@@ -153,16 +130,16 @@
 
                 <p class="study-empty" id="study-empty" hidden>Nenhuma especialidade encontrada para essa busca.</p>
 
-                
+
                 <section class="study-grid" id="study-grid">
 
-                    
+
                     <article class="study-card"
                         data-specialty="cardiologia"
                         data-name="Cardiologia"
                         data-semester="6"
-                        data-questions="45"
-                        data-progress="62">
+                        data-questions="3"
+                        data-progress="0">
 
                         <div class="study-card__header">
                             <div class="study-icon study-icon--red">
@@ -173,7 +150,7 @@
                             </div>
                             <div>
                                 <h2>Cardiologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">6° semestre</span>45 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">6° semestre</span>3 questões</span>
                             </div>
                         </div>
 
@@ -183,7 +160,7 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=cardiologia&tipo=conteudo" class="study-option">
+                            <a href="cardiologia.html?especialidade=cardiologia&tipo=conteudo" class="study-option">
                                 <span>
                                     <span class="option-icon">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -198,7 +175,7 @@
                                 <span class="option-arrow">→</span>
                             </a>
 
-                            <a href="cont_cardio.html?especialidade=cardiologia&tipo=conteudo" class="study-option" id="link-questoes-cardio">
+                            <a href="cardiologia.html?especialidade=cardiologia&tipo=questoes" class="study-option" id="link-questoes-cardio">
                                 <span>
                                     <span class="option-icon">
                                         <svg viewBox="0 0 24 24" fill="none"
@@ -216,12 +193,12 @@
                     </article>
 
 
-                    
+
                     <article class="study-card"
                         data-specialty="pneumologia"
                         data-name="Pneumologia"
                         data-semester="3"
-                        data-questions="90"
+                        data-questions="0"
                         data-progress="35">
 
                         <div class="study-card__header">
@@ -234,7 +211,7 @@
                             </div>
                             <div>
                                 <h2>Pneumologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">3° semestre</span>90 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">3° semestre</span>Em preparação</span>
                             </div>
                         </div>
 
@@ -244,11 +221,11 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=pneumologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=pneumologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="cont_cardio.html?especialidade=pneumologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=pneumologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -256,12 +233,12 @@
                     </article>
 
 
-                    
+
                     <article class="study-card"
                         data-specialty="neurologia"
                         data-name="Neurologia"
                         data-semester="7"
-                        data-questions="100"
+                        data-questions="0"
                         data-progress="18">
 
                         <div class="study-card__header">
@@ -274,7 +251,7 @@
                             </div>
                             <div>
                                 <h2>Neurologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">7° semestre</span>100 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">7° semestre</span>Em preparação</span>
                             </div>
                         </div>
 
@@ -284,11 +261,11 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=neurologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=neurologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="cont_cardio.html?especialidade=neurologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=neurologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -296,12 +273,12 @@
                     </article>
 
 
-                    
+
                     <article class="study-card"
                         data-specialty="gastroenterologia"
                         data-name="Gastroenterologia"
                         data-semester="4"
-                        data-questions="45"
+                        data-questions="0"
                         data-progress="80">
 
                         <div class="study-card__header">
@@ -313,7 +290,7 @@
                             </div>
                             <div>
                                 <h2>Gastroenterologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">4° semestre</span>45 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">4° semestre</span>Em preparação</span>
                             </div>
                         </div>
 
@@ -323,11 +300,11 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=gastroenterologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=gastroenterologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="cont_cardio.html?especialidade=gastroenterologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=gastroenterologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -335,12 +312,12 @@
                     </article>
 
 
-                    
+
                     <article class="study-card"
                         data-specialty="endocrinologia"
                         data-name="Endocrinologia"
                         data-semester="5"
-                        data-questions="90"
+                        data-questions="0"
                         data-progress="47">
 
                         <div class="study-card__header">
@@ -353,7 +330,7 @@
                             </div>
                             <div>
                                 <h2>Endocrinologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">5° semestre</span>90 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">5° semestre</span>Em preparação</span>
                             </div>
                         </div>
 
@@ -363,11 +340,11 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=endocrinologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=endocrinologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="cont_cardio.html?especialidade=endocrinologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=endocrinologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -375,12 +352,12 @@
                     </article>
 
 
-                    
+
                     <article class="study-card"
                         data-specialty="histologia"
                         data-name="Histologia"
                         data-semester="1"
-                        data-questions="100"
+                        data-questions="0"
                         data-progress="93">
 
                         <div class="study-card__header">
@@ -396,7 +373,7 @@
                             </div>
                             <div>
                                 <h2>Histologia</h2>
-                                <span class="study-card__meta"><span class="study-tag">1° semestre</span>100 questões</span>
+                                <span class="study-card__meta"><span class="study-tag">1° semestre</span>Em preparação</span>
                             </div>
                         </div>
 
@@ -406,11 +383,11 @@
                         </div>
 
                         <div class="study-options">
-                            <a href="cont_cardio.html?especialidade=histologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=histologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="cont_cardio.html?especialidade=histologia" class="study-option">
+                            <a href="cardiologia.html?especialidade=histologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -423,6 +400,7 @@
         </div>
     </div>
 
+    <script src="../assets/js/shared/components.js"></script>
     <script src="../assets/js/shared/layout.js"></script>
     <script src="../assets/js/student/studies.js"></script>
 </body>

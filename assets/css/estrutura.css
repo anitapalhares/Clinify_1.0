@@ -1223,3 +1223,23 @@ button:disabled { opacity: 0.65; cursor: not-allowed; }
     .jornada-numeros { grid-template-columns: 1fr; }
     .jornada-cabecalho { flex-direction: column; }
 }
+
+/* Controle de recolhimento com área de clique confortável. */
+.sidebar__toggle { width: 40px; height: 40px; right: -20px; padding: 0; flex-shrink: 0; }
+.sidebar__toggle svg { width: 22px; height: 22px; flex-shrink: 0; }
+.perfil-estudante { width: 100%; max-width: 1280px; }
+.perfil-organizacao { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.perfil-organizacao .profile-card { min-width: 0; }
+.perfil-organizacao .jornada-card { min-width: 0; margin-top: 0; }
+.perfil-organizacao .profile-summary { align-items: flex-start; }
+.perfil-organizacao .profile-summary > div:last-child { min-width: 0; }
+.perfil-organizacao .profile-email { overflow-wrap: anywhere; }
+.perfil-colecao-link { display: inline-block; color: var(--primary); font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+.perfil-dados-titulo { margin: 0 0 20px; font-size: 18px; }
+.jornada-proximo { padding: 14px 16px; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: var(--radius); }
+.jornada-ajuda { margin: 16px 0; color: var(--muted); }
+.jornada-ajuda summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary-dark); }
+#colecao-icones { scroll-margin-top: 90px; }
+@media (max-width: 1100px) {
+    .perfil-organizacao { grid-template-columns: 1fr; }
+}

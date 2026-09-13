@@ -11,15 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../css/layout.css">
-    <link rel="stylesheet" href="../../css/estudante/estudos.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/student/studies.css">
 </head>
 
 <body>
 
     <div class="app-shell">
 
-        <!-- ============ SIDEBAR (padrão — copiar em todas as telas) ============ -->
+        
         <aside class="sidebar">
             <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -62,11 +62,11 @@
         </aside>
 
         <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        <!-- ============ /SIDEBAR ============ -->
+        
 
         <div class="app-main">
 
-            <!-- ============ HEADER (padrão — copiar em todas as telas) ============ -->
+            
             <header class="topbar">
                 <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
@@ -97,7 +97,7 @@
                     <span class="topbar__avatar-initials">ES</span>
                 </a>
             </header>
-            <!-- ============ /HEADER ============ -->
+            
 
             <main class="studies-page">
 
@@ -106,7 +106,7 @@
                     <p class="page-subtitle">Escolha uma especialidade para revisar o conteúdo ou treinar com questões</p>
                 </div>
 
-                <!-- FILTROS -->
+                
                 <section class="study-filters">
 
                     <div class="filter-search">
@@ -153,10 +153,10 @@
 
                 <p class="study-empty" id="study-empty" hidden>Nenhuma especialidade encontrada para essa busca.</p>
 
-                <!-- CARDS -->
+                
                 <section class="study-grid" id="study-grid">
 
-                    <!-- CARDIOLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="cardiologia"
                         data-name="Cardiologia"
@@ -178,7 +178,7 @@
                         </div>
 
                         <div class="study-progress" aria-label="62% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 62%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">62%</span>
                         </div>
 
@@ -216,7 +216,7 @@
                     </article>
 
 
-                    <!-- PNEUMOLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="pneumologia"
                         data-name="Pneumologia"
@@ -239,16 +239,16 @@
                         </div>
 
                         <div class="study-progress" aria-label="35% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 35%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">35%</span>
                         </div>
 
                         <div class="study-options">
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=pneumologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=pneumologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=pneumologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=pneumologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -256,7 +256,7 @@
                     </article>
 
 
-                    <!-- NEUROLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="neurologia"
                         data-name="Neurologia"
@@ -279,16 +279,16 @@
                         </div>
 
                         <div class="study-progress" aria-label="18% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 18%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">18%</span>
                         </div>
 
                         <div class="study-options">
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=neurologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=neurologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=neurologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=neurologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -296,7 +296,7 @@
                     </article>
 
 
-                    <!-- GASTROENTEROLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="gastroenterologia"
                         data-name="Gastroenterologia"
@@ -318,16 +318,16 @@
                         </div>
 
                         <div class="study-progress" aria-label="80% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 80%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">80%</span>
                         </div>
 
                         <div class="study-options">
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=gastroenterologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=gastroenterologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=gastroenterologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=gastroenterologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -335,7 +335,7 @@
                     </article>
 
 
-                    <!-- ENDOCRINOLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="endocrinologia"
                         data-name="Endocrinologia"
@@ -358,16 +358,16 @@
                         </div>
 
                         <div class="study-progress" aria-label="47% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 47%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">47%</span>
                         </div>
 
                         <div class="study-options">
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=endocrinologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=endocrinologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=endocrinologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=endocrinologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -375,7 +375,7 @@
                     </article>
 
 
-                    <!-- HISTOLOGIA -->
+                    
                     <article class="study-card"
                         data-specialty="histologia"
                         data-name="Histologia"
@@ -401,16 +401,16 @@
                         </div>
 
                         <div class="study-progress" aria-label="93% do conteúdo concluído">
-                            <div class="study-progress__bar"><span style="width: 93%"></span></div>
+                            <div class="study-progress__bar"><span></span></div>
                             <span class="study-progress__label">93%</span>
                         </div>
 
                         <div class="study-options">
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=histologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=histologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" /></svg></span>Questões</span>
                                 <span class="option-arrow">→</span>
                             </a>
-                            <a href="Conteudo e questoes/conteudo.html?especialidade=histologia" class="study-option">
+                            <a href="cont_cardio.html?especialidade=histologia" class="study-option">
                                 <span><span class="option-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" /><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" /></svg></span>Conteúdo</span>
                                 <span class="option-arrow">→</span>
                             </a>
@@ -423,8 +423,8 @@
         </div>
     </div>
 
-    <script src="../../js/layout.js"></script>
-    <script src="../../js/estudante/estudos.js"></script>
+    <script src="../../assets/js/shared/layout.js"></script>
+    <script src="../../assets/js/student/studies.js"></script>
 </body>
 
 </html>

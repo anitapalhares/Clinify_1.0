@@ -11,15 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:wght@500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../css/layout.css">
-    <link rel="stylesheet" href="../../css/admin e prof/admin_prof.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/admin/panel.css">
 </head>
 
 <body>
 
     <div class="app-shell">
 
-        <!-- ============ SIDEBAR (professor) ============ -->
+        
         <aside class="sidebar">
             <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -74,11 +74,11 @@
         </aside>
 
         <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        <!-- ============ /SIDEBAR ============ -->
+        
 
         <div class="app-main">
 
-            <!-- ============ HEADER ============ -->
+            
             <header class="topbar">
                 <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
@@ -107,7 +107,7 @@
                     <span class="topbar__avatar-initials">PR</span>
                 </a>
             </header>
-            <!-- ============ /HEADER ============ -->
+            
 
             <main class="panel-page">
 
@@ -118,7 +118,7 @@
                     </div>
                 </div>
 
-                <!-- ESTATÍSTICAS -->
+                
                 <section class="stat-grid" id="stat-grid">
                     <div class="stat-card">
                         <p class="stat-card__label">Turmas ativas</p>
@@ -134,18 +134,18 @@
                     </div>
                 </section>
 
-                <!-- MINHAS TURMAS -->
-                <section style="margin-bottom: 28px;">
-                    <div class="page-header" style="margin-bottom: 14px;">
-                        <h2 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:#29272b; margin:0;">Minhas turmas</h2>
+                
+                <section class="section-block section-block--spaced">
+                    <div class="section-title-row">
+                        <h2 class="section-title">Minhas turmas</h2>
                         <a href="turmas.html" class="btn btn--ghost btn--sm">Ver todas</a>
                     </div>
                     <div class="stat-grid" id="turmas-preview"></div>
                 </section>
 
-                <!-- ATIVIDADE RECENTE -->
+                
                 <section>
-                    <h2 style="font-family:'Inter',sans-serif; font-size:15px; font-weight:600; color:#29272b; margin:0 0 14px;">Atividade recente</h2>
+                    <h2 class="section-title">Atividade recente</h2>
                     <div class="data-table-wrap">
                         <table class="data-table">
                             <thead>
@@ -164,8 +164,9 @@
         </div>
     </div>
 
-    <script src="../../js/layout.js"></script>
-    <script src="../../js/professor/home_prof.js"></script>
+    <script src="../../assets/js/shared/layout.js"></script>
+    <script src="../../assets/js/shared/mock-data.js"></script>
+    <script src="../../assets/js/professor/home.js"></script>
 </body>
 
 </html>

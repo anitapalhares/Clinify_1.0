@@ -22,8 +22,8 @@ const conteudos = {
         video: {
             titulo: "Fundamentos do sistema cardiovascular",
 
-            // Quando vocês tiverem o vídeo real,
-            // podem colocar o caminho aqui.
+            
+            
             src: "",
 
             thumbnail: ""
@@ -93,36 +93,36 @@ const conteudos = {
 };
 
 
-// ======================================================
-// CONFIGURAÇÃO DO CONTEÚDO
-// ======================================================
 
-// Por enquanto, mostramos Cardiologia.
-// Depois vocês podem trocar para:
-// "neurologia"
-// "pneumologia"
-// "gastroenterologia"
-// etc.
+
+
+
+
+
+
+
+
+
 
 const conteudoAtual = conteudos.cardiologia;
 
 
-// ======================================================
-// ELEMENTO PRINCIPAL
-// ======================================================
+
+
+
 
 const studyPage = document.getElementById("studyPage");
 
 
-// ======================================================
-// RENDERIZAÇÃO
-// ======================================================
+
+
+
 
 function renderizarConteudo(conteudo) {
 
     studyPage.innerHTML = `
 
-        <!-- CABEÇALHO -->
+        
 
         <header class="study-header">
 
@@ -170,27 +170,27 @@ function renderizarConteudo(conteudo) {
         </header>
 
 
-        <!-- VÍDEO -->
+        
 
         ${renderizarVideo(conteudo.video)}
 
 
-        <!-- PROFESSOR -->
+        
 
         ${renderizarProfessor(conteudo.professor)}
 
 
-        <!-- CONTEÚDO DA AULA -->
+        
 
         ${renderizarIntroducao(conteudo.introducao)}
 
 
-        <!-- QUESTÕES -->
+        
 
         ${renderizarQuestoes(conteudo.questoes)}
 
 
-        <!-- FINALIZAR MÓDULO -->
+        
 
         <section class="finish-module">
 
@@ -229,14 +229,14 @@ function renderizarConteudo(conteudo) {
 }
 
 
-// ======================================================
-// VÍDEO
-// ======================================================
+
+
+
 
 function renderizarVideo(video) {
 
-    // Se existir um vídeo real, mostramos o <video>.
-    // Se não existir, mostramos o placeholder.
+    
+    
 
     if (video.src) {
 
@@ -307,9 +307,9 @@ function renderizarVideo(video) {
 }
 
 
-// ======================================================
-// PROFESSOR
-// ======================================================
+
+
+
 
 function renderizarProfessor(professor) {
 
@@ -347,9 +347,9 @@ function renderizarProfessor(professor) {
 }
 
 
-// ======================================================
-// INTRODUÇÃO
-// ======================================================
+
+
+
 
 function renderizarIntroducao(introducao) {
 
@@ -392,9 +392,9 @@ function renderizarIntroducao(introducao) {
 }
 
 
-// ======================================================
-// QUESTÕES
-// ======================================================
+
+
+
 
 function renderizarQuestoes(questoes) {
 
@@ -537,9 +537,9 @@ function configurarEventos() {
         document.getElementById("finishModule");
 
 
-    // -----------------------------
-    // FINALIZAR QUESTÕES
-    // -----------------------------
+    
+    
+    
 
     finishQuestions.addEventListener("click", () => {
 
@@ -605,9 +605,9 @@ function configurarEventos() {
     });
 
 
-    // -----------------------------
-    // FINALIZAR MÓDULO
-    // -----------------------------
+    
+    
+    
 
     finishModule.addEventListener("click", () => {
 

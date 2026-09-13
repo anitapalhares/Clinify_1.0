@@ -14,15 +14,15 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
         rel="stylesheet"
     >
-    <link rel="stylesheet" href="../../css/layout.css">
-    <link rel="stylesheet" href="../../css/estudante/cont_cardio.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/student/content.css">
 </head>
 
 <body>
 
     <div class="app-shell">
 
-        <!-- ============ SIDEBAR (padrão — copiar em todas as telas) ============ -->
+        
         <aside class="sidebar">
             <button class="sidebar__toggle" type="button" data-sidebar-collapse aria-label="Recolher menu">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
@@ -65,11 +65,11 @@
         </aside>
 
         <div class="sidebar__backdrop" data-sidebar-backdrop></div>
-        <!-- ============ /SIDEBAR ============ -->
+        
 
         <div class="app-main">
 
-            <!-- ============ HEADER (padrão — copiar em todas as telas) ============ -->
+            
             <header class="topbar">
                 <button class="topbar__menu-btn" type="button" data-sidebar-mobile-toggle aria-label="Abrir menu">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
@@ -81,11 +81,13 @@
                     <span class="topbar__avatar-initials">ES</span>
                 </a>
             </header>
-            <!-- ============ /HEADER ============ -->
-    <main id="studyPage"></main>
+            
+            <main id="studyPage"></main>
+        </div>
+    </div>
 
-    <script src="../../js/estudante/cont_cardio.js"></script>
-    <script src="../../js/layout.js"></script>
+    <script src="../../assets/js/student/content.js"></script>
+    <script src="../../assets/js/shared/layout.js"></script>
 </body>
 
 </html>

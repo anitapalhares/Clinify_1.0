@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clinify | Consulta Simulada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:wght@500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/estrutura.css" />
+    <link rel="stylesheet" href="../assets/css/simulacao.css" />
+  </head>
+
+  <body class="consultation-body" data-simulation-consultation data-area="estudante">
+    <div class="consultation-page">
+      <header class="consultation-topbar">
+        <a class="consultation-brand" href="casos.html">
+          <span class="sidebar__mark"><img src="../assets/img/clinify.svg" alt="" width="38" height="38"></span>
+          <span>
+            <small>Clinify</small>
+            <strong>Consulta simulada</strong>
+          </span>
+        </a>
+
+        <nav class="consultation-nav" aria-label="Navegação da simulação">
+          <a href="index.html">Início</a>
+          <a href="casos.html">Casos</a>
+          <span>Paciente fictício</span>
+        </nav>
+      </header>
+
+      <main class="consultation-layout">
+        <aside class="case-brief">
+          <a class="back-link" href="casos.html">
+            <span>&lt;</span>
+            Voltar para casos
+          </a>
+
+          <section class="record-card" aria-labelledby="record-title">
+            <span>Prontuário educacional</span>
+            <h1 id="record-title">Maria da Rosa, 45 anos</h1>
+            <p>
+              Paciente fictícia relata cefaleia holocraniana pulsátil de forte
+              intensidade há 4 dias, com fotofobia e fonofobia. Refere melhora
+              parcial com paracetamol e nega episódios prévios semelhantes.
+            </p>
+            <p>
+              Exame inicial: bom estado geral, orientada, corada e hidratada.
+              PA 120/80 mmHg, FC 72 bpm, temperatura 36,5 °C e exame
+              neurológico sem déficit focal.
+            </p>
+          </section>
+
+          <section class="learning-goals" aria-labelledby="goals-title">
+            <h2 id="goals-title">Objetivos do caso</h2>
+            <ul>
+              <li>Investigar sinais de alerta antes de concluir a conduta.</li>
+              <li>Comunicar a hipótese com linguagem acolhedora.</li>
+              <li>Justificar exames sem transformar a simulação em prescrição real.</li>
+            </ul>
+          </section>
+
+          <section class="vital-card" aria-labelledby="vitals-title">
+            <h2 id="vitals-title">Sinais vitais</h2>
+            <dl>
+              <div>
+                <dt>PA</dt>
+                <dd>120/80</dd>
+              </div>
+              <div>
+                <dt>FC</dt>
+                <dd>72 bpm</dd>
+              </div>
+              <div>
+                <dt>Temp.</dt>
+                <dd>36,5 °C</dd>
+              </div>
+              <div>
+                <dt>Dor</dt>
+                <dd>8/10</dd>
+              </div>
+            </dl>
+          </section>
+        </aside>
+
+        <section class="chat-simulation" aria-labelledby="case-title">
+          <header class="chat-header">
+            <div>
+              <span>Clínica Médica - dificuldade alta</span>
+              <h2 id="case-title">Cefaleia intensa inédita</h2>
+              <p>
+                Treine anamnese, segurança e orientação em uma consulta
+                simulada com registro das respostas.
+              </p>
+            </div>
+
+            <div class="score-panel" aria-label="Pontuação da simulação">
+              <span data-sim-timer>00:00</span>
+              <strong data-sim-score>64</strong>
+              <small>pontos</small>
+            </div>
+          </header>
+
+          <div class="decision-strip" aria-label="Indicadores da simulação">
+            <article>
+              <span>Acolhimento</span>
+              <strong data-empathy-score>66%</strong>
+            </article>
+            <article>
+              <span>Raciocínio</span>
+              <strong data-reasoning-score>58%</strong>
+            </article>
+            <article>
+              <span>Segurança</span>
+              <strong data-safety-score>71%</strong>
+            </article>
+          </div>
+
+          <section class="chat-thread" data-chat-thread aria-label="Conversa da simulação">
+            <article class="bubble patient">
+              Doutor, essa dor na cabeça toda não passa. Fica martelando e
+              qualquer luz piora muito.
+            </article>
+
+            <article class="bubble doctor">
+              Entendi, Maria. Vou te ouvir com calma, avaliar sinais de alerta
+              e explicar cada decisão antes de seguirmos.
+            </article>
+
+            <article class="ai-feedback">
+              <h3>Exemplo de feedback</h3>
+              <p>
+                Começo adequado: você acolheu a queixa e sinalizou que vai
+                investigar segurança clínica. Continue buscando dados antes de
+                propor exames ou condutas.
+              </p>
+            </article>
+          </section>
+
+          <div class="coach-panel" data-coach-panel>
+            <strong>Roteiro fictício para prática</strong>
+            <p>
+              Pergunte sobre sinais de alerta: início súbito, febre, vômitos,
+              rigidez de nuca, alteração visual ou déficit neurológico.
+            </p>
+          </div>
+
+          <div class="decision-actions" aria-label="Respostas rápidas">
+            <button
+              type="button"
+              data-quick-response="Maria, quero entender melhor alguns sinais de alerta: a dor começou de repente? Teve febre, vômitos, rigidez na nuca, desmaio ou alteração na visão?"
+            >
+              Investigar alerta
+            </button>
+            <button
+              type="button"
+              data-quick-response="Eu imagino o quanto isso assusta. Vou explicar o que encontrei no exame e por que precisamos acompanhar essa dor com cuidado."
+            >
+              Acolher paciente
+            </button>
+            <button
+              type="button"
+              data-quick-response="Como é uma dor forte e inédita, vamos discutir uma tomografia no contexto da simulação para afastar causas que exigem atenção."
+            >
+              Justificar exame
+            </button>
+          </div>
+
+          <form class="reply-box" data-sim-form>
+            <button type="button" data-finish-case aria-label="Finalizar caso">✓</button>
+            <input
+              data-sim-input
+              name="fala"
+              autocomplete="off"
+              type="text"
+              placeholder="Digite sua próxima fala..."
+              autocomplete="off"
+            />
+            <button class="send-button" type="submit" aria-label="Enviar">></button>
+          </form>
+        </section>
+
+        <aside class="learning-panel">
+          <section class="decision-log-card" aria-labelledby="log-title">
+            <div class="panel-title">
+              <span>Registro</span>
+              <h2 id="log-title">Decisões tomadas</h2>
+            </div>
+            <ul data-decision-log>
+              <li>Consulta iniciada com acolhimento.</li>
+            </ul>
+          </section>
+
+          <section class="feedback-card" aria-labelledby="feedback-title">
+            <div class="panel-title">
+              <span>Critérios de avaliação</span>
+              <h2 id="feedback-title">Critérios avaliados</h2>
+            </div>
+            <div class="rubric-item is-complete">
+              <span></span>
+              Anamnese inicial
+            </div>
+            <div class="rubric-item">
+              <span></span>
+              Sinais de alerta
+            </div>
+            <div class="rubric-item">
+              <span></span>
+              Comunicação empática
+            </div>
+            <div class="rubric-item">
+              <span></span>
+              Plano educacional seguro
+            </div>
+          </section>
+
+          <section class="history-card" aria-labelledby="history-title">
+            <div class="panel-title">
+              <span>Histórico local</span>
+              <h2 id="history-title">Última tentativa</h2>
+            </div>
+            <p data-history-summary>
+              Nenhuma tentativa finalizada neste dispositivo.
+            </p>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="../assets/js/shared/components.js"></script>
+    <script src="../assets/js/shared/rooms.js"></script>
+    <script src="../assets/js/student/progress.js"></script>
+    <script src="../assets/js/student/simulation.js"></script>
+  </body>
+</html>

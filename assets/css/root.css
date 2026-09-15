@@ -1,0 +1,28 @@
+/* Identidade compartilhada: cores, tipografia e medidas.
+   Ajuste aqui para atualizar todas as páginas. Paleta inspirada no HMV. */
+:root {
+    --ink: #123246;
+    --ink-strong: #08263a;
+    --primary: #005b95;
+    --primary-dark: #003b65;
+    --primary-soft: #e7f4fa;
+    --accent: #007b84;
+    --accent-soft: #e6f7f3;
+    --warm: #f28c4b;
+    --rose: #a83463;
+    --bg: #f4f8fa;
+    --surface: #ffffff;
+    --surface-alt: #edf5f8;
+    --muted: #607283;
+    --border: #d8e6ec;
+    --border-strong: #bad0dc;
+    --shadow: 0 16px 38px rgba(7, 45, 68, 0.08);
+    --shadow-soft: 0 8px 22px rgba(7, 45, 68, 0.06);
+    --radius: 8px;
+    --sidebar-w: 292px;
+    --sidebar-w-collapsed: 88px;
+    --topbar-h: 70px;
+    --font-body: Inter, Arial, sans-serif;
+    --font-display: Newsreader, Georgia, serif;
+    --focus-ring: #005b95;
+}

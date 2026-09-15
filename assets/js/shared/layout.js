@@ -7,6 +7,11 @@
     var backdrop = document.querySelector('[data-sidebar-backdrop]');
     var ultimoFoco;
     var sidebar = document.querySelector('.sidebar');
+    var tooltip = document.createElement('span');
+    tooltip.className = 'sidebar__tooltip';
+    tooltip.hidden = true;
+    tooltip.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(tooltip);
     sidebar.id = 'menu-principal';
     if (mobileToggle) { mobileToggle.setAttribute('aria-controls', sidebar.id); mobileToggle.setAttribute('aria-expanded', 'false'); }
 
@@ -14,7 +19,27 @@
         return window.matchMedia('(max-width: 880px)').matches;
     }
 
+    function hideTooltip() { tooltip.hidden = true; }
+
+    function showTooltip(link) {
+        if (isMobile() || !shell.classList.contains('is-collapsed') || !link) return;
+        var rect = link.getBoundingClientRect();
+        tooltip.textContent = link.dataset.label || link.getAttribute('aria-label') || '';
+        tooltip.style.left = rect.right + 14 + 'px';
+        tooltip.style.top = Math.max(26, Math.min(window.innerHeight - 26, rect.top + rect.height / 2)) + 'px';
+        tooltip.hidden = false;
+    }
+
+    function syncCollapseButton() {
+        if (!collapseToggle) return;
+        var collapsed = shell.classList.contains('is-collapsed');
+        collapseToggle.setAttribute('aria-expanded', String(!collapsed));
+        collapseToggle.setAttribute('aria-label', collapsed ? 'Expandir menu' : 'Recolher menu');
+        collapseToggle.title = collapsed ? 'Expandir menu' : 'Recolher menu';
+    }
+
     function closeMobile() {
+        hideTooltip();
         shell.classList.remove('is-mobile-open');
         document.body.style.overflow = '';
         sidebar.inert = isMobile();
@@ -33,15 +58,33 @@
     }
 
     function toggleCollapse() {
+        hideTooltip();
         shell.classList.toggle('is-collapsed');
         ClinifyUI.salvar('sidebar-collapsed', shell.classList.contains('is-collapsed'));
-        if (collapseToggle) collapseToggle.setAttribute('aria-expanded', String(!shell.classList.contains('is-collapsed')));
+        syncCollapseButton();
     }
 
     sidebar.inert = isMobile();
     if (!isMobile() && ClinifyUI.ler('sidebar-collapsed', false)) {
         shell.classList.add('is-collapsed');
     }
+    syncCollapseButton();
+
+    sidebar.addEventListener('mouseover', function (event) {
+        var link = event.target.closest && event.target.closest('.sidebar__link');
+        if (link) showTooltip(link);
+    });
+    sidebar.addEventListener('mouseout', function (event) {
+        var link = event.target.closest && event.target.closest('.sidebar__link');
+        if (link && (!event.relatedTarget || !link.contains(event.relatedTarget))) hideTooltip();
+    });
+    sidebar.addEventListener('focusin', function (event) {
+        var link = event.target.closest && event.target.closest('.sidebar__link');
+        if (link) showTooltip(link);
+    });
+    sidebar.addEventListener('focusout', hideTooltip);
+    sidebar.addEventListener('click', hideTooltip);
+    sidebar.addEventListener('scroll', hideTooltip, true);
 
     if (collapseToggle) {
         collapseToggle.addEventListener('click', function () {

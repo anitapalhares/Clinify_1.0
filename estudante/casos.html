@@ -6,12 +6,6 @@
 
     <title>Clinify | Simulação Clínica</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:wght@500&amp;display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="../assets/css/estrutura.css" />
     <link rel="stylesheet" href="../assets/css/simulacao.css" />
@@ -91,47 +85,131 @@
             </div>
 
             <form class="case-code" data-code-form>
-              <label for="nomeAluno">Seu nome na sala</label><input id="nomeAluno" name="nomeAluno" type="text" maxlength="60" placeholder="Como o professor deve identificar você?" autocomplete="name">
-              <label for="caseCode">Código da sala</label>
-              <div class="case-code__entry">
-                <input
-                  id="caseCode"
-                  name="caseCode"
-                  type="text"
-                  placeholder="Digite o código"
-                  maxlength="12"
-                  required
-                  autocomplete="off"
-                />
-                <button type="submit">Abrir</button>
+              <div class="case-code__intro">
+                <span class="case-code__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="8" width="18" height="12" rx="2" />
+                    <path d="M8 8V6a4 4 0 0 1 8 0v2M8 14h8M8 17h5" />
+                  </svg>
+                </span>
+                <div>
+                  <span class="case-code__eyebrow">Convite do professor</span>
+                  <h2>Entrar em uma sala</h2>
+                  <p>Recebeu um código da sua turma? Digite-o aqui para iniciar o caso indicado pelo professor.</p>
+                </div>
               </div>
+              <div class="case-code__fields">
+                <div class="case-code__field">
+                  <label for="nomeAluno">Seu nome</label>
+                  <input id="nomeAluno" name="nomeAluno" type="text" placeholder="Como quer ser identificado na sala" maxlength="60" required autocomplete="name" />
+                </div>
+                <div class="case-code__field">
+                  <label for="caseCode">Código da sala</label>
+                  <div class="case-code__entry">
+                    <input id="caseCode" name="caseCode" type="text" placeholder="Ex.: ABC123" maxlength="12" required autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="case-code-hint" />
+                    <button type="submit">Entrar na sala <span aria-hidden="true">→</span></button>
+                  </div>
+                </div>
+              </div>
+              <p id="case-code-hint" class="case-code__hint">O código está no convite compartilhado pelo professor.</p>
             </form>
 
-            <div class="specialty-section" aria-labelledby="specialty-title">
+            <section
+              class="specialty-section materias-section"
+              aria-labelledby="materias-title"
+            >
               <div class="section-title-row">
-                <h2 id="specialty-title">Casos por Especialidade</h2>
+                <h2 id="materias-title">Matérias em estudo</h2>
               </div>
-              <div class="specialty-grid">
-                <button type="button" data-specialty-shortcut="cardiologia">
-                  <strong>Cardiologia</strong>
+              <p class="materias-intro">
+                Filtre os casos pelas matérias da sua área de estudos. Selecione
+                novamente para ver todos.
+              </p>
+              <div
+                class="specialty-grid materias-grid"
+                role="group"
+                aria-label="Filtrar casos por matéria"
+              >
+                <button
+                  type="button"
+                  data-materia-filter="cardiologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--red"
+                    aria-hidden="true"
+                    data-materia-icon="cardiologia"
+                  ></span>
+                  <strong>Cardiologia</strong
+                  ><small data-materia-count="cardiologia"></small>
                 </button>
-                <button type="button" data-specialty-shortcut="clinica-medica">
-                  <strong>Clínica Médica</strong>
+                <button
+                  type="button"
+                  data-materia-filter="pneumologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--blue"
+                    aria-hidden="true"
+                    data-materia-icon="pneumologia"
+                  ></span>
+                  <strong>Pneumologia</strong
+                  ><small data-materia-count="pneumologia"></small>
                 </button>
-                <button type="button" data-specialty-shortcut="pediatria">
-                  <strong>Pediatria</strong>
+                <button
+                  type="button"
+                  data-materia-filter="neurologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--purple"
+                    aria-hidden="true"
+                    data-materia-icon="neurologia"
+                  ></span>
+                  <strong>Neurologia</strong
+                  ><small data-materia-count="neurologia"></small>
                 </button>
-                <button type="button" data-specialty-shortcut="ginecologia">
-                  <strong>Ginecologia</strong>
+                <button
+                  type="button"
+                  data-materia-filter="gastroenterologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--green"
+                    aria-hidden="true"
+                    data-materia-icon="gastroenterologia"
+                  ></span>
+                  <strong>Gastroenterologia</strong
+                  ><small data-materia-count="gastroenterologia"></small>
                 </button>
-                <button type="button" data-specialty-shortcut="emergencia">
-                  <strong>Emergência</strong>
+                <button
+                  type="button"
+                  data-materia-filter="endocrinologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--orange"
+                    aria-hidden="true"
+                    data-materia-icon="endocrinologia"
+                  ></span>
+                  <strong>Endocrinologia</strong
+                  ><small data-materia-count="endocrinologia"></small>
                 </button>
-                <button type="button" data-specialty-shortcut="saude-mental">
-                  <strong>Saúde Mental</strong>
+                <button
+                  type="button"
+                  data-materia-filter="histologia"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="study-icon study-icon--yellow"
+                    aria-hidden="true"
+                    data-materia-icon="histologia"
+                  ></span>
+                  <strong>Histologia</strong
+                  ><small data-materia-count="histologia"></small>
                 </button>
               </div>
-            </div>
+            </section>
 
             <div class="filter-bar" aria-label="Filtros de casos">
               <label>
@@ -158,37 +236,15 @@
               </button>
             </div>
 
-            <p class="case-counter" data-case-counter>8 casos encontrados</p>
+            <p class="case-counter" data-case-counter>9 casos encontrados</p>
 
             <div class="case-list">
               <article
                 class="case-card"
                 data-case
-                data-status="progress"
-                data-specialty="cardiologia"
-                data-difficulty="easy"
-              >
-                <span
-                  class="case-card__avatar avatar--joao"
-                  aria-hidden="true"
-                ></span>
-                <div class="case-card__body">
-                  <small>Cardiologia - Em andamento</small>
-                  <h2>
-                    Homem, 45 anos, dor no peito após exercício físico (João)
-                  </h2>
-                  <span class="difficulty difficulty--easy">Fácil</span>
-                </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar simulação</span></a
-                >
-              </article>
-
-              <article
-                class="case-card"
-                data-case
-                data-status="progress"
-                data-specialty="clinica-medica"
+                data-case-id="cefaleia"
+                data-status="available"
+                data-materia="neurologia"
                 data-difficulty="hard"
               >
                 <span
@@ -196,20 +252,76 @@
                   aria-hidden="true"
                 ></span>
                 <div class="case-card__body">
-                  <small>Clínica Médica - Em andamento</small>
+                  <small>Neurologia · Caso disponível</small>
                   <h2>
-                    Mulher, 28 anos, fadiga constante e falta de ar (Maria)
+                    Mulher, 45 anos, cefaleia intensa inédita e sensibilidade à
+                    luz
                   </h2>
                   <span class="difficulty difficulty--hard">Difícil</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar simulação</span></a
+                <a
+                  href="simulacao.html?caso=cefaleia&amp;materia=neurologia"
+                  class="continue-btn"
+                  ><span>Iniciar</span></a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
+                data-case-id="cardio-dor"
+                data-status="available"
+                data-materia="cardiologia"
+                data-difficulty="easy"
+              >
+                <span
+                  class="case-card__avatar avatar--joao"
+                  aria-hidden="true"
+                ></span>
+                <div class="case-card__body">
+                  <small>Cardiologia - Disponível</small>
+                  <h2>
+                    Homem, 45 anos, dor no peito após exercício físico (João)
+                  </h2>
+                  <span class="difficulty difficulty--easy">Fácil</span>
+                </div>
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=cardio-dor&amp;materia=cardiologia"
+                  >Iniciar</a
+                >
+              </article>
+
+              <article
+                class="case-card"
+                data-case
+                data-case-id="pneumo-fadiga"
+                data-status="available"
+                data-materia="pneumologia"
+                data-difficulty="hard"
+              >
+                <span
+                  class="case-card__avatar avatar--maria"
+                  aria-hidden="true"
+                ></span>
+                <div class="case-card__body">
+                  <small>Pneumologia - Disponível</small>
+                  <h2>
+                    Mulher, 28 anos, fadiga constante e falta de ar (Maria)
+                  </h2>
+                  <span class="difficulty difficulty--hard">Difícil</span>
+                </div>
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=pneumo-fadiga&amp;materia=pneumologia"
+                  >Iniciar</a
+                >
+              </article>
+
+              <article
+                class="case-card"
+                data-case
+                data-case-id="pediatria-febre"
                 data-status="available"
                 data-specialty="pediatria"
                 data-difficulty="medium"
@@ -226,16 +338,19 @@
                   </h2>
                   <span class="difficulty difficulty--medium">Médio</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar</span></a
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=pediatria-febre"
+                  >Iniciar</a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
+                data-case-id="endo-sede"
                 data-status="available"
-                data-specialty="endocrinologia"
+                data-materia="endocrinologia"
                 data-difficulty="medium"
               >
                 <span
@@ -249,15 +364,18 @@
                   </h2>
                   <span class="difficulty difficulty--medium">Médio</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar</span></a
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=endo-sede&amp;materia=endocrinologia"
+                  >Iniciar</a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
-                data-status="finished"
+                data-case-id="gineco-dor"
+                data-status="available"
                 data-specialty="ginecologia"
                 data-difficulty="hard"
               >
@@ -266,20 +384,21 @@
                   aria-hidden="true"
                 ></span>
                 <div class="case-card__body">
-                  <small>Ginecologia - Finalizado</small>
+                  <small>Ginecologia - Disponível</small>
                   <h2>
                     Mulher, 32 anos, dor pélvica intensa e sangramento irregular
                   </h2>
                   <span class="difficulty difficulty--hard">Difícil</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Rever</span></a
+                <a class="continue-btn" href="simulacao.html?caso=gineco-dor"
+                  >Iniciar</a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
+                data-case-id="mental-palpitacoes"
                 data-status="available"
                 data-specialty="saude-mental"
                 data-difficulty="easy"
@@ -296,15 +415,18 @@
                   </h2>
                   <span class="difficulty difficulty--easy">Fácil</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar</span></a
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=mental-palpitacoes"
+                  >Iniciar</a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
-                data-status="progress"
+                data-case-id="emergencia-queda"
+                data-status="available"
                 data-specialty="emergencia"
                 data-difficulty="medium"
               >
@@ -313,22 +435,25 @@
                   aria-hidden="true"
                 ></span>
                 <div class="case-card__body">
-                  <small>Emergência - Em andamento</small>
+                  <small>Emergência - Disponível</small>
                   <h2>
                     Homem, 24 anos, queda de bicicleta, confusão e dor abdominal
                   </h2>
                   <span class="difficulty difficulty--medium">Médio</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar simulação</span></a
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=emergencia-queda"
+                  >Iniciar</a
                 >
               </article>
 
               <article
                 class="case-card"
                 data-case
+                data-case-id="neuro-confusao"
                 data-status="available"
-                data-specialty="geriatria"
+                data-materia="neurologia"
                 data-difficulty="hard"
               >
                 <span
@@ -336,20 +461,27 @@
                   aria-hidden="true"
                 ></span>
                 <div class="case-card__body">
-                  <small>Geriatria - Disponível</small>
+                  <small>Neurologia · Geriatria - Disponível</small>
                   <h2>
                     Idosa, 78 anos, confusão mental súbita, febre baixa e queda
                   </h2>
                   <span class="difficulty difficulty--hard">Difícil</span>
                 </div>
-                <a href="simulacao.html" class="continue-btn"
-                  ><span>Iniciar</span></a
+                <a
+                  class="continue-btn"
+                  href="simulacao.html?caso=neuro-confusao&amp;materia=neurologia"
+                  >Iniciar</a
                 >
               </article>
             </div>
 
             <div class="empty-state" data-empty-state hidden>
-              Nenhum caso encontrado com esses filtros.
+              <p data-empty-message>
+                Nenhum caso encontrado com esses filtros.
+              </p>
+              <a data-empty-study-link href="estudos.html"
+                >Ver matérias em estudo</a
+              >
             </div>
 
             <div class="ai-modal" data-ai-modal hidden>
@@ -365,62 +497,73 @@
                   data-ai-close
                   aria-label="Fechar"
                 >
-                  &times;
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M5 5l14 14M19 5L5 19" />
+                  </svg>
                 </button>
-                <span class="ai-modal__eyebrow">IA Clinify</span>
-                <h2 id="ai-modal-title">
-                  Iniciar caso personalizado
-                </h2>
-                <label>
-                  Especialidade
-                  <select data-ai-specialty>
-                    <option>Cardiologia</option>
-                    <option>Clínica Médica</option>
-                    <option>Pediatria</option>
-                    <option>Emergência</option>
-                    <option>Ginecologia</option>
-                    <option>Saúde Mental</option>
-                  </select>
-                </label>
-                <label>
-                  Perfil do paciente
-                  <input
-                    data-ai-profile
-                    type="text"
-                    placeholder="Ex: adulto jovem, idoso, criança"
-                  />
-                </label>
-                <label>
-                  Características do caso
-                  <textarea
-                    data-ai-features
-                    placeholder="Ex: sintomas, duração, contexto, sinais vitais, achados iniciais"
-                  ></textarea>
-                </label>
-                <label>
-                  Dificuldade
-                  <select data-ai-difficulty>
-                    <option>Fácil</option>
-                    <option>Médio</option>
-                    <option>Difícil</option>
-                  </select>
-                </label>
-                <button class="ai-modal__random" type="button" data-ai-random>
-                  Iniciar caso aleatório
-                </button>
-                <button class="ai-modal__create" type="button" data-ai-case>
-                  Iniciar simulação
-                </button>
+                <span class="ai-modal__eyebrow">Clinify AI · prática personalizada</span>
+                <h2 id="ai-modal-title">Crie seu caso clínico</h2>
+                <p class="ai-modal__intro">Descreva o cenário que deseja praticar. A simulação será montada com as suas escolhas.</p>
+                <form class="ai-modal__form" data-ai-form>
+                  <label for="ai-caracteristicas">
+                    Características do caso
+                    <textarea id="ai-caracteristicas" data-ai-characteristics name="caracteristicas" required minlength="20" maxlength="500" rows="4" placeholder="Ex.: pessoa idosa com tontura há dois dias, histórico de quedas e dificuldade para explicar os sintomas"></textarea>
+                  </label>
+                  <div class="ai-modal__choices">
+                    <label for="ai-materia">
+                      Matéria
+                      <select id="ai-materia" data-ai-specialty name="materia" required>
+                        <option value="cardiologia">Cardiologia</option>
+                        <option value="pneumologia">Pneumologia</option>
+                        <option value="neurologia" selected>Neurologia</option>
+                        <option value="gastroenterologia">Gastroenterologia</option>
+                        <option value="endocrinologia">Endocrinologia</option>
+                        <option value="histologia">Histologia</option>
+                      </select>
+                    </label>
+                    <label for="ai-dificuldade">
+                      Dificuldade
+                      <select id="ai-dificuldade" data-ai-difficulty name="dificuldade" required>
+                        <option value="facil">Fácil</option>
+                        <option value="media" selected>Média</option>
+                        <option value="dificil">Difícil</option>
+                      </select>
+                    </label>
+                  </div>
+                  <button class="ai-modal__create" type="submit">Gerar e iniciar caso <span aria-hidden="true">→</span></button>
+                </form>
               </div>
             </div>
 
-            <button class="floating-ai" type="button" data-ai-open>
-              <span class="floating-ai__text"
-                >Configurar caso clínico</span
-              >
-              <span class="floating-ai__robot" aria-hidden="true">
-                <span></span>
+            <button
+              class="floating-ai"
+              type="button"
+              data-ai-open
+              aria-label="Abrir Clinify AI para criar um caso clínico"
+            >
+              <span class="floating-ai__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M5 5.5h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H9l-4 3v-12a3 3 0 0 1 3-3"
+                  />
+                  <path
+                    d="m17.5 2 .6 1.9L20 4.5l-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6z"
+                  />
+                  <path d="M9 11h5M9 14h3" />
+                </svg>
               </span>
+              <span class="floating-ai__text"
+                ><strong>Clinify AI</strong
+                ><small>Criar meu caso</small></span
+              >
+              <span class="floating-ai__arrow" aria-hidden="true">↗</span>
             </button>
           </section>
         </main>

@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+backend/ctwp/dados/tentativas.json
+backend/ctwp/dados/tentativas.tmp
+.DS_Store

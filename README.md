@@ -4,21 +4,21 @@
 
 Projeto acadêmico da FIAP para o Challenge Hospital Moinhos de Vento. A plataforma reúne estudos, questões, simulações clínicas e painéis de estudante, professor e administrador.
 
-Esta versão foi revisada para o escopo da **Sprint 3** de Web Development e Front-End Design: HTML, CSS e JavaScript.
+Esta versão reúne HTML, CSS, JavaScript e a lógica da Sprint 3 de Computational Thinking With Python.
 
 ## Tecnologias
 
-HTML5 semântico, CSS3 (Flexbox, Grid e media queries) e JavaScript.
+HTML5 semântico, CSS3 (Flexbox, Grid e media queries), JavaScript e Python 3 com biblioteca padrão.
 
 ## Como executar
 
-Abra `index.html` no navegador ou utilize a extensão Live Server do VS Code. Também é possível executar com Python:
+Na pasta do projeto, execute:
 
 ```bash
-python3 -m http.server 8000
+python3 -m backend.ctwp
 ```
 
-Depois acesse <http://localhost:8000/index.html>.
+Escolha **4** no menu para iniciar o servidor e acesse <http://127.0.0.1:8000/>. As páginas e a API Python são servidas no mesmo endereço. As opções 1, 2 e 3 permitem testar a lógica pelo terminal. A consulta interativa precisa desse servidor para receber feedback e salvar a tentativa em JSON.
 
 ## Contas de teste
 
@@ -35,7 +35,6 @@ O login é uma demonstração em JavaScript. Não há autenticação de servidor
 ## Estrutura
 
 ```text
-index.html                 Redireciona para o login
 index.html                 Entrada do site
 estudante/                 Estudos, questões, casos, desempenho e perfil
 professor/                 Turmas, alunos, estudos, desempenho e perfil
@@ -43,8 +42,9 @@ administrador/             Painel, professores e perfil
 assets/css/                root.css, estrutura.css, acesso.css, estudos.css e simulacao.css
 assets/js/shared/          Componentes, comportamento do layout, dados fictícios e perfil
 assets/js/                 Interações de cada área
+backend/ctwp/              Agente, fluxo, JSON e servidor Python
 assets/img/                Marca e favicon do projeto
-INTEGRANTES.TXT            Integrantes e RMs
+integrantes.txt            Integrantes e RMs
 ```
 
 As variáveis visuais ficam em `root.css`. Menus, rodapé e mensagens de retorno são compartilhados em `components.js`. Os layouts principais começam com uma coluna no celular e se ampliam com media queries para tablet e desktop.
@@ -53,17 +53,21 @@ As variáveis visuais ficam em `root.css`. Menus, rodapé e mensagens de retorno
 
 1. Entre como administrador. Busque, cadastre, edite e altere o status de um professor. Recarregue a página para conferir a persistência.
 2. Abra Meu perfil, altere o nome e salve. Recarregue para conferir o resultado.
-3. Entre como estudante. Teste os filtros e a ordenação dos estudos, inclusive uma busca sem resultados.
+3. Entre como estudante. Abra Estudos e use “Ver casos desta matéria”. Na página de casos, alterne entre Cardiologia, Pneumologia, Neurologia, Gastroenterologia, Endocrinologia e Histologia; combine busca e dificuldade.
 4. Abra Cardiologia, responda às questões e finalize o módulo. O progresso é salvo no navegador.
-5. Como professor, abra Salas de simulação, crie uma sala e copie o código. Em outra aba do mesmo navegador, entre como estudante, informe seu nome e esse código em Simulação clínica. Envie uma resposta, finalize e analise a sala na aba do professor. Teste também editar, encerrar e reabrir a sala. Para explorar sem sala, use `MOINHOS01`.
+5. Abra um caso, envie uma fala e confira o feedback e a pontuação. Em Clinify AI, descreva um cenário, escolha matéria e dificuldade e inicie um caso personalizado. Como professor, crie uma sala e copie o código. Em outra aba do mesmo navegador, entre como estudante, informe seu nome e esse código, finalize e analise as respostas na aba do professor.
 6. Confira o site em larguras de 375px, 768px e 1440px. Teste o menu no celular e navegue usando Tab e Escape.
 
 ## Dados e limites da demonstração
 
-Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. As salas personalizadas guardam nome, turma, orientações, código e tentativas; podem ser editadas, encerradas, reabertas e excluídas. Funcionam entre abas do mesmo navegador e origem, sem sincronização entre dispositivos. Os cards e as salas usam o mesmo cenário demonstrativo; a pontuação é ilustrativa e o gerador de IA não está integrado a um modelo real.
+Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. As salas personalizadas guardam nome, turma, orientações, código e tentativas; podem ser editadas, encerradas, reabertas e excluídas. Funcionam entre abas do mesmo navegador e origem, sem sincronização entre dispositivos. Cada card abre seu próprio contexto fictício. As salas do professor usam o caso de cefaleia. Casos criados em Clinify AI ficam na sessão atual do navegador. O gerador Python usa modelos de texto e regras educacionais, sem um modelo de IA treinado ou sistema de diagnóstico.
 
 ## Uso de Inteligência Artificial
 
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
-As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o site não utiliza uma IA real para analisar decisões clínicas ou realizar diagnósticos.
+As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
+
+## Lógica Python da Sprint 3
+
+`backend/ctwp/agente.py` identifica critérios educacionais em falas fictícias. `gerador.py` monta cenários personalizados a partir de matéria, dificuldade e características escritas pelo aluno. `fluxo.py` inicia, atualiza e conclui tentativas; `dados.py` armazena os registros em `backend/ctwp/dados/tentativas.json`; `servidor.py` oferece `POST /api/gerar-caso`, `POST /api/responder`, `POST /api/concluir` e `GET /api/saude`. O arquivo JSON é gerado na execução e ignorado pelo Git. A pontuação começa em 64 e aumenta uma única vez por critério reconhecido. O estudante vê o feedback na consulta; o professor vê as respostas de sua sala. Códigos de sala, perfil e XP ainda usam o armazenamento do navegador e não sincronizam entre dispositivos.

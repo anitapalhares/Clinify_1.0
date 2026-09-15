@@ -73,8 +73,11 @@
         searchInput.value = new URLSearchParams(window.location.search).get('busca') || '';
         searchInput.addEventListener('input', applyFilters);
     }
-    if (specialtySelect) specialtySelect.addEventListener('change', applyFilters);
+    if (specialtySelect) {
+        const materia = new URLSearchParams(window.location.search).get('materia');
+        if (materia && Array.from(specialtySelect.options).some((option) => option.value === materia)) specialtySelect.value = materia;
+        specialtySelect.addEventListener('change', applyFilters);
+    }
     if (orderSelect) orderSelect.addEventListener('change', applyOrder);
     applyFilters();
 })();
-

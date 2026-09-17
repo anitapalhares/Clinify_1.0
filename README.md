@@ -62,12 +62,16 @@ As variáveis visuais ficam em `root.css`. Menus, rodapé e mensagens de retorno
 
 Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. As salas personalizadas guardam nome, turma, orientações, código e tentativas; podem ser editadas, encerradas, reabertas e excluídas. Funcionam entre abas do mesmo navegador e origem, sem sincronização entre dispositivos. Cada card abre seu próprio contexto fictício. As salas do professor usam o caso de cefaleia. Casos criados em Clinify AI ficam na sessão atual do navegador. O gerador Python usa modelos de texto e regras educacionais, sem um modelo de IA treinado ou sistema de diagnóstico.
 
+## Links Relevantes
+
+Repositório do GitHub
+- https://github.com/anitapalhares/Clinify_1.0
+
+Deploy no Vercel
+-  https://clinifylxp.vercel.app/
+
 ## Uso de Inteligência Artificial
 
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
-
-## Lógica Python da Sprint 3
-
-`backend/ctwp/agente.py` identifica critérios educacionais em falas fictícias. `gerador.py` monta cenários personalizados a partir de matéria, dificuldade e características escritas pelo aluno. `fluxo.py` inicia, atualiza e conclui tentativas; `dados.py` armazena os registros em `backend/ctwp/dados/tentativas.json`; `servidor.py` oferece `POST /api/gerar-caso`, `POST /api/responder`, `POST /api/concluir` e `GET /api/saude`. O arquivo JSON é gerado na execução e ignorado pelo Git. A pontuação começa em 64 e aumenta uma única vez por critério reconhecido. O estudante vê o feedback na consulta; o professor vê as respostas de sua sala. Códigos de sala, perfil e XP ainda usam o armazenamento do navegador e não sincronizam entre dispositivos.

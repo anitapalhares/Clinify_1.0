@@ -1,5 +1,8 @@
 __pycache__/
 *.pyc
-backend/ctwp/dados/tentativas.json
-backend/ctwp/dados/tentativas.tmp
+Computational Thinking With Python/dados/tentativas.json
+Computational Thinking With Python/dados/tentativas.tmp
+Computational Thinking With Python/dados/atividades_alunos.json
+Computational Thinking With Python/dados/atividades_alunos.tmp
+Computational Thinking With Python/dados/interacoes.json
 .DS_Store

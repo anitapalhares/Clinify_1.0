@@ -111,7 +111,25 @@ Também é possível consultar um aluno com `GET /api/atividades?aluno_id=aluno@
 
 `Computational Thinking With Python/agente.py` identifica critérios educacionais em falas fictícias. `gerador.py` monta cenários personalizados a partir de matéria, dificuldade e características escritas pelo aluno. `fluxo.py` inicia, atualiza e conclui tentativas; `dados.py` armazena os registros em `dados/tentativas.json`; `atividades.py` persiste estudos e simulados por aluno; `interacoes.py` guarda as ações recebidas do Front Web. `servidor.py` oferece `POST /api/gerar-caso`, `POST /api/responder`, `POST /api/concluir`, `POST /api/atividades`, `POST /api/interacoes`, `GET /api/atividades` e `GET /api/saude`. Os arquivos JSON são gerados na execução e ignorados pelo Git. A pontuação começa em 64 e aumenta uma única vez por critério reconhecido. O estudante vê o feedback na consulta; o professor vê as respostas de sua sala. Códigos de sala, perfil e XP ainda usam o armazenamento do navegador e não sincronizam entre dispositivos.
 
+## Edge Computing (Backend C++ & Integração Python)
 
+### 1. Visão Geral da Arquitetura
+O módulo `Edge_Computing` implementa o motor avaliador clínico em C++ de alta performance utilizando a biblioteca `cpp-httplib` (header-only) e manipulação de payloads via `nlohmann/json`. 
+A aplicação web principal consome este serviço via requisições HTTP REST. Nesta primeira etapa de entrega, o serviço C++ está estruturado com `CMakeLists.txt` e `main.cpp`, e o cliente consumidor Python possui modo de contingência mockado para validação das rotas enquanto o ambiente de compilação da infraestrutura local é padronizado.
+
+### 2. Especificação das APIs REST
+
+#### GET /api/saude
+Endpoint de verificação de disponibilidade operacional (*health check*).
+* **Entrada:** Nenhuma.
+* **Saída (200 OK):**
+``` json
+{
+  "servico": "Clinify Edge C++",
+  "status": "online",
+  "porta": 8080
+}
+```
 ## Links da entrega
 
 - Repositório: https://github.com/anitapalhares/Clinify_1.0

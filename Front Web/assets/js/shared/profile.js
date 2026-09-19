@@ -4,7 +4,10 @@
     var email = document.getElementById('perfil-email');
     var form = document.querySelector('[data-profile-form]');
     if (!form || !nome || !email) return;
-    var chave = 'perfil:' + document.body.dataset.area;
+    var area = document.body.dataset.area;
+    var sessao = ClinifyUI.ler('sessao:usuario', {});
+    var identificador = sessao.id || sessao.email || area;
+    var chave = 'perfil:' + identificador;
     var salvo = ClinifyUI.ler(chave, null);
     function atualizar() {
         document.querySelector('.profile-name').textContent = nome.value;
@@ -18,14 +21,12 @@
         nome.value = nome.value.trim();
         if (!form.reportValidity()) return;
         if (ClinifyUI.salvar(chave, {nome: nome.value, email: email.value.trim()})) {
-            if (document.body.dataset.area === 'estudante') {
-                ClinifyUI.salvar('sessao:usuario', {
-                    id: email.value.trim().toLowerCase(),
-                    email: email.value.trim().toLowerCase(),
-                    nome: nome.value,
-                    perfil: 'estudante'
-                });
-            }
+            ClinifyUI.salvar('sessao:usuario', {
+                id: identificador,
+                email: email.value.trim().toLowerCase(),
+                nome: nome.value,
+                perfil: area
+            });
             atualizar(); ClinifyUI.mensagem('Perfil atualizado com sucesso.');
         }
     });

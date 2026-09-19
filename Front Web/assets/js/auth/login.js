@@ -3,9 +3,9 @@
     var form = document.getElementById('loginForm');
     if (!form) return;
     var contas = {
-        'admin@clinify.com': 'administrador/home_a.html',
-        'professor@clinify.com': 'professor/home_p.html',
-        '12345678900@gmail.com': 'estudante/home_e.html'
+        'admin@clinify.com': { destino: 'administrador/home_a.html', perfil: 'administrador', nome: 'Administrador(a)' },
+        'professor@clinify.com': { destino: 'professor/home_p.html', perfil: 'professor', nome: 'Professor Clinify' },
+        '12345678900@gmail.com': { destino: 'estudante/home_e.html', perfil: 'estudante', nome: 'Estudante Clinify' }
     };
     var email = document.getElementById('email');
     var lembrar = document.getElementById('remember');
@@ -29,7 +29,8 @@
         feedback.classList.remove('feedback--error');
         feedback.setAttribute('aria-live', 'polite');
         ClinifyUI.salvar('email-lembrado', lembrar.checked ? endereco : '');
-        ClinifyUI.salvar('sessao:usuario', {id: endereco, email: endereco, perfil: contas[endereco].split('/')[0]});
-        window.location.href = contas[endereco];
+        var conta = contas[endereco];
+        ClinifyUI.salvar('sessao:usuario', {id: endereco, email: endereco, perfil: conta.perfil, nome: conta.nome});
+        window.location.href = conta.destino;
     });
 })();

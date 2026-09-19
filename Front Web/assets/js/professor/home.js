@@ -19,11 +19,12 @@
     if (statSimulacoes) statSimulacoes.textContent = simulacoes;
 
     if (turmasPreview) {
+        var e = ClinifyUI.escapar;
         turmasPreview.innerHTML = turmas.map(function (turma) {
             return [
                 '<article class="stat-card">',
-                '<p class="stat-card__label">' + turma.nome + '</p>',
-                '<p class="stat-card__value">' + turma.alunos + '</p>',
+                '<p class="stat-card__label">' + e(turma.nome) + '</p>',
+                '<p class="stat-card__value">' + e(turma.alunos) + '</p>',
                 '<p class="stat-card__label">alunos matriculados</p>',
                 '</article>'
             ].join('');
@@ -31,12 +32,13 @@
     }
 
     if (atividadeRecente) {
+        var escapar = ClinifyUI.escapar;
         atividadeRecente.innerHTML = atividades.map(function (atividade) {
             return [
                 '<tr>',
-                '<td>' + atividade.aluno + '</td>',
-                '<td>' + atividade.acao + '</td>',
-                '<td>' + atividade.quando + '</td>',
+                '<td>' + escapar(atividade.aluno) + '</td>',
+                '<td>' + escapar(atividade.acao) + '</td>',
+                '<td>' + escapar(atividade.quando) + '</td>',
                 '</tr>'
             ].join('');
         }).join('');

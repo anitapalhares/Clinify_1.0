@@ -166,39 +166,21 @@
         }
 
         if (aiForm) {
-            aiForm.addEventListener('submit', async function (event) {
+            aiForm.addEventListener('submit', function (event) {
                 event.preventDefault();
                 var botao = aiForm.querySelector('[type="submit"]');
                 botao.disabled = true;
                 botao.textContent = 'Preparando caso…';
                 try {
-                    var resposta = await fetch('/api/gerar-caso', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({
-                            caracteristicas: aiForm.querySelector('[data-ai-characteristics]').value.trim(),
-                            materia: aiForm.querySelector('[data-ai-specialty]').value,
-                            dificuldade: aiForm.querySelector('[data-ai-difficulty]').value
-                        })
-                    });
-                    var caso = await resposta.json();
-                    if (!resposta.ok) throw new Error(caso.erro || 'Não foi possível preparar o caso.');
-                    sessionStorage.setItem('clinify:caso-personalizado', JSON.stringify(caso));
-                    window.location.href = 'simulacao.html?caso=' + encodeURIComponent(caso.id) + '&materia=' + encodeURIComponent(caso.materia);
+                    var casoLocal = gerarCasoLocal(
+                        aiForm.querySelector('[data-ai-specialty]').value,
+                        aiForm.querySelector('[data-ai-difficulty]').value,
+                        aiForm.querySelector('[data-ai-characteristics]').value
+                    );
+                    sessionStorage.setItem('clinify:caso-personalizado', JSON.stringify(casoLocal));
+                    window.location.href = 'simulacao.html?caso=' + encodeURIComponent(casoLocal.id) + '&materia=' + encodeURIComponent(casoLocal.materia);
                 } catch (erro) {
-                    try {
-                        var casoLocal = gerarCasoLocal(
-                            aiForm.querySelector('[data-ai-specialty]').value,
-                            aiForm.querySelector('[data-ai-difficulty]').value,
-                            aiForm.querySelector('[data-ai-characteristics]').value
-                        );
-                        sessionStorage.setItem('clinify:caso-personalizado', JSON.stringify(casoLocal));
-                        ClinifyUI.mensagem('Caso preparado no modo demonstração local.');
-                        window.location.href = 'simulacao.html?caso=' + encodeURIComponent(casoLocal.id) + '&materia=' + encodeURIComponent(casoLocal.materia);
-                        return;
-                    } catch (erroLocal) {
-                        ClinifyUI.mensagem(erroLocal.message, true);
-                    }
+                    ClinifyUI.mensagem(erro.message, true);
                     botao.disabled = false;
                     botao.textContent = 'Gerar e iniciar caso →';
                 }
@@ -354,8 +336,6 @@
         }
 
 
-        var modoLocalAvisado = false;
-
         function normalizarTexto(texto) {
             return (texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         }
@@ -404,26 +384,7 @@
             };
         }
 
-        async function chamarAgente(rota, corpo) {
-            try {
-                var resposta = await fetch('/api/' + rota, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(corpo)
-                });
-                var tipo = resposta.headers.get('content-type') || '';
-                if (resposta.ok && tipo.includes('application/json')) return await resposta.json();
-                if (resposta.status !== 404 && resposta.status !== 405) {
-                    var erroServidor = tipo.includes('application/json') ? await resposta.json() : null;
-                    throw new Error(erroServidor && erroServidor.erro ? erroServidor.erro : 'Não foi possível analisar esta resposta.');
-                }
-            } catch (erro) {
-                if (!(erro instanceof TypeError)) throw erro;
-            }
-            if (!modoLocalAvisado) {
-                modoLocalAvisado = true;
-                ClinifyUI.mensagem('Modo demonstração local ativado. O progresso continuará salvo neste navegador.');
-            }
+        function chamarAgente(rota, corpo) {
             return chamarAgenteLocal(rota, corpo);
         }
 

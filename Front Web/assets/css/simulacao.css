@@ -114,12 +114,6 @@
     font-weight: 800;
 }
 
-.case-code__entry {
-    display: flex;
-    gap: 10px;
-    min-width: 0;
-}
-
 .case-code input,
 .filter-bar input,
 .filter-bar select,
@@ -191,6 +185,11 @@
     background: var(--primary-dark);
     font-size: 14px;
     box-shadow: 0 6px 16px rgba(0, 59, 101, 0.18);
+}
+
+.case-code__submit {
+    width: min(100%, 220px);
+    justify-self: end;
 }
 
 .case-code button span {
@@ -777,7 +776,7 @@
     .continue-btn { justify-self: stretch; }
 }
 @media (max-width: 560px) {
-    .case-code__entry { flex-direction: column; }
+    .case-code__submit { width: 100%; justify-self: stretch; }
     .floating-ai { right: 16px; bottom: 16px; }
     .site-footer__content { padding: 34px 24px; }
 }
@@ -850,7 +849,7 @@
 /* Matérias compartilhadas visualmente com a Área de Estudos. */
 .materias-intro { margin: 0 0 16px; color: var(--muted); font-size: 13px; line-height: 1.5; }
 @media (min-width: 760px) {
-    .case-code__fields { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: end; }
+    .case-code__fields { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; }
 }
 .materias-grid button { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .materias-grid .study-icon, .consulta-materia .study-icon { width: 38px; height: 38px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: var(--radius); }

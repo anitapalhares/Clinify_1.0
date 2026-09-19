@@ -174,6 +174,57 @@
               <button type="button" class="stat-card__cta-btn">Iniciar</button>
             </div>
           </div>
+          
+          <section class="evolucao-desempenho" aria-label="Evolução do desempenho por matéria">
+            <div class="evolucao-cabecalho">
+              <h2>Evolução do seu desempenho</h2>
+              <p>Modelo baseado na curva de aprendizado (função logística) a partir das suas atividades em cada matéria</p>
+            </div>
+
+            <div class="evolucao-grid">
+
+              <!-- Card Cardiologia -->
+              <article class="evolucao-card">
+                <div class="evolucao-card__head">
+                  <h3>Cardiologia</h3>
+                  <span class="evolucao-badge evolucao-badge--rapido">Evolução rápida</span>
+                </div>
+                <div id="grafico-cardiologia" class="grafico-container"></div>
+                <ul class="evolucao-metrics">
+                  <li><strong>92,4%</strong><span>Desempenho atual</span></li>
+                  <li><strong>t ≈ 1,8</strong><span>Pico de velocidade</span></li>
+                  <li><strong>Desacelerando</strong><span>Fase atual</span></li>
+                </ul>
+              </article>
+
+              <!-- Card Anatomia -->
+              <article class="evolucao-card">
+                <div class="evolucao-card__head">
+                  <h3>Anatomia</h3>
+                  <span class="evolucao-badge evolucao-badge--lenta">Evolução gradual</span>
+                </div>
+                <div id="grafico-anatomia" class="grafico-container"></div>
+                <ul class="evolucao-metrics">
+                  <li><strong>73,4%</strong><span>Desempenho atual</span></li>
+                  <li><strong>t ≈ 4,6</strong><span>Pico de velocidade</span></li>
+                  <li><strong>Ainda acelerando</strong><span>Fase atual</span></li>
+                </ul>
+              </article>
+            </div>
+
+            <!-- Card comparativo de velocidade -->
+            <article class="evolucao-card evolucao-card--comparativo">
+              <div class="evolucao-card__head">
+                <h3>Comparativo: ritmo de evolução (velocidade de aprendizado)</h3>
+              </div>
+              <div id="grafico-velocidade" class="grafico-container"></div>
+              <p class="evolucao-nota">
+                Em Cardiologia, você já passou pelo pico de ritmo de aprendizado (por volta da atividade 2) e agora está
+                estabilizando perto de 100%. Em Anatomia, o pico de ritmo ainda está por vir (por volta da atividade 5) —
+                ou seja, essa é a matéria com mais espaço para evoluir rápido se você continuar praticando.
+              </p>
+            </article>
+          </section>
         </main>
       </div>
     </div>

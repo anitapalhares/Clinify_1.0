@@ -1243,3 +1243,167 @@ button:disabled { opacity: 0.65; cursor: not-allowed; }
 @media (max-width: 1100px) {
     .perfil-organizacao { grid-template-columns: 1fr; }
 }
+/* ===================================================================
+Evolução do desempenho (gráficos) — página inicial da aluna
+   =================================================================== */
+
+.evolucao-desempenho {
+    margin-top: 28px;
+}
+
+.evolucao-cabecalho {
+    margin-bottom: 18px;
+}
+
+.evolucao-cabecalho h2 {
+    margin: 0 0 4px;
+    color: var(--ink-strong);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.evolucao-cabecalho p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.evolucao-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 881px) {
+    .evolucao-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.evolucao-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.evolucao-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.evolucao-card__head h3 {
+    margin: 0;
+    color: var(--ink-strong);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.evolucao-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.evolucao-badge--rapido {
+    color: #087565;
+    background: var(--accent-soft);
+}
+
+.evolucao-badge--lenta {
+    color: var(--primary-dark);
+    background: var(--primary-soft);
+}
+
+.grafico-container {
+    width: 100%;
+}
+
+.grafico-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.grafico-legenda {
+    display: flex;
+    gap: 18px;
+    margin-top: 4px;
+    padding-left: 4px;
+}
+
+.grafico-legenda span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.grafico-legenda i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.evolucao-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.evolucao-metrics li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 8px;
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+    text-align: center;
+}
+
+.evolucao-metrics strong {
+    color: var(--ink-strong);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.evolucao-metrics span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.evolucao-card--comparativo {
+    margin-top: 16px;
+}
+
+.evolucao-nota {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+    .evolucao-metrics {
+        grid-template-columns: 1fr;
+    }
+}

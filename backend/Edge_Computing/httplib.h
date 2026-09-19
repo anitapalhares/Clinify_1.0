@@ -1,11 +1,26 @@
- # Header da cpp-httplib
-
  //
  //  httplib.h
  //
  //  Copyright (c) 2026 Yuji Hirose. All rights reserved.
  //  MIT License
  //
+ // 
+ // 
+ // 
+ // 
+ // httplib.h
+ // 
+ // 
+ // 
+ //
+//
+//
+//
+//httplib.h
+//
+//
+//
+
 
  #ifndef CPPHTTPLIB_HTTPLIB_H
  #define CPPHTTPLIB_HTTPLIB_H

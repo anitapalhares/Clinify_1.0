@@ -3,3 +3,7 @@ __pycache__/
 backend/ctwp/dados/tentativas.json
 backend/ctwp/dados/tentativas.tmp
 .DS_Store
+build/
+*.exe
+*.obj
+*.o

@@ -1,122 +1,86 @@
 # Clinify
 
-Clinify é uma plataforma educacional desenvolvida para o Challenge Hospital Moinhos de Vento. A solução reúne estudos, questões, simulações clínicas, acompanhamento de desempenho e áreas específicas para estudantes, professores e administradores.
+<p align="left"> <img src="https://skillicons.dev/icons?i=html,css,js,git,github,vscode&theme=light" /> </p>
 
-## Grupo
+Projeto acadêmico da FIAP para o Challenge Hospital Moinhos de Vento. A plataforma reúne estudos, questões, simulações clínicas e painéis de estudante, professor e administrador.
 
-- Anita Palhares — RM 571264
-- Vitória Kereski — RM 569438
-- Kauã Coelho — RM 568665
-- Carlos Alberto — RM 571841
-
-## Sprint 3
-
-A Sprint 3 apresenta um MVP visual navegável e integra as contribuições das disciplinas no mesmo projeto.
-
-### Computational Thinking With Python
-
-O JavaScript registra interações, estudos e simulados no navegador. O botão **Salvar dados**, localizado na barra lateral, gera `clinify_dados.json`. O arquivo [main.py](<Computational Thinking With Python/main.py>) utiliza somente `os`, `json` e `datetime` para:
-
-- Ler e validar o JSON gerado pelo Front Web.
-- Organizar interações e atividades por usuário.
-- Evitar registros duplicados.
-- Persistir os dados em `dados/dados_alunos.json`.
-- Exibir um resumo de estudos, simulados e interações.
-
-Não há API, servidor Python ou dependências externas.
-
-### Differentiated Problem Solving
-
-O documento da Sprint solicita uma análise com limites ou derivadas integrada à interface. O repositório atual não contém um artefato matemático específico desta disciplina.
-
-### Edge Computing & Computer Systems
-
-O documento solicita uma simulação com ESP32 no Wokwi, interface local e leitura de sensores. O link e os arquivos dessa simulação não estão presentes neste repositório.
-
-### Front-End Design
-
-A interface implementa HTML semântico, identidade visual consistente, formulários, cards, painéis, históricos, estatísticas e navegação acessível. Os layouts usam Flexbox, CSS Grid, unidades responsivas, foco visível e media queries para celular, tablet e desktop.
-
-O MVP mantém consistência entre as áreas de estudante, professor e administrador. Não foi fornecido um link público do protótipo no Figma para incluir nesta versão.
-
-### Software & Total Experience Design
-
-O documento solicita dois diagramas de caso de uso criados no Astah e documentados em Word. Esses artefatos não estão presentes neste repositório.
-
-### Web Development
-
-O JavaScript está separado por área e responsabilidade. O projeto inclui:
-
-- Componentes compartilhados de navegação, rodapé e mensagens.
-- Manipulação do DOM e eventos de interface.
-- Validação de formulários e mensagens de retorno.
-- Busca, filtros, cards, modais e estados de interação.
-- Persistência de progresso, perfis, salas e preferências com `localStorage`.
-- Geração do JSON utilizado pela entrega de Python.
+Esta versão reúne HTML, CSS, JavaScript e a lógica da Sprint 3 de Computational Thinking With Python.
 
 ## Tecnologias
 
-- HTML5
-- CSS3, Flexbox, Grid e media queries
-- JavaScript
-- Python 3
-- JSON e localStorage
-- Git e GitHub
+HTML5 semântico, CSS3 (Flexbox, Grid e media queries), JavaScript e Python 3 com biblioteca padrão. Não há dependências externas obrigatórias.
 
-Não há dependências para instalar.
+## Como executar
 
-## Estrutura principal
-
-```text
-Computational Thinking With Python/
-├── main.py
-└── dados/
-Front Web/
-├── login.html
-├── estudante/
-├── professor/
-├── administrador/
-└── assets/
-INTEGRANTES.TXT
-README.md
-```
-
-## Como executar e testar
-
-1. Abra `Front Web/login.html` no navegador.
-2. Entre com uma das contas de teste.
-3. Navegue pelo site, conclua um estudo e finalize um simulado.
-4. Clique em **Salvar dados** na parte inferior da barra lateral.
-5. Confirme o download de `clinify_dados.json`.
-6. Na raiz do projeto, execute:
+Na pasta do projeto, execute:
 
 ```bash
 python3 "Computational Thinking With Python/main.py"
 ```
 
-7. Escolha **1** para importar o JSON. Pressione Enter para usar `~/Downloads/clinify_dados.json` ou informe outro caminho.
-8. Escolha **2** para conferir o resumo salvo.
+Escolha **4** no menu para iniciar o servidor e acesse <http://127.0.0.1:8000/>. As páginas e a API Python são servidas no mesmo endereço. As opções 1, 2 e 3 permitem testar a lógica pelo terminal. A consulta interativa precisa desse servidor para receber feedback e salvar a tentativa em JSON.
 
 ## Contas de teste
 
 Todas utilizam a senha `123456`.
 
-| Perfil | E-mail |
-| --- | --- |
-| Administrador | admin@clinify.com |
-| Professor | professor@clinify.com |
-| Estudante | 12345678900@gmail.com |
+| Perfil        | E-mail                |
+| ------------- | --------------------- |
+| Administrador | admin@clinify.com     |
+| Professor     | professor@clinify.com |
+| Estudante     | 12345678900@gmail.com |
 
-## Links
+O login é uma demonstração em JavaScript. Não há autenticação de servidor: as páginas também podem ser abertas diretamente.
 
-- Repositório: https://github.com/anitapalhares/Clinify_1.0
-- Deploy: https://clinifylxp.vercel.app/
+## Estrutura
+
+```text
+Computational Thinking With Python/
+├── main.py                 Entrada da aplicação Python
+├── servidor.py             API e servidor do site
+├── atividades.py           Persistência das atividades dos alunos
+├── interacoes.py           Recebimento das interações do Front Web
+├── fluxo.py                Fluxo das simulações
+├── agente.py               Avaliação educacional das respostas
+├── gerador.py              Geração de casos personalizados
+├── dados.py                Leitura e gravação de JSON
+└── dados/                  Arquivos JSON gerados durante a execução
+Front Web/
+├── login.html              Entrada e autenticação do site
+├── estudante/              Estudos, questões, casos, desempenho e perfil
+├── professor/              Turmas, alunos, estudos, desempenho e perfil
+├── administrador/          Painel, professores e perfil
+└── assets/                 CSS, JavaScript, marca e demais recursos visuais
+docs/                       Conferência acadêmica da Sprint 3
+INTEGRANTES.TXT             Integrantes e RMs
+```
+
+As duas disciplinas ficam separadas sem quebrar a integração: o servidor em `Computational Thinking With Python` publica a pasta `Front Web` como raiz do site. As variáveis visuais ficam em `root.css`. Menus, rodapé e mensagens de retorno são compartilhados em `components.js`. Os layouts principais começam com uma coluna no celular e se ampliam com media queries para tablet e desktop.
+
+## Como testar
+
+1. Entre como administrador. Busque, cadastre, edite e altere o status de um professor. Recarregue a página para conferir a persistência.
+2. Abra Meu perfil, altere o nome e salve. Recarregue para conferir o resultado.
+3. Entre como estudante. Abra Estudos e use “Ver casos desta matéria”. Na página de casos, alterne entre Cardiologia, Pneumologia, Neurologia, Gastroenterologia, Endocrinologia e Histologia; combine busca e dificuldade.
+4. Abra Cardiologia, responda às questões e finalize o módulo. O JavaScript registra a conclusão e envia o JSON ao Python.
+5. Abra um caso, envie uma fala e confira o feedback e a pontuação. Ao finalizar, a atividade do simulado também é enviada ao Python. Em Clinify AI, descreva um cenário, escolha matéria e dificuldade e inicie um caso personalizado. Como professor, crie uma sala e copie o código. Em outra aba do mesmo navegador, entre como estudante, informe seu nome e esse código, finalize e analise as respostas na aba do professor.
+6. No terminal, escolha a opção **3** para conferir os totais de estudos e simulados persistidos por aluno.
+7. Confira o site em larguras de 375px, 768px e 1440px. Teste o menu no celular e navegue usando Tab e Escape.
+
+## Dados e limites da demonstração
+
+Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage neste navegador. Cardiologia possui conteúdo e questões; as demais especialidades mostram um estado de conteúdo em preparação. O vídeo ainda não está disponível. As salas personalizadas guardam nome, turma, orientações, código e tentativas; podem ser editadas, encerradas, reabertas e excluídas. Funcionam entre abas do mesmo navegador e origem, sem sincronização entre dispositivos. Cada card abre seu próprio contexto fictício. As salas do professor usam o caso de cefaleia. Casos criados em Clinify AI ficam na sessão atual do navegador. O gerador Python usa modelos de texto e regras educacionais, sem um modelo de IA treinado ou sistema de diagnóstico.
+
+## Links Relevantes
+
+Repositório do GitHub
+- https://github.com/anitapalhares/Clinify_1.0
+
+Deploy no Vercel
+-  https://clinifylxp.vercel.app/
 
 ## Uso de Inteligência Artificial
 
-<<<<<<< HEAD
-A Inteligência Artificial foi utilizada como apoio na revisão dos requisitos da Sprint 3, na organização do código, na correção de referências e na melhoria da acessibilidade, responsividade e consistência visual. As decisões e os resultados foram revisados pela equipe. A simulação clínica é educacional e não realiza diagnóstico médico.
-=======
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
@@ -178,4 +142,3 @@ A interface da pasta `Front Web` funciona em hospedagem estática. Configure ess
 
 A interface utiliza landmarks semânticos, hierarquia de títulos, rótulos associados aos campos, navegação por teclado, link para pular ao conteúdo, foco visível, regiões de status e suporte à preferência de redução de movimento. Os layouts foram preparados para celular, tablet e desktop com Grid, Flexbox e media queries mobile first.
 
->>>>>>> 2dd170b1a850d5604d389bfd0cf3cb315ec5831d

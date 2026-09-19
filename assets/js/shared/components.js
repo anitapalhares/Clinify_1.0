@@ -129,18 +129,7 @@
 })();
 /*
  * Evolução do desempenho — Cardiologia e Anatomia
- * -------------------------------------------------
- * Versão 100% JavaScript puro (sem bibliotecas externas, sem CDN).
- * Desenha os gráficos como SVG, calculado a partir do modelo logístico
- * do projeto (Sprint 3 - Cálculo):
- *
- *   D(t) = L / (1 + A * e^(-k*t))
- *   D'(t) = k * D(t) * (1 - D(t)/L)        -> velocidade
- *   Ponto de inflexão: t* = ln(A) / k, onde D(t*) = L/2
- *
- * Não precisa de nenhum <script> extra além deste arquivo.
- * Basta ter no HTML os três contêineres (divs) com os ids:
- *   #grafico-cardiologia, #grafico-anatomia, #grafico-velocidade
+
  */
 (function () {
     'use strict';

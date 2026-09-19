@@ -103,6 +103,7 @@
                         <select id="specialty-filter" aria-label="Filtrar por especialidade">
                             <option value="all">Todas as especialidades</option>
                             <option value="cardiologia">Cardiologia</option>
+                            <option value="anatomia">Anatomia</option>
                             <option value="pneumologia">Pneumologia</option>
                             <option value="neurologia">Neurologia</option>
                             <option value="gastroenterologia">Gastroenterologia</option>
@@ -191,6 +192,61 @@
                             </a>
                         </div>
                     </article>
+                    <article class="study-card"
+                    data-specialty="anatomia"
+                    data-name="Anatomia"
+                    data-semester="1"
+                    data-questions="3"
+                    data-progress="0">
+
+                    <div class="study-card__header">
+                        <div class="study-icon study-icon--purple">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v18" />
+                                <path d="M7 6c-2 0-3 1.5-3 3.5S5 13 7 13" />
+                                <path d="M17 6c2 0 3 1.5 3 3.5S19 13 17 13" />
+                                <path d="M9 9h6" />
+                                <path d="M8 17h8" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2>Anatomia</h2>
+                            <span class="study-card__meta"><span class="study-tag">1° semestre</span>3 questões</span>
+                        </div>
+                    </div>
+
+                    <div class="study-progress" aria-label="0% do conteúdo concluído">
+                        <div class="study-progress__bar"><span></span></div>
+                        <span class="study-progress__label">0%</span>
+                    </div>
+
+                    <div class="study-options">
+                        <a href="cardiologia.html?especialidade=anatomia&tipo=conteudo" class="study-option">
+                            <span>
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5Z" />
+                                        <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5Z" />
+                                    </svg>
+                                </span>
+                                Conteúdo
+                            </span>
+                            <span class="option-arrow">→</span>
+                        </a>
+
+                        <a href="cardiologia.html?especialidade=anatomia&tipo=questoes" class="study-option">
+                            <span>
+                                <span class="option-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="6 4 20 12 6 20 6 4" />
+                                    </svg>
+                                </span>
+                                Questões
+                            </span>
+                            <span class="option-arrow">→</span>
+                        </a>
+                    </div>
+                </article>
 
 
 

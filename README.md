@@ -111,7 +111,7 @@ Também é possível consultar um aluno com `GET /api/atividades?aluno_id=aluno@
 
 `Computational Thinking With Python/agente.py` identifica critérios educacionais em falas fictícias. `gerador.py` monta cenários personalizados a partir de matéria, dificuldade e características escritas pelo aluno. `fluxo.py` inicia, atualiza e conclui tentativas; `dados.py` armazena os registros em `dados/tentativas.json`; `atividades.py` persiste estudos e simulados por aluno; `interacoes.py` guarda as ações recebidas do Front Web. `servidor.py` oferece `POST /api/gerar-caso`, `POST /api/responder`, `POST /api/concluir`, `POST /api/atividades`, `POST /api/interacoes`, `GET /api/atividades` e `GET /api/saude`. Os arquivos JSON são gerados na execução e ignorados pelo Git. A pontuação começa em 64 e aumenta uma única vez por critério reconhecido. O estudante vê o feedback na consulta; o professor vê as respostas de sua sala. Códigos de sala, perfil e XP ainda usam o armazenamento do navegador e não sincronizam entre dispositivos.
 
-## Edge Computing (Backend C++ & Integração Python)
+# Edge Computing (Backend C++ & Integração Python)
 
 ### 1. Visão Geral da Arquitetura
 O módulo `Edge_Computing` implementa o motor avaliador clínico em C++ de alta performance utilizando a biblioteca `cpp-httplib` (header-only) e manipulação de payloads via `nlohmann/json`. 
@@ -141,8 +141,6 @@ A interface da pasta `Front Web` funciona em hospedagem estática. Configure ess
 ## Acessibilidade e responsividade
 
 A interface utiliza landmarks semânticos, hierarquia de títulos, rótulos associados aos campos, navegação por teclado, link para pular ao conteúdo, foco visível, regiões de status e suporte à preferência de redução de movimento. Os layouts foram preparados para celular, tablet e desktop com Grid, Flexbox e media queries mobile first.
-
-# Edge Computing
 
 ---
 
@@ -332,17 +330,3 @@ python cliente_teste.py
 
 O script disparará os testes contra o servidor nativo em execução, validando o ciclo completo de envio e resposta HTTP JSON entre as duas linguagens.
 
-```
-
----
-
-Para salvar e enviar ao Git:
-
-1. Crie ou edite o arquivo `backend/Edge_Computing/README.md` com o conteúdo acima.
-2. No terminal do VS Code, faça o commit e suba a atualização:
-   ```cmd
-   git add backend/Edge_Computing/README.md
-   git commit -m "docs(edge): adiciona documentacao completa de arquitetura, apis e build"
-   git push origin feat/edge
-
-```

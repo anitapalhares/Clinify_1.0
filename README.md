@@ -1,52 +1,123 @@
 # Clinify
 
-# Clinify
-
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=html,css,js,git,github,vscode&theme=light" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,python,git,github,vscode&theme=light" alt="HTML, CSS, JavaScript, Python, Git, GitHub e VS Code" />
 </p>
 
-O Clinify é um protótipo acadêmico de uma plataforma de aprendizagem para formação médica, desenvolvido para o Challenge Hospital Moinhos de Vento. O MVP reúne estudos, questões, casos clínicos, acompanhamento de desempenho e áreas demonstrativas para estudantes, professores e administradores.
+O Clinify é um protótipo acadêmico desenvolvido para o Challenge Hospital Moinhos de Vento da FIAP. A plataforma apoia a formação médica com estudos, questões, casos clínicos simulados, acompanhamento de desempenho e áreas demonstrativas para estudantes, professores e administradores.
 
-Projeto acadêmico da FIAP para o Challenge Hospital Moinhos de Vento. A plataforma reúne estudos, questões, simulações clínicas e painéis de estudante, professor e administrador.
+Esta versão corresponde à Sprint 3 nas disciplinas de **Computational Thinking With Python**, **Web Development** e **Front-End Design**.
 
-Projeto acadêmico da FIAP para o Challenge Hospital Moinhos de Vento. A plataforma reúne estudos, questões, simulações clínicas e painéis de estudante, professor e administrador.
-
-Esta versão reúne HTML, CSS, JavaScript e a lógica da Sprint 3 de Computational Thinking With Python.
+## Grupo
 
 - Anita Palhares — RM 571264
 - Vitória Kereski — RM 569438
 - Kauã Coelho — RM 568665
 - Carlos Alberto — RM 571841
 
-## Sprint 3
+## Computational Thinking With Python
 
-Esta entrega concentra os requisitos de Computational Thinking With Python, Front-End Design e Web Development. A matriz de requisitos está em [docs/sprint3-checklist.md](docs/sprint3-checklist.md) e os testes estão em [docs/sprint3-validacao.md](docs/sprint3-validacao.md).
+A entrega de Python está concentrada em [main.py](Computational%20Thinking%20With%20Python/main.py). O programa utiliza somente as bibliotecas padrão os, json e datetime.
 
-### Computational Thinking With Python
+### Funcionalidades
 
-O botão **Salvar dados**, na barra lateral da interface, transforma em JSON as interações e atividades armazenadas pelo JavaScript. A transferência para o Python é manual e não utiliza API.
+- Importação do clinify_dados.json gerado pelo JavaScript.
+- Validação da versão, usuário, tipos, datas, atividades e interações.
+- Organização dos registros por usuário.
+- Inclusão e atualização por identificador, evitando duplicações.
+- Gravação segura em dados/dados_alunos.json.
+- Preservação dos dados existentes quando a entrada é inválida.
+- Resumo de estudos, simulados, pontuações, duração e página mais acessada.
+- Listagem das atividades recentes.
 
-### Front-End Design
+### Integração com o site
 
-A interface usa HTML semântico, CSS, Flexbox, Grid e media queries. O design mantém cores, tipografia, espaçamentos, cards, formulários e estados de foco consistentes nas três áreas.
+O fluxo é manual e não utiliza API:
+
+1. O JavaScript registra atividades e interações no localStorage.
+2. O botão **Salvar dados**, na barra lateral, reúne os dados do usuário atual.
+3. O navegador gera e baixa o arquivo clinify_dados.json.
+4. O arquivo é informado ao main.py.
+5. O Python valida, armazena e apresenta consultas úteis.
+
+O paciente virtual funciona diretamente no navegador por meio de JavaScript. O Python é responsável somente pela persistência e consulta do JSON exportado.
+
+### Como executar
+
+Na raiz do projeto:
+
+~~~bash
+python3 "Computational Thinking With Python/main.py"
+~~~
+
+No menu:
+
+1. Escolha **1** para importar o JSON e informe o caminho do arquivo baixado.
+2. Escolha **2** para visualizar o resumo dos alunos.
+3. Escolha **3** para listar as atividades recentes.
+4. Escolha **0** para encerrar.
+
+Importar o mesmo arquivo novamente não duplica os registros que mantiverem o mesmo identificador.
+
+## Web Development + Front-End Design
+
+O Front Web é um MVP estático construído com HTML, CSS e JavaScript. Ele não depende de servidor de aplicação, framework ou pacote externo.
 
 ### Web Development
 
-O JavaScript está separado por perfil e responsabilidade. O projeto contém componentes compartilhados, manipulação do DOM, busca, filtros, formulários, modais, validações, mensagens de retorno e persistência significativa com localStorage.
+- Separação dos scripts por autenticação, componentes compartilhados e perfis.
+- Componentes compartilhados de menu, cabeçalho, rodapé, mensagens e ícones.
+- Manipulação do DOM em formulários, filtros, buscas, cards, modais e indicadores.
+- Sessão demonstrativa e dados separados por usuário no localStorage.
+- Registro de estudos e simulações concluídas.
+- Exportação dos dados em JSON pelo botão **Salvar dados**.
+- Tratamento de valores padrão e dados locais inválidos.
+- Áreas navegáveis de estudante, professor e administrador.
+- Salas clínicas demonstrativas entre abas da mesma origem.
+
+### Paciente virtual integrado
+
+O módulo [agent.js](Front%20Web/assets/js/student/agent.js) contém as respostas e regras do paciente virtual. Ele é carregado diretamente por [simulacao.html](Front%20Web/estudante/simulacao.html) e conectado à interface por [simulation.js](Front%20Web/assets/js/student/simulation.js).
+
+Durante a consulta, o estudante pode:
+
+- escrever perguntas para o paciente;
+- receber respostas relacionadas ao caso;
+- investigar início, sintomas associados, intensidade e medicamentos;
+- receber feedback educacional;
+- acumular pontuação por critérios reconhecidos;
+- finalizar a tentativa e registrar o resultado;
+- escrever anotações clínicas com salvamento automático.
+
+O agente utiliza regras locais e palavras-chave. Ele não é uma IA generativa e não realiza diagnóstico médico.
+
+### Front-End Design
+
+- HTML semântico, hierarquia de títulos e formulários com rótulos.
+- Identidade visual centralizada em assets/css/root.css.
+- Layouts com Flexbox, Grid e media queries.
+- Navegação lateral com ícones e interação minimalista em azul.
+- Foco visível, navegação por teclado e fechamento de modais com Escape.
+- Mensagens de validação, retorno e identificação dos dados demonstrativos.
+- Área de anotações em formato de notebook na consulta.
+- Sinais vitais recolhíveis com ícones para PA, FC, temperatura e dor.
+- Adaptação para celular, tablet e desktop.
+
+O link do Figma não foi localizado no projeto. A revisão visual foi feita com base na identidade já implementada.
 
 ## Tecnologias
 
 - HTML5
-- CSS3, Flexbox, Grid e media queries
+- CSS3
+- Flexbox e CSS Grid
 - JavaScript
 - localStorage e JSON
-- Python 3 com os, json e datetime
+- Python 3
 - Git e GitHub
 
-Não há pacotes externos para instalar.
+Não há dependências externas obrigatórias.
 
-## Estrutura
+## Estrutura relevante
 
 ~~~text
 Clinify_1.0/
@@ -59,125 +130,88 @@ Clinify_1.0/
 │   ├── professor/
 │   ├── administrador/
 │   ├── assets/
+│   │   ├── css/
+│   │   ├── img/
+│   │   └── js/
+│   │       ├── admin/
+│   │       ├── auth/
+│   │       ├── professor/
+│   │       ├── shared/
+│   │       └── student/
 │   └── INTEGRANTES.TXT
-├── docs/
-│   ├── evidencias/
-│   ├── contrato-json.md
-│   ├── sprint3-checklist.md
-│   └── sprint3-validacao.md
 └── README.md
 ~~~
 
 ## Como executar a interface
 
-Na raiz do projeto, execute:
+Na raiz do projeto:
 
 ~~~bash
 python3 -m http.server 8000 --directory "Front Web"
 ~~~
 
-```bash
-python3 -m http.server 8000 --directory "Front Web"
-```
+Acesse:
 
-Acesse http://localhost:8000/login.html. O comando inicia apenas um servidor estático para testar os arquivos; ele não cria uma API.
+<http://localhost:8000/login.html>
 
-Todas as contas demonstrativas usam a senha 123456.
+Esse comando inicia somente um servidor estático para os arquivos do Front Web. Ele não cria uma API.
 
-Todas as contas demonstrativas usam a senha 123456.
+## Contas demonstrativas
 
-| Perfil        | E-mail                |
-| ------------- | --------------------- |
-| Administrador | admin@clinify.com     |
-| Professor     | professor@clinify.com |
-| Estudante     | 12345678900@gmail.com |
+Todas utilizam a senha 123456.
 
-| Professor     | professor@clinify.com |
-| Estudante     | 12345678900@gmail.com |
+| Perfil | E-mail |
+| --- | --- |
+| Administrador | admin@clinify.com |
+| Professor | professor@clinify.com |
+| Estudante | 12345678900@gmail.com |
 
-O login é uma demonstração em JavaScript. Não há autenticação de servidor: as páginas também podem ser abertas diretamente.
+O login é uma demonstração executada no navegador e não representa autenticação segura de produção.
 
-Para demonstrar o fluxo principal:
+## Roteiro de demonstração
 
-1. Entre como estudante.
-2. Conclua um módulo de estudo ou uma simulação.
-3. Recarregue a página para conferir a persistência no navegador.
-4. Clique em **Salvar dados** na barra lateral.
-5. Confirme o download do arquivo JSON.
+1. Entre como estudante e navegue por Estudos, Simulação Clínica, Desempenho e Meu Perfil.
+2. Abra um estudo de Cardiologia, responda às questões e finalize o módulo.
+3. Abra um caso clínico e faça perguntas ao paciente virtual.
+4. Confira os sinais vitais e use o notebook de anotações.
+5. Finalize a simulação e recarregue a página para verificar a persistência.
+6. Clique em **Salvar dados** para baixar clinify_dados.json.
+7. Execute o main.py, importe o arquivo e consulte o resumo.
+8. Entre como professor para criar e acompanhar uma sala demonstrativa.
+9. Entre como administrador para testar busca, cadastro, edição e status de professores.
+10. Verifique a interface em larguras de celular, tablet e desktop.
 
-## Como executar o Python
+## Validações realizadas
 
-Na raiz do projeto, execute:
+- Sintaxe dos 17 arquivos JavaScript.
+- Compilação do main.py.
+- Verificação das 18 páginas HTML e de 198 referências locais.
+- Fluxos dos três perfis no navegador.
+- Resposta, feedback e pontuação do paciente virtual.
+- Persistência após recarregar a página.
+- Exportação real do JSON e importação no Python.
+- Reimportação sem duplicar registros.
+- Rejeição de JSON inválido sem apagar dados existentes.
+- Responsividade em 360, 390, 768, 1024 e 1440 pixels.
 
-```bash
-python3 "Computational Thinking With Python/main.py"
-```
+## Dados e limitações
 
-No menu:
+- Contas, professores, turmas, alunos, casos e resultados são demonstrativos.
+- O armazenamento do navegador não sincroniza entre dispositivos.
+- Salas demonstrativas funcionam entre abas do mesmo navegador e origem.
+- O envio do JSON para Python é manual.
+- Cardiologia possui o conteúdo de estudo mais completo; outras especialidades podem apresentar conteúdo em preparação.
+- A aplicação não utiliza banco de dados, API ou autenticação de produção.
 
-1. Escolha 1 e informe o caminho exato do JSON baixado.
-2. Escolha 2 para consultar o resumo dos alunos.
-3. Escolha 3 para listar as atividades recentes.
-4. Importe o mesmo arquivo novamente para demonstrar que os identificadores evitam duplicação.
+## Links
 
-## Estrutura
+- Repositório: https://github.com/anitapalhares/Clinify_1.0
+- Deploy informado: https://clinifylxp.vercel.app/
 
-```text
-Computational Thinking With Python/
-├── main.py
-├── servidor.py
-├── atividades.py
-├── interacoes.py
-├── fluxo.py
-├── agente.py
-├── gerador.py
-├── dados.py
-└── dados/
-Front Web/
-├── login.html
-├── estudante/
-├── professor/
-├── administrador/
-└── assets/
-```
-
-## Como testar
-
-1. Entre como administrador. Busque, cadastre, edite e altere o status de um professor. Recarregue a página para conferir a persistência.
-2. Abra Meu perfil, altere o nome e salve. Recarregue para conferir o resultado.
-3. Entre como estudante. Abra Estudos e use “Ver casos desta matéria”. Na página de casos, alterne entre Cardiologia, Pneumologia, Neurologia, Gastroenterologia, Endocrinologia e Histologia; combine busca e dificuldade.
-4. Abra Cardiologia, responda às questões e finalize o módulo. O JavaScript registra a conclusão e envia o JSON ao Python.
-5. Abra um caso, envie uma fala e confira o feedback e a pontuação. Ao finalizar, a atividade do simulado também é enviada ao Python. Em Clinify AI, descreva um cenário, escolha matéria e dificuldade e inicie um caso personalizado. Como professor, crie uma sala e copie o código. Em outra aba do mesmo navegador, entre como estudante, informe seu nome e esse código, finalize e analise as respostas na aba do professor.
-6. No terminal, escolha a opção **3** para conferir os totais de estudos e simulados persistidos por aluno.
-7. Confira o site em larguras de 375px, 768px e 1440px. Teste o menu no celular e navegue usando Tab e Escape.
-
-## Dados e limites da demonstração
-
-Os dados de professores, turmas, alunos e casos são fictícios. Cadastros, perfis, preferências e progresso usam localStorage. Cardio possui conteúdo e questões; as demais especialidades estão em preparação. As salas personalizadas guardam nome, turma, orientações, código e tentativas e funcionam entre abas do mesmo navegador.
-
-## Links Relevantes
-
-- Repositório do GitHub: https://github.com/anitapalhares/Clinify_1.0
-- Deploy no Vercel: https://clinifylxp.vercel.app/
+A existência do link de deploy não comprova que as alterações locais mais recentes estejam publicadas.
 
 ## Uso de Inteligência Artificial
 
-A IA foi usada como apoio na comparação de requisitos, organização dos arquivos, revisão do README e melhorias de acessibilidade e interações. O paciente virtual continua sendo uma simulação local e não realiza diagnóstico médico.
+Uma ferramenta de inteligência artificial foi utilizada como apoio para comparar requisitos, revisar código, organizar arquivos, melhorar acessibilidade e responsividade, testar fluxos e revisar esta documentação. A equipe deve revisar o resultado antes da entrega acadêmica.
 
-## Evidências
-
-## Evidências
-
-As capturas responsivas estão em [docs/evidencias](docs/evidencias). O relatório informa quais testes foram realmente executados e quais limitações permanecem.
-
-## Persistência das atividades — Computational Thinking With Python
-
-Ao concluir uma atividade, o JavaScript serializa o registro em JSON e envia para a API Python. O backend valida os campos, evita duplicidade e grava os dados em `Computational Thinking With Python/dados/atividades_alunos.json` e `interacoes.json`, com fila em `localStorage` quando o servidor está indisponível.
-
-## Lógica Python da Sprint 3
-
-`agente.py`, `gerador.py`, `fluxo.py`, `dados.py`, `atividades.py` e `interacoes.py` formam o motor de simulação: geram cenários, avaliam respostas, registram tentativas e persistem resultados por aluno. O módulo `Edge_Computing` complementa a entrega com um serviço C++ em HTTP para avaliação clínica e integração com Python.
-
-### Edge Computing
-
-O backend C++ usa `cpp-httplib` e `nlohmann/json` para expor uma API local em `http://127.0.0.1:8080`, com `GET /api/saude` e `POST /api/avaliar` para verificar disponibilidade e calcular critérios clínicos e pontuação. Esse serviço opera de forma isolada do front-end estático e é uma extensão da entrega acadêmica.
+O paciente virtual do Clinify utiliza regras locais em JavaScript e não emprega um modelo de inteligência artificial treinado.

@@ -142,3 +142,198 @@ A interface da pasta `Front Web` funciona em hospedagem estática. Configure ess
 
 A interface utiliza landmarks semânticos, hierarquia de títulos, rótulos associados aos campos, navegação por teclado, link para pular ao conteúdo, foco visível, regiões de status e suporte à preferência de redução de movimento. Os layouts foram preparados para celular, tablet e desktop com Grid, Flexbox e media queries mobile first.
 
+# Edge Computing
+
+---
+
+```markdown
+# Clinify — Módulo Edge Computing (Backend C++ & Integração Python)
+
+Módulo de processamento clínico de alta performance construído em C++17 com `cpp-httplib`, integrado a um cliente de validação em Python. O serviço atua como uma engine local especializada na avaliação semântica de consultas médicas simuladas, operando de forma isolada do backend web principal.
+
+---
+
+## 1. Visão Geral da Arquitetura
+
+O ecossistema adota uma abordagem de microsserviços desacoplados:
+
+```text
+[ Cliente / Validador Python ] 
+             │
+             │  (Requisições HTTP REST / JSON via porta 8080)
+             ▼
+┌────────────────────────────────────────────────────────┐
+│             CLINIFY EDGE ENGINE (C++17)                │
+│                                                        │
+│  • Servidor HTTP multi-thread leve (cpp-httplib)       │
+│  • Serialização/Parsing JSON nativo (nlohmann/json)    │
+│  • Avaliação semântica de critérios clínicos:          │
+│    - Acolhimento e comunicação empática                │
+│    - Anamnese e histórico da queixa                    │
+│    - Identificação de sinais de alerta graves          │
+│    - Segurança e encaminhamento supervisionado         │
+└────────────────────────────────────────────────────────┘
+
+```
+
+### Trade-offs da Arquitetura:
+
+* **Desempenho e Latência:** O processamento léxico e a regra de pontuação rodam diretamente em código nativo C++, garantindo tempo de resposta mínimo e baixo consumo de memória.
+* **Isolamento Modular:** Todo o código C++, suas dependências *header-only* e os arquivos de configuração de compilação estão contidos na pasta `backend/Edge_Computing/`, garantindo zero impacto ou conflito de merge com as branches dos outros integrantes do projeto.
+* **Integração Heterogênea:** Cumpre os requisitos acadêmicos de desenvolvimento de APIs nativas em C++ (via CMake) e o consumo de serviços externos via Python.
+
+---
+
+## 2. Estrutura do Diretório
+
+```text
+backend/Edge_Computing/
+├── CMakeLists.txt        # Configuração de build para CMake e MinGW
+├── main.cpp              # Servidor HTTP C++ e lógica de avaliação clínica
+├── cliente_teste.py      # Script Python que consome a API C++
+├── httplib.h             # Biblioteca HTTP/HTTPS server header-only (yhirose/cpp-httplib)
+├── json.hpp              # Manipulação de JSON header-only (nlohmann/json)
+├── .gitignore            # Ignora binários e diretório build local
+└── README.md             # Documentação técnica da entrega
+
+```
+
+---
+
+## 3. Especificação das APIs REST
+
+O serviço expõe seus endpoints localmente em `http://127.0.0.1:8080`:
+
+### `GET /api/saude`
+
+Endpoint de *health check* para verificação da disponibilidade do serviço.
+
+* **Headers:** Nenhum
+* **Corpo da Requisição:** Vazio
+* **Resposta de Sucesso (`200 OK`):**
+```json
+{
+  "porta": 8080,
+  "servico": "Clinify Edge C++",
+  "status": "online"
+}
+
+```
+
+
+
+---
+
+### `POST /api/avaliar`
+
+Recebe a fala inserida pelo estudante na simulação e a lista de critérios já obtidos na sessão. Processa o texto, verifica regras de palavras-chave médicas e calcula os novos critérios e a pontuação incremental ganha.
+
+* **Headers:** `Content-Type: application/json`
+* **Exemplo de Entrada (Body):**
+```json
+{
+  "fala": "Olá Maria, quando começou essa dor e você teve febre?",
+  "criterios_anteriores": []
+}
+
+```
+
+
+* **Exemplo de Retorno (`200 OK`):**
+```json
+{
+  "feedback": "Investigou o histórico e características da queixa. Atenção adequada aos sinais de alerta graves.",
+  "ganho_pontos": 18,
+  "novos_criterios": [
+    "anamnese",
+    "sinais de alerta"
+  ]
+}
+
+```
+
+
+* **Tratamento de Erro (`400 Bad Request`):**
+Retornado caso o corpo da mensagem contenha JSON inválido ou malformado:
+```json
+{
+  "erro": "JSON invalido no corpo da requisicao"
+}
+
+```
+
+
+
+---
+
+## 4. Pré-requisitos de Compilação
+
+Para compilar e rodar o projeto localmente no Windows:
+
+1. **Compilador C++:** MinGW-w64 (GCC 11+ com suporte a C++17).
+2. **Sistema de Build:** CMake 3.15 ou superior.
+3. **Interpretador Python:** Python 3.8+ para executar o cliente de teste.
+
+> **Nota para ambientes sem permissão de administrador (máquinas de laboratório):** As versões portáteis (`.zip`) do MinGW e do CMake podem ser extraídas na Área de Trabalho ou pasta de usuário. Basta adicionar os diretórios `bin` correspondentes ao `PATH` temporário da sessão de terminal antes de executar os comandos.
+
+---
+
+## 5. Instruções de Execução
+
+### Passo 1: Compilar o executável C++
+
+Abra o terminal (CMD) na raiz do projeto e execute:
+
+```cmd
+cd backend\Edge_Computing
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
+cmake --build .
+
+```
+
+O comando compilará o código com as flags do Windows (`-D_WIN32_WINNT=0x0A00 -lws2_32 -lwsock32`) e gerará o binário `clinify_edge.exe`.
+
+### Passo 2: Iniciar o Servidor C++
+
+Ainda dentro da pasta `build`:
+
+```cmd
+clinify_edge.exe
+
+```
+
+O servidor iniciará e manterá o terminal ocupado com a mensagem:
+
+```text
+Servidor C++ rodando em [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+```
+
+### Passo 3: Testar o Consumo via Python
+
+Abra uma **segunda janela de terminal**, navegue até a pasta do módulo e execute:
+
+```cmd
+cd backend\Edge_Computing
+python cliente_teste.py
+
+```
+
+O script disparará os testes contra o servidor nativo em execução, validando o ciclo completo de envio e resposta HTTP JSON entre as duas linguagens.
+
+```
+
+---
+
+Para salvar e enviar ao Git:
+
+1. Crie ou edite o arquivo `backend/Edge_Computing/README.md` com o conteúdo acima.
+2. No terminal do VS Code, faça o commit e suba a atualização:
+   ```cmd
+   git add backend/Edge_Computing/README.md
+   git commit -m "docs(edge): adiciona documentacao completa de arquitetura, apis e build"
+   git push origin feat/edge
+
+```

@@ -274,6 +274,15 @@ Para compilar e rodar o projeto localmente no Windows:
 2. **Sistema de Build:** CMake 3.15 ou superior.
 3. **Interpretador Python:** Python 3.8+ para executar o cliente de teste.
 
+pode achar em: 
+https://cmake.org/download/
+
+
+https://winlibs.com/
+
+
+https://www.python.org/downloads/
+
 > **Nota para ambientes sem permissão de administrador (máquinas de laboratório):** As versões portáteis (`.zip`) do MinGW e do CMake podem ser extraídas na Área de Trabalho ou pasta de usuário. Basta adicionar os diretórios `bin` correspondentes ao `PATH` temporário da sessão de terminal antes de executar os comandos.
 
 ---

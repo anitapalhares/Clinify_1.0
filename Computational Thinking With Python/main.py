@@ -1,4 +1,4 @@
-"""Importa e consulta os dados JSON exportados pelo Front Web do Clinify."""
+"""Importa, valida e salva os dados JSON exportados pelo Front Web do Clinify."""
 
 import os
 import json

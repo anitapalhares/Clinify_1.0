@@ -336,11 +336,11 @@
         }
 
 
-        function normalizarTexto(texto) {
-            return (texto || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        }
+        function chamarAgente(rota, corpo) {
+            if (!window.ClinifyAgente) {
+                throw new Error('O agente local não foi carregado.');
+            }
 
-        function chamarAgenteLocal(rota, corpo) {
             var chave = 'tentativa-local:' + idAgente;
             var tentativa = ClinifyUI.ler(chave, {
                 estado: 'em andamento',
@@ -348,48 +348,20 @@
                 pontos: 64,
                 respostas: 0
             });
-            if (rota === 'concluir') {
-                if (!tentativa.respostas) throw new Error('Responda ao caso antes de concluí-lo.');
-                tentativa.estado = 'concluída';
-                ClinifyUI.salvar(chave, tentativa);
-                return {pontos: tentativa.pontos, criterios: tentativa.criterios, respostas: tentativa.respostas, estado: tentativa.estado};
-            }
-            if (tentativa.estado !== 'em andamento') throw new Error('A tentativa já foi concluída.');
-            var frase = normalizarTexto(corpo.fala);
-            var regras = [
-                ['acolhimento', ['ola', 'bom dia', 'como posso ajudar', 'entendo', 'compreendo'], 'Boa abertura: acolhimento e linguagem clara ajudam a conduzir a conversa.'],
-                ['anamnese', ['quando comecou', 'inicio', 'duracao', 'intensidade', 'localizacao', 'historia', 'sintomas'], 'Você investigou a história da queixa. Continue organizando as perguntas.'],
-                ['sinais de alerta', ['febre', 'rigidez', 'fraqueza', 'visao', 'confusao', 'neurolog', 'subita', 'pior dor'], 'Você procurou sinais de alerta. Em uma situação real, isso exigiria avaliação profissional.'],
-                ['segurança', ['avaliacao', 'encaminhar', 'urgencia', 'emergencia', 'supervisao', 'exame', 'retorno'], 'Você considerou um encaminhamento ou avaliação supervisionada.']
-            ];
-            var novos = [];
-            var mensagens = [];
-            regras.forEach(function (regra) {
-                if (!tentativa.criterios.includes(regra[0]) && regra[1].some(function (palavra) { return frase.includes(palavra); })) {
-                    novos.push(regra[0]);
-                    mensagens.push(regra[2]);
-                }
-            });
-            if (!mensagens.length) mensagens.push('Resposta registrada. Detalhe a história, os sinais de alerta e a conduta segura.');
-            tentativa.criterios = tentativa.criterios.concat(novos);
-            tentativa.pontos = Math.min(100, tentativa.pontos + Math.min(18, novos.length * 9));
-            tentativa.respostas += 1;
-            ClinifyUI.salvar(chave, tentativa);
-            return {
-                feedback: mensagens.join(' '),
-                criterios: novos,
-                criterios_total: tentativa.criterios,
-                pontos: tentativa.pontos,
-                respostas: tentativa.respostas
-            };
-        }
+            var processamento;
 
-        function chamarAgente(rota, corpo) {
-            return chamarAgenteLocal(rota, corpo);
+            if (rota === 'concluir') {
+                processamento = ClinifyAgente.concluir(tentativa);
+            } else {
+                processamento = ClinifyAgente.responder(idCaso, corpo.fala, tentativa);
+            }
+
+            ClinifyUI.salvar(chave, processamento.tentativa);
+            return processamento.resultado;
         }
 
         if (form) {
-            form.addEventListener('submit', async function (event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 if (finalizado || enviando) return;
                 var text = input ? input.value.trim() : '';
@@ -398,7 +370,7 @@
                 var enviar = form.querySelector('[type="submit"]');
                 if (enviar) enviar.disabled = true;
                 try {
-                    var analise = await chamarAgente('responder', {tentativa: idAgente, caso: idCaso, codigo_sala: codigoSala || '', fala: text});
+                    var analise = chamarAgente('responder', {tentativa: idAgente, caso: idCaso, codigo_sala: codigoSala || '', fala: text});
                     if (codigoSala) ClinifySalas.responder(codigoSala, idTentativa, text);
                     points = analise.pontos;
                     if (score) score.textContent = points;
@@ -408,6 +380,7 @@
                     });
 
                     addMessage('doctor', text);
+                    addMessage('patient', analise.resposta_paciente);
                     addLog(analise.criterios.length ? 'Critérios reconhecidos: ' + analise.criterios.join(', ') + '.' : 'Resposta registrada para reflexão.');
                     addMessage('ai-feedback', analise.feedback);
                     if (input) input.value = '';
@@ -416,13 +389,13 @@
             });
         }
 
-        async function concluirCaso() {
+        function concluirCaso() {
             if (finalizado || enviando) return;
             enviando = true;
             finish.disabled = true;
             if (confirmFinish) confirmFinish.disabled = true;
             try {
-                var conclusao = await chamarAgente('concluir', {tentativa: idAgente});
+                var conclusao = chamarAgente('concluir', {tentativa: idAgente});
                 points = conclusao.pontos;
                 if (score) score.textContent = points;
                 if (codigoSala) ClinifySalas.finalizar(codigoSala, idTentativa, {pontos: points, segundos: seconds});

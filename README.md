@@ -1,6 +1,6 @@
 # Clinify
 
-Clinify é uma plataforma educacional desenvolvida para o Challenge Hospital Moinhos de Vento. A solução reúne estudos, questões, simulações clínicas, acompanhamento de desempenho e áreas específicas para estudantes, professores e administradores.
+O Clinify é um protótipo acadêmico de uma plataforma de aprendizagem para formação médica, desenvolvido para o Challenge Hospital Moinhos de Vento. O MVP reúne estudos, questões, casos clínicos, acompanhamento de desempenho e áreas demonstrativas para estudantes, professores e administradores.
 
 ## Grupo
 
@@ -11,95 +11,81 @@ Clinify é uma plataforma educacional desenvolvida para o Challenge Hospital Moi
 
 ## Sprint 3
 
-A Sprint 3 apresenta um MVP visual navegável e integra as contribuições das disciplinas no mesmo projeto.
+Esta entrega concentra os requisitos de Computational Thinking With Python, Front-End Design e Web Development. A matriz de requisitos está em [docs/sprint3-checklist.md](docs/sprint3-checklist.md) e os testes estão em [docs/sprint3-validacao.md](docs/sprint3-validacao.md).
 
 ### Computational Thinking With Python
 
-O JavaScript registra interações, estudos e simulados no navegador. O botão **Salvar dados**, localizado na barra lateral, gera `clinify_dados.json`. O arquivo [main.py](<Computational Thinking With Python/main.py>) utiliza somente `os`, `json` e `datetime` para:
+O botão **Salvar dados**, na barra lateral da interface, transforma em JSON as interações e atividades armazenadas pelo JavaScript. A transferência para o Python é manual e não utiliza API.
 
-- Ler e validar o JSON gerado pelo Front Web.
-- Organizar interações e atividades por usuário.
-- Evitar registros duplicados.
-- Persistir os dados em `dados/dados_alunos.json`.
-- Exibir um resumo de estudos, simulados e interações.
+O Python fica concentrado em [main.py](Computational%20Thinking%20With%20Python/main.py), responsável pela importação, validação, armazenamento e consulta dos dados exportados pelo site. Ele usa somente as bibliotecas padrão os, json e datetime para:
 
-Não há API, servidor Python ou dependências externas.
+- ler e validar o JSON exportado;
+- organizar dados por aluno;
+- adicionar ou atualizar registros pelo identificador, sem duplicar uma reimportação;
+- preservar os dados existentes quando o arquivo de entrada é inválido;
+- armazenar os dados em dados/dados_alunos.json;
+- exibir resumos e atividades recentes.
 
-### Differentiated Problem Solving
-
-O documento da Sprint solicita uma análise com limites ou derivadas integrada à interface. O repositório atual não contém um artefato matemático específico desta disciplina.
-
-### Edge Computing & Computer Systems
-
-O documento solicita uma simulação com ESP32 no Wokwi, interface local e leitura de sensores. O link e os arquivos dessa simulação não estão presentes neste repositório.
+O contrato entre JavaScript e Python está documentado em [docs/contrato-json.md](docs/contrato-json.md).
 
 ### Front-End Design
 
-A interface implementa HTML semântico, identidade visual consistente, formulários, cards, painéis, históricos, estatísticas e navegação acessível. Os layouts usam Flexbox, CSS Grid, unidades responsivas, foco visível e media queries para celular, tablet e desktop.
+A interface usa HTML semântico, CSS, Flexbox, Grid e media queries. O design mantém cores, tipografia, espaçamentos, cards, formulários e estados de foco consistentes nas três áreas. Os fluxos foram verificados em 360, 390, 768, 1024 e 1440 pixels.
 
-O MVP mantém consistência entre as áreas de estudante, professor e administrador. Não foi fornecido um link público do protótipo no Figma para incluir nesta versão.
-
-### Software & Total Experience Design
-
-O documento solicita dois diagramas de caso de uso criados no Astah e documentados em Word. Esses artefatos não estão presentes neste repositório.
+O link do Figma não foi encontrado no projeto. Por isso, a consistência com a identidade visual existente foi revisada, mas a fidelidade a um protótipo externo não pôde ser confirmada.
 
 ### Web Development
 
-O JavaScript está separado por área e responsabilidade. O projeto inclui:
+O JavaScript está separado por perfil e responsabilidade. O projeto contém componentes compartilhados, manipulação do DOM, busca, filtros, formulários, modais, validações, mensagens de retorno e persistência significativa com localStorage.
 
-- Componentes compartilhados de navegação, rodapé e mensagens.
-- Manipulação do DOM e eventos de interface.
-- Validação de formulários e mensagens de retorno.
-- Busca, filtros, cards, modais e estados de interação.
-- Persistência de progresso, perfis, salas e preferências com `localStorage`.
-- Geração do JSON utilizado pela entrega de Python.
+Na simulação clínica, o módulo [agent.js](Front%20Web/assets/js/student/agent.js) responde às perguntas do aluno com regras de palavras-chave específicas para cada caso. Ele é carregado diretamente por simulacao.html, funciona localmente, sem API e sem modelo generativo, registra a atividade concluída e mantém o feedback educacional.
+
+As contas, dados e resultados exibidos são demonstrativos. A autenticação feita no navegador não representa segurança de produção.
 
 ## Tecnologias
 
 - HTML5
 - CSS3, Flexbox, Grid e media queries
 - JavaScript
-- Python 3
-- JSON e localStorage
+- localStorage e JSON
+- Python 3 com os, json e datetime
 - Git e GitHub
 
-Não há dependências para instalar.
+Não há pacotes externos para instalar.
 
-## Estrutura principal
+## Estrutura
 
-```text
-Computational Thinking With Python/
-├── main.py
-└── dados/
-Front Web/
-├── login.html
-├── estudante/
-├── professor/
-├── administrador/
-└── assets/
-INTEGRANTES.TXT
-README.md
-```
+~~~text
+Clinify_1.0/
+├── Computational Thinking With Python/
+│   ├── main.py
+│   └── dados/
+├── Front Web/
+│   ├── login.html
+│   ├── estudante/
+│   ├── professor/
+│   ├── administrador/
+│   ├── assets/
+│   └── INTEGRANTES.TXT
+├── docs/
+│   ├── evidencias/
+│   ├── contrato-json.md
+│   ├── sprint3-checklist.md
+│   └── sprint3-validacao.md
+└── README.md
+~~~
 
-## Como executar e testar
+## Como executar a interface
 
-1. Abra `Front Web/login.html` no navegador.
-2. Entre com uma das contas de teste.
-3. Navegue pelo site, conclua um estudo e finalize um simulado.
-4. Clique em **Salvar dados** na parte inferior da barra lateral.
-5. Confirme o download de `clinify_dados.json`.
-6. Na raiz do projeto, execute:
+Na raiz do projeto, execute:
 
-```bash
-python3 "Computational Thinking With Python/main.py"
-```
+~~~bash
+python3 -m http.server 8000 --directory "Front Web"
+~~~
 
-7. Escolha **1** para importar o JSON. Pressione Enter para usar `~/Downloads/clinify_dados.json` ou informe outro caminho.
-8. Escolha **2** para conferir o resumo salvo.
+Acesse http://localhost:8000/login.html. O comando inicia apenas um servidor estático para testar os arquivos; ele não cria uma API.
 
-## Contas de teste
-
-Todas utilizam a senha `123456`.
+Todas as contas demonstrativas usam a senha 123456.
 
 | Perfil | E-mail |
 | --- | --- |
@@ -107,75 +93,41 @@ Todas utilizam a senha `123456`.
 | Professor | professor@clinify.com |
 | Estudante | 12345678900@gmail.com |
 
-## Links
+Para demonstrar o fluxo principal:
 
-- Repositório: https://github.com/anitapalhares/Clinify_1.0
-- Deploy: https://clinifylxp.vercel.app/
+1. Entre como estudante.
+2. Conclua um módulo de estudo ou uma simulação.
+3. Recarregue a página para conferir a persistência no navegador.
+4. Clique em **Salvar dados** na barra lateral.
+5. Confirme o download do arquivo JSON.
+
+## Como executar o Python
+
+Na raiz do projeto, execute:
+
+~~~bash
+python3 "Computational Thinking With Python/main.py"
+~~~
+
+No menu:
+
+1. Escolha 1 e informe o caminho exato do JSON baixado.
+2. Escolha 2 para consultar o resumo dos alunos.
+3. Escolha 3 para listar as atividades recentes.
+4. Importe o mesmo arquivo novamente para demonstrar que os identificadores evitam duplicação.
+
+O arquivo dados/dados_alunos.json é criado durante a execução e está ignorado pelo Git.
+
+## Links e estado de publicação
+
+- Repositório: https://github.com/anitapalhares/Clinify_1.0 — acessível em 19/09/2026. As alterações locais desta entrega ainda não foram publicadas.
+- Vercel: https://clinifylxp.vercel.app/ — acessível em 19/09/2026. A URL comprova um deploy anterior, não a publicação do código local atual.
+- Figma: link não localizado no projeto.
 
 ## Uso de Inteligência Artificial
 
-<<<<<<< HEAD
-A Inteligência Artificial foi utilizada como apoio na revisão dos requisitos da Sprint 3, na organização do código, na correção de referências e na melhoria da acessibilidade, responsividade e consistência visual. As decisões e os resultados foram revisados pela equipe. A simulação clínica é educacional e não realiza diagnóstico médico.
-=======
-A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
+Uma ferramenta de inteligência artificial foi usada como apoio para comparar requisitos, revisar código, propor e aplicar correções, testar fluxos e organizar a documentação. A equipe deve revisar o resultado antes da entrega acadêmica. O paciente virtual da simulação usa regras locais de JavaScript e não realiza diagnóstico médico.
 
-As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
+## Evidências
 
-## Persistência das atividades — Computational Thinking With Python
-
-Ao concluir uma atividade, `Front Web/assets/js/shared/activity-data.js` reúne a identificação do estudante e os dados do estudo ou simulado. O JavaScript transforma esse objeto em JSON com `JSON.stringify()` e o envia por `POST /api/atividades`. Se o servidor estiver indisponível, o lote permanece em uma fila no `localStorage` e uma nova sincronização é tentada ao abrir outra página integrada.
-
-O servidor Python usa `json.loads()` para interpretar o conteúdo. `Computational Thinking With Python/atividades.py` valida os campos, organiza os registros por aluno, evita duplicidade pelo identificador da atividade, calcula um resumo e grava `Computational Thinking With Python/dados/atividades_alunos.json`. Esse arquivo é criado durante a execução e não é enviado ao Git. A solução utiliza os conteúdos das aulas: variáveis e tipos, operadores, condicionais, `while`, `for`, listas, tuplas, dicionários, conjuntos, funções, bibliotecas, exceções, arquivos, JSON e API. A classe presente em `servidor.py` contém apenas o adaptador exigido pela biblioteca padrão `http.server`; as regras do projeto permanecem em funções simples.
-
-Todas as páginas carregam `Front Web/assets/js/shared/interactions.js`. O módulo registra navegação, cliques em links ou botões e envio de formulários, gera o JSON com `JSON.stringify()` e envia para `POST /api/interacoes`. O Python interpreta o conteúdo e grava `Computational Thinking With Python/dados/interacoes.json`. Senhas e valores digitados nos campos não são coletados. Quando o servidor está indisponível, os eventos permanecem em uma fila no `localStorage` até a próxima sincronização.
-
-Exemplo resumido do JSON gerado pelo JavaScript:
-
-```json
-{
-  "versao": 1,
-  "aluno": {"id": "aluno@email.com", "nome": "Aluno", "email": "aluno@email.com"},
-  "atividades": [
-    {"id": "estudo-123", "tipo": "estudo", "recurso": "cardiologia", "titulo": "Fundamentos", "estado": "concluida", "concluida_em": "2026-09-17T12:00:00.000Z", "duracao_segundos": 0, "pontuacao": 80, "detalhes": {"modulo": 1}}
-  ]
-}
-```
-
-Também é possível consultar um aluno com `GET /api/atividades?aluno_id=aluno@email.com`.
-
-## Lógica Python da Sprint 3
-
-`Computational Thinking With Python/agente.py` identifica critérios educacionais em falas fictícias. `gerador.py` monta cenários personalizados a partir de matéria, dificuldade e características escritas pelo aluno. `fluxo.py` inicia, atualiza e conclui tentativas; `dados.py` armazena os registros em `dados/tentativas.json`; `atividades.py` persiste estudos e simulados por aluno; `interacoes.py` guarda as ações recebidas do Front Web. `servidor.py` oferece `POST /api/gerar-caso`, `POST /api/responder`, `POST /api/concluir`, `POST /api/atividades`, `POST /api/interacoes`, `GET /api/atividades` e `GET /api/saude`. Os arquivos JSON são gerados na execução e ignorados pelo Git. A pontuação começa em 64 e aumenta uma única vez por critério reconhecido. O estudante vê o feedback na consulta; o professor vê as respostas de sua sala. Códigos de sala, perfil e XP ainda usam o armazenamento do navegador e não sincronizam entre dispositivos.
-
-## Edge Computing (Backend C++ & Integração Python)
-
-### 1. Visão Geral da Arquitetura
-O módulo `Edge_Computing` implementa o motor avaliador clínico em C++ de alta performance utilizando a biblioteca `cpp-httplib` (header-only) e manipulação de payloads via `nlohmann/json`. 
-A aplicação web principal consome este serviço via requisições HTTP REST. Nesta primeira etapa de entrega, o serviço C++ está estruturado com `CMakeLists.txt` e `main.cpp`, e o cliente consumidor Python possui modo de contingência mockado para validação das rotas enquanto o ambiente de compilação da infraestrutura local é padronizado.
-
-### 2. Especificação das APIs REST
-
-#### GET /api/saude
-Endpoint de verificação de disponibilidade operacional (*health check*).
-* **Entrada:** Nenhuma.
-* **Saída (200 OK):**
-``` json
-{
-  "servico": "Clinify Edge C++",
-  "status": "online",
-  "porta": 8080
-}
-```
-## Links da entrega
-
-- Repositório: https://github.com/anitapalhares/Clinify_1.0
-- Deploy na Vercel: adicionar a URL pública após vincular este repositório à conta da equipe.
-- Conferência acadêmica: docs/SPRINT-3.md
-
-A interface da pasta `Front Web` funciona em hospedagem estática. Configure essa pasta como diretório raiz da publicação. Quando a API Python não estiver disponível, a criação e a avaliação dos casos usam o modo de demonstração local e mantêm o progresso no localStorage. Para testar também a persistência em JSON e os endpoints Python, use a execução local descrita acima.
-
-## Acessibilidade e responsividade
-
-A interface utiliza landmarks semânticos, hierarquia de títulos, rótulos associados aos campos, navegação por teclado, link para pular ao conteúdo, foco visível, regiões de status e suporte à preferência de redução de movimento. Os layouts foram preparados para celular, tablet e desktop com Grid, Flexbox e media queries mobile first.
-
->>>>>>> 2dd170b1a850d5604d389bfd0cf3cb315ec5831d
+As capturas responsivas estão em [docs/evidencias](docs/evidencias). O relatório informa quais testes foram realmente executados e quais limitações permanecem.

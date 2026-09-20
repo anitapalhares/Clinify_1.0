@@ -6,6 +6,16 @@
 
 O Clinify é uma plataforma de apoio a formação médica com estudos, questões, casos clínicos simulados, acompanhamento de desempenho e áreas demonstrativas para estudantes, professores e administradores.
 
+
+## Grupo
+
+| Integrante | RM |
+| --- | --- |
+| Anita Palhares | 571264 |
+| Vitória Kereski | 569438 |
+| Kauã Coelho | 568665 |
+| Carlos Alberto | 571841 |
+
 # Computational Thinking With Python
 Esta entrega da Sprint 3 utiliza Python para receber, validar, armazenar e consultar os dados de estudo e simulação gerados pelo Front Web do Clinify.
 
@@ -176,12 +186,3 @@ Deploy no Vercel
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
-
-## Grupo
-
-| Integrante | RM |
-| --- | --- |
-| Anita Palhares | 571264 |
-| Vitória Kereski | 569438 |
-| Kauã Coelho | 568665 |
-| Carlos Alberto | 571841 |

@@ -3,3 +3,7 @@ __pycache__/
 Computational Thinking With Python/dados/dados_alunos.json
 Computational Thinking With Python/dados/legado_tentativas.json
 .DS_Store
+build/
+*.exe
+*.obj
+*.o

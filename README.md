@@ -15,6 +15,16 @@ O Clinify é uma plataforma de apoio à formação médica com estudos, questõe
 | Kauã Coelho     | 568665 |
 | Carlos Alberto  | 571841 |
 
+
+## Grupo
+
+| Integrante | RM |
+| --- | --- |
+| Anita Palhares | 571264 |
+| Vitória Kereski | 569438 |
+| Kauã Coelho | 568665 |
+| Carlos Alberto | 571841 |
+
 # Computational Thinking With Python
 
 Esta entrega da Sprint 3 utiliza Python para ler e resumir os dados de estudo e simulação gerados pelo Front Web do Clinify.

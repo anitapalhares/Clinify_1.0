@@ -122,7 +122,7 @@ python3 -m http.server 8000 --directory "Front Web"
 
 Acesse:
 
-<http://localhost:8000/login.html>
+<http://localhost:8000/index.html>
 
 ## Contas de acesso
 
@@ -149,7 +149,7 @@ Todas utilizam a senha `123456`.
 
 ```text
 Front Web/
-├── login.html
+├── index.html
 ├── estudante/
 ├── professor/
 ├── administrador/

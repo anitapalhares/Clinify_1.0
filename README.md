@@ -4,11 +4,20 @@
   <img src="https://skillicons.dev/icons?i=html,css,js,python,git,github,vscode&theme=light" alt="HTML, CSS, JavaScript, Python, Git, GitHub e VS Code" />
 </p>
 
-O Clinify é uma plataforma de apoio a formação médica com estudos, questões, casos clínicos simulados, acompanhamento de desempenho e áreas demonstrativas para estudantes, professores e administradores.
+O Clinify é uma plataforma de apoio à formação médica com estudos, questões, casos clínicos simulados, acompanhamento de desempenho e áreas para estudantes, professores e administradores.
+
+## Grupo
+
+| Integrante      | RM     |
+| --------------- | ------ |
+| Anita Palhares  | 571264 |
+| Vitória Kereski | 569438 |
+| Kauã Coelho     | 568665 |
+| Carlos Alberto  | 571841 |
 
 # Computational Thinking With Python
 
-Esta entrega da Sprint 3 utiliza Python para receber, validar, armazenar e consultar os dados de estudo e simulação gerados pelo Front Web do Clinify.
+Esta entrega da Sprint 3 utiliza Python para ler e resumir os dados de estudo e simulação gerados pelo Front Web do Clinify.
 
 ## Entrega
 
@@ -16,23 +25,20 @@ O programa está concentrado em `main.py` e utiliza somente as bibliotecas padr�
 
 Funcionalidades implementadas:
 
-- menu navegável pelo terminal;
-- leitura do arquivo `clinify_dados.json` exportado pelo site;
-- validação dos dados do aluno, interações e atividades;
-- armazenamento dos registros por aluno;
-- controle de duplicidade pelo identificador de cada registro;
-- resumo de estudos, simulados, tempo e desempenho;
-- listagem das atividades recentes;
-- tratamento de arquivo ausente, JSON inválido e dados inconsistentes;
-- preservação dos dados já armazenados quando uma importação falha.
+- listagem de todos os arquivos `.json` presentes na pasta `dados`;
+- escolha do arquivo por número, independentemente do nome;
+- leitura do JSON exportado pelo site e do histórico consolidado;
+- resumo de aluno, interações, estudos e simulados;
+- feedback para arquivo válido ou inválido;
+- encerramento automático após a leitura.
 
 ## Integração com o Front Web
 
 1. O JavaScript registra as atividades do estudante no navegador.
-2. O botão **Salvar dados** gera o arquivo `clinify_dados.json`.
-3. O estudante executa o programa Python e informa o caminho do arquivo.
-4. O Python interpreta, valida e armazena os registros.
-5. Os dados podem ser consultados pelo menu.
+2. O botão **Salvar dados** gera um novo arquivo com data e horário no nome, sem substituir os anteriores.
+3. Em navegadores compatíveis, a pasta `dados` pode ser selecionada para gravação direta. Nos demais, o arquivo é baixado.
+4. O estudante executa o programa Python e escolhe um dos JSONs listados.
+5. O Python apresenta o resumo e encerra.
 
 A transferência do arquivo é manual. A entrega não utiliza API, servidor ou banco de dados.
 
@@ -44,14 +50,9 @@ Na raiz do projeto, execute:
 python3 "Computational Thinking With Python/main.py"
 ```
 
-Menu disponível:
+O programa mostra todos os arquivos `.json` da pasta `dados`. Digite o número desejado para ler o arquivo ou `0` para sair.
 
-1. Importar `clinify_dados.json`.
-2. Mostrar o resumo dos alunos.
-3. Listar as atividades recentes.
-4. Encerrar.
-
-Para testar a integração, use primeiro o Front Web, conclua uma atividade e clique em **Salvar dados**. Depois escolha a opção 1 no programa e informe o caminho do JSON baixado. Importe novamente o mesmo arquivo para conferir que os registros não são duplicados.
+Para testar a integração, conclua uma atividade no Front Web, clique em **Salvar dados**, mantenha o JSON na pasta `dados` e execute o programa Python.
 
 ## Estrutura
 
@@ -66,7 +67,7 @@ O arquivo de dados é criado durante a execução e não deve conter informaçõ
 
 # Front-End Design e Web Development
 
-Esta entrega da Sprint 3 apresenta o MVP visual e interativo do Clinify, uma plataforma educacional para formação médica. O site possui áreas demonstrativas para estudante, professor e administrador.
+Esta entrega da Sprint 3 apresenta a interface visual e interativa do Clinify para estudante, professor e administrador.
 
 ## Front-End Design
 
@@ -91,22 +92,25 @@ O link do Figma não foi localizado no projeto. A revisão visual utiliza como r
 
 ## Web Development
 
-O JavaScript controla as interações, os componentes compartilhados e a persistência local do protótipo.
+O JavaScript controla as interações, os componentes compartilhados e a persistência local da plataforma.
 
 Principais entregas:
 
 - scripts separados por perfil e responsabilidade;
 - componentes compartilhados de navegação, mensagens, ícones e layout;
-- login demonstrativo para estudante, professor e administrador;
+- login para estudante, professor e administrador;
 - buscas, filtros, formulários, cards e modais interativos;
 - persistência de sessão, perfil, progresso e atividades com `localStorage`;
 - separação dos dados por usuário;
 - registro de estudos e simulações concluídas;
-- exportação em JSON pelo botão **Salvar dados**;
-- salas clínicas demonstrativas entre abas do mesmo navegador;
+- exportação de um novo JSON a cada uso do botão **Salvar dados**;
+- geração de QR Code da sala pelo professor;
+- leitura do QR Code por câmera ou imagem pelo estudante;
+- acesso à sala com etapas e feedback de preenchimento;
+- salas clínicas entre abas do mesmo navegador;
 - paciente virtual integrado à simulação clínica.
 
-O paciente virtual utiliza regras e palavras-chave definidas em `assets/js/student/agent.js`. Ele responde de acordo com o caso, reconhece critérios da conversa, oferece feedback educacional e atualiza a pontuação. O protótipo funciona localmente no navegador, sem API e sem inteligência artificial generativa.
+O paciente virtual utiliza regras e palavras-chave definidas em `assets/js/student/agent.js`. Ele responde de acordo com o caso, reconhece critérios da conversa, oferece feedback educacional e atualiza a pontuação. O funcionamento é local, sem API e sem inteligência artificial generativa.
 
 ## Como executar
 
@@ -120,7 +124,7 @@ Acesse:
 
 <http://localhost:8000/login.html>
 
-## Contas demonstrativas
+## Contas de acesso
 
 Todas utilizam a senha `123456`.
 
@@ -130,7 +134,7 @@ Todas utilizam a senha `123456`.
 | Professor     | professor@clinify.com |
 | Estudante     | 12345678900@gmail.com |
 
-## Roteiro de demonstração
+## Roteiro de uso
 
 1. Entre como estudante.
 2. Navegue pelas áreas de estudos, casos, desempenho e perfil.
@@ -138,7 +142,7 @@ Todas utilizam a senha `123456`.
 4. Abra uma simulação e converse com o paciente virtual.
 5. Consulte os sinais vitais e escreva no notebook de anotações.
 6. Finalize a simulação e recarregue a página para conferir a persistência.
-7. Clique em **Salvar dados** para gerar o JSON usado pela entrega de Python.
+7. Clique em **Salvar dados** para gerar um novo JSON usado pela entrega de Python.
 8. Entre como professor e administrador para demonstrar os outros fluxos.
 
 ## Estrutura
@@ -156,12 +160,11 @@ Front Web/
 └── README.md
 ```
 
-## Limitações do protótipo
+## Observações
 
-- Os dados apresentados são fictícios e demonstrativos.
 - O login não representa autenticação segura de produção.
 - O `localStorage` não sincroniza dados entre dispositivos.
-- As salas demonstrativas funcionam entre abas do mesmo navegador e origem.
+- As salas funcionam entre abas do mesmo navegador e origem.
 - O paciente virtual não realiza diagnóstico médico.
 - A versão publicada deve ser conferida após cada atualização local.
 
@@ -180,12 +183,3 @@ Deploy no Vercel
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.
 
 As alterações foram acompanhadas de verificações no código e testes de navegação. A IA foi utilizada apenas como suporte ao desenvolvimento, e o agente da simulação não realiza diagnósticos.
-
-## Grupo
-
-| Integrante      | RM     |
-| --------------- | ------ |
-| Anita Palhares  | 571264 |
-| Vitória Kereski | 569438 |
-| Kauã Coelho     | 568665 |
-| Carlos Alberto  | 571841 |

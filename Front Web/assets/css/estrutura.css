@@ -1348,20 +1348,3 @@ button:disabled { opacity: 0.65; cursor: not-allowed; }
     cursor: pointer;
 }
 .sidebar__export:hover { color: var(--primary-dark); }
-
-.aviso-demonstracao {
-    width: min(calc(100% - 36px), 1180px);
-    margin: 18px auto 0;
-    padding: 9px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--muted);
-    background: var(--surface-alt);
-    font-size: 12px;
-    line-height: 1.45;
-    text-align: center;
-}
-
-@media (max-width: 560px) {
-    .aviso-demonstracao { width: calc(100% - 20px); margin-top: 10px; }
-}

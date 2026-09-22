@@ -35,16 +35,30 @@
 }
 
 .case-code {
+    position: relative;
+    overflow: hidden;
     display: grid;
-    gap: 18px;
+    gap: 20px;
     width: 100%;
     margin-bottom: 32px;
     padding: clamp(20px, 3vw, 30px);
     border: 1px solid var(--border-strong);
-    border-left: 5px solid var(--accent);
+    border-left: 5px solid var(--primary);
     border-radius: var(--radius-card);
-    background: linear-gradient(115deg, var(--surface), var(--primary-soft));
+    background: linear-gradient(125deg, var(--surface) 0%, var(--surface) 55%, var(--primary-soft) 100%);
     box-shadow: 0 14px 34px rgba(0, 73, 114, 0.1);
+}
+
+.case-code::after {
+    content: '';
+    position: absolute;
+    right: -55px;
+    top: -70px;
+    width: 180px;
+    height: 180px;
+    border: 30px solid rgba(0, 103, 158, 0.06);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .case-code__intro {
@@ -70,13 +84,45 @@
     height: 25px;
 }
 
-.case-code__eyebrow {
-    color: var(--accent);
+.case-code__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    color: var(--primary-dark);
+    background: var(--primary-soft);
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: .04em;
     text-transform: uppercase;
 }
+
+.case-code__live i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #16a36a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 106, .14);
+    animation: sala-pulso 1.8s ease-in-out infinite;
+}
+
+@keyframes sala-pulso { 50% { box-shadow: 0 0 0 7px rgba(22, 163, 106, 0); } }
+
+.case-code__steps {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.case-code__steps li { display: flex; align-items: center; gap: 7px; min-width: 0; color: var(--muted); font-size: 11px; }
+.case-code__steps span, .case-code__field label span { display: inline-grid; place-items: center; flex: 0 0 auto; width: 23px; height: 23px; border-radius: 50%; color: var(--primary); background: var(--primary-soft); font-size: 11px; font-weight: 800; }
+.case-code__steps strong { overflow-wrap: anywhere; }
 
 .case-code__intro h2 {
     margin: 4px 0 6px;
@@ -105,6 +151,8 @@
     min-width: 0;
     gap: 8px;
 }
+
+.case-code__field label { display: flex; align-items: center; gap: 7px; }
 
 .case-code label,
 .filter-bar label,
@@ -145,14 +193,19 @@
 }
 
 .case-code #caseCode {
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
 }
 
 .case-code__hint {
     font-size: 12px;
 }
+
+.case-code__footer { display: flex; flex-direction: column; gap: 7px; }
+.case-code__ready { margin: 0; color: var(--muted); font-size: 12px; font-weight: 700; }
+.case-code__ready.is-ready { color: #08764c; }
 
 .case-code button,
 .clear-filters,
@@ -188,8 +241,7 @@
 }
 
 .case-code__submit {
-    width: min(100%, 220px);
-    justify-self: end;
+    width: 100%;
 }
 
 .case-code button span {
@@ -814,6 +866,8 @@
 .pagina-salas .sala-convite span { font-size: .625rem; color: var(--primary); font-weight: 700; letter-spacing: 1.5px; }
 .pagina-salas .sala-convite strong { font-size: 1.875rem; letter-spacing: 5px; color: var(--primary-dark); font-variant-numeric: tabular-nums; }
 .pagina-salas .sala-convite button { border: 0; background: transparent; color: var(--primary); font-size: .8125rem; font-weight: 600; cursor: pointer; padding: 6px 12px; }
+.pagina-salas .sala-convite__acoes { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+.pagina-salas .sala-convite__acoes button + button { border-left: 1px solid var(--border-strong); }
 .pagina-salas .sala-acoes { display: flex; gap: 8px; flex-wrap: wrap; }
 .pagina-salas .sala-acoes .btn--primary { flex: 1; }
 .pagina-salas .sala-acoes-secundarias { display: flex; justify-content: space-between; margin-top: 14px; border-top: 1px solid var(--border); padding-top: 8px; }
@@ -845,6 +899,39 @@
 .pagina-salas .salas-modal--analise h3 { margin: 24px 0 12px; }
 .pagina-salas .salas-modal .salas-indicadores { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 561px) { .pagina-salas .salas-modal .salas-indicadores { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Convites por QR Code. */
+#modal-leitor-qr { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(8, 38, 58, 0.42); }
+#modal-leitor-qr[hidden] { display: none; }
+#modal-leitor-qr .modal-box { padding: 24px; border-radius: var(--radius-sheet); background: var(--surface); box-shadow: 0 24px 60px rgba(8, 38, 58, 0.24); }
+.qr-modal { text-align: center; }
+.qr-modal .salas-lista-cabecalho { text-align: left; }
+.qr-modal__codigo { width: 244px; min-height: 244px; display: grid; place-items: center; margin: 22px auto 12px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; }
+.qr-modal__codigo canvas, .qr-modal__codigo img { display: block; max-width: 100%; height: auto; }
+.qr-modal__texto { display: block; color: var(--primary-dark); font-size: 1.5rem; letter-spacing: 5px; }
+.case-code__actions { display: grid; gap: 10px; }
+.case-code .case-code__scan { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 10px 18px; border: 1px solid var(--primary); border-radius: var(--radius); background: var(--surface); color: var(--primary); font: inherit; font-weight: 700; box-shadow: none; cursor: pointer; }
+.case-code .case-code__scan:hover { color: #fff; background: var(--primary); }
+.case-code__scan svg { width: 20px; height: 20px; }
+.case-code.is-ready .case-code__submit { background: #08764c; box-shadow: 0 7px 18px rgba(8, 118, 76, .2); }
+.qr-reader { width: min(100%, 560px); max-height: 90dvh; overflow-y: auto; }
+.qr-reader__cabecalho { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.qr-reader__cabecalho h2 { margin: 5px 0 0; }
+.qr-reader > p { color: var(--muted); }
+.qr-reader__camera { min-height: 260px; display: grid; place-items: center; overflow: hidden; margin: 18px 0; border: 1px solid var(--border); border-radius: var(--radius); background: #0c1724; }
+.qr-reader__camera video { width: 100%; max-height: 420px; object-fit: cover; }
+.qr-reader__camera p { grid-area: 1 / 1; max-width: 34ch; padding: 24px; color: #fff; text-align: center; }
+.qr-reader__camera video[srcObject] + canvas + p { pointer-events: none; }
+.qr-reader__actions { display: grid; gap: 10px; }
+.qr-reader__file { position: relative; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.qr-reader__file input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.qr-reader__ajuda { font-size: .8125rem; }
+@media (min-width: 560px) {
+    .case-code__actions, .qr-reader__actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .case-code__footer { flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) { .case-code__live i { animation: none; } }
 
 /* Matérias compartilhadas visualmente com a Área de Estudos. */
 .materias-intro { margin: 0 0 16px; color: var(--muted); font-size: 13px; line-height: 1.5; }

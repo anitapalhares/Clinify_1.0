@@ -5,6 +5,9 @@
     var filtro = document.getElementById('status-sala');
     var modal = document.getElementById('modal-sala');
     var analise = document.getElementById('modal-analise');
+    var modalQr = document.getElementById('modal-qr');
+    var qrSala = document.getElementById('qr-sala');
+    var codigoQr = '';
     var form = document.getElementById('form-sala');
     var codigoEdicao = document.getElementById('codigo-edicao');
     var salaAnalisada;
@@ -23,7 +26,7 @@
         grid.innerHTML = visiveis.map(function (sala) {
             return '<article class="sala-card"><div class="sala-card__topo"><span class="sala-status sala-status--' + sala.status + '">' + (sala.status === 'aberta' ? '● Aberta para alunos' : '○ Encerrada') + '</span><span class="sala-turma">' + e(sala.turma) + '</span></div>' +
                 '<h3>' + e(sala.nome) + '</h3><p class="sala-cenario">Cefaleia intensa inédita · Clínica Médica</p>' +
-                '<div class="sala-convite"><span>CÓDIGO DA SALA</span><strong>' + e(sala.codigo) + '</strong><button type="button" data-acao="copiar" data-codigo="' + e(sala.codigo) + '" aria-label="Copiar código ' + e(sala.codigo) + '">Copiar código</button></div>' +
+                '<div class="sala-convite"><span>CÓDIGO DA SALA</span><strong>' + e(sala.codigo) + '</strong><div class="sala-convite__acoes"><button type="button" data-acao="copiar" data-codigo="' + e(sala.codigo) + '" aria-label="Copiar código ' + e(sala.codigo) + '">Copiar código</button><button type="button" data-acao="qr" data-codigo="' + e(sala.codigo) + '" aria-label="Gerar QR Code da sala ' + e(sala.codigo) + '">Gerar QR Code</button></div></div>' +
                 '<p class="sala-participacao">' + sala.tentativas.length + ' tentativa(s) · ' + concluidas(sala).length + ' concluída(s)</p>' +
                 '<div class="sala-acoes"><button class="btn btn--primary" type="button" data-acao="analisar" data-codigo="' + sala.codigo + '">Analisar sala</button><button class="btn btn--ghost" type="button" data-acao="editar" data-codigo="' + sala.codigo + '">Editar</button></div>' +
                 '<div class="sala-acoes-secundarias"><button type="button" data-acao="status" data-codigo="' + sala.codigo + '">' + (sala.status === 'aberta' ? 'Encerrar sala' : 'Reabrir sala') + '</button><button type="button" data-acao="excluir" data-codigo="' + sala.codigo + '">Excluir</button></div></article>';
@@ -60,12 +63,31 @@
             }).join('') : '<div class="salas-vazio"><h3>Aguardando sua turma</h3><p>Compartilhe o código. As tentativas aparecem aqui quando os alunos entrarem.</p></div>');
         if (analise.hidden) analise.hidden = false;
     }
+    function exibirQr(sala) {
+        if (typeof QRCode === 'undefined') throw new Error('Não foi possível carregar o gerador de QR Code.');
+        codigoQr = sala.codigo;
+        qrSala.innerHTML = '';
+        document.getElementById('qr-sala-codigo').textContent = sala.codigo;
+        new QRCode(qrSala, {text: 'CLINIFY:SALA:' + sala.codigo, width: 220, height: 220, colorDark: '#12355b', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H});
+        modalQr.hidden = false;
+    }
     document.getElementById('nova-sala').addEventListener('click', function () { abrirFormulario(); });
     document.querySelector('[data-criar-sala]').addEventListener('click', function () { abrirFormulario(); });
     document.querySelectorAll('[data-fechar-modal]').forEach(function (botao) {
         botao.addEventListener('click', function () { botao.closest('.modal-overlay').hidden = true; });
     });
-    [modal, analise].forEach(function (alvo) { alvo.addEventListener('click', function (evento) { if (evento.target === alvo) alvo.hidden = true; }); });
+    [modal, analise, modalQr].forEach(function (alvo) { alvo.addEventListener('click', function (evento) { if (evento.target === alvo) alvo.hidden = true; }); });
+    document.getElementById('copiar-qr').addEventListener('click', async function () {
+        try { await navigator.clipboard.writeText(codigoQr); ClinifyUI.mensagem('Código ' + codigoQr + ' copiado!'); }
+        catch (erro) { ClinifyUI.mensagem('Copie o código exibido: ' + codigoQr); }
+    });
+    document.getElementById('baixar-qr').addEventListener('click', function () {
+        var canvas = qrSala.querySelector('canvas');
+        var imagem = qrSala.querySelector('img');
+        var endereco = canvas ? canvas.toDataURL('image/png') : imagem && imagem.src;
+        if (!endereco) { ClinifyUI.mensagem('Aguarde a geração do QR Code.', true); return; }
+        var link = document.createElement('a'); link.href = endereco; link.download = 'clinify-sala-' + codigoQr + '.png'; link.click();
+    });
     form.addEventListener('submit', function (evento) {
         evento.preventDefault();
         if (!form.reportValidity()) return;
@@ -89,6 +111,7 @@
             }
             if (botao.dataset.acao === 'editar') abrirFormulario(sala);
             if (botao.dataset.acao === 'analisar') analisar(codigo);
+            if (botao.dataset.acao === 'qr') exibirQr(sala);
             if (botao.dataset.acao === 'status') {
                 if (sala.status === 'aberta' && !confirm('Encerrar esta sala? Os alunos não poderão entrar ou enviar novas respostas.')) return;
                 ClinifySalas.status(codigo, sala.status === 'aberta' ? 'encerrada' : 'aberta'); renderizar(); ClinifyUI.mensagem('Status da sala atualizado.');

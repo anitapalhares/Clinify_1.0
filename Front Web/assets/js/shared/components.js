@@ -86,13 +86,6 @@
         else { var itemVoltar = document.createElement('li'); itemVoltar.appendChild(voltar); alvo.appendChild(itemVoltar); }
     });
     var principal = document.querySelector('main');
-    if (principal && area) {
-        var notaDemonstracao = document.createElement('p');
-        notaDemonstracao.className = 'aviso-demonstracao';
-        notaDemonstracao.setAttribute('role', 'note');
-        notaDemonstracao.textContent = 'Protótipo acadêmico: dados, contas e resultados exibidos são demonstrativos.';
-        principal.parentNode.insertBefore(notaDemonstracao, principal);
-    }
     if (area === 'estudante' && (pagina === 'home_e.html' || pagina === 'desempenho.html')) {
         var progresso = document.createElement('section');
         progresso.className = 'resumo-progresso';

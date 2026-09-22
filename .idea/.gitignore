@@ -8,3 +8,12 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+__pycache__/
+*.pyc
+Computational Thinking With Python/dados/dados_alunos.json
+Computational Thinking With Python/dados/legado_tentativas.json
+.DS_Store
+build/
+*.exe
+*.obj
+*.o

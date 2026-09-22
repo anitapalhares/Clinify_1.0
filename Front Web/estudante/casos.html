@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Clinify | Simulação Clínica: ambiente educacional Clinify para aprendizagem e prática clínica.">
+    <meta
+      name="description"
+      content="Clinify | Simulação Clínica: ambiente educacional Clinify para aprendizagem e prática clínica."
+    />
 
     <title>Clinify | Simulação Clínica</title>
-    <link rel="icon" type="image/svg+xml" href="../assets/img/clinify.svg">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/clinify.svg" />
 
     <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="../assets/css/estrutura.css" />
@@ -89,29 +92,92 @@
             <form class="case-code" data-code-form>
               <div class="case-code__intro">
                 <span class="case-code__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <rect x="3" y="8" width="18" height="12" rx="2" />
                     <path d="M8 8V6a4 4 0 0 1 8 0v2M8 14h8M8 17h5" />
                   </svg>
                 </span>
                 <div>
-                  <span class="case-code__eyebrow">Convite do professor</span>
-                  <h2>Entrar em uma sala</h2>
-                  <p>Recebeu um código da sua turma? Digite-o aqui para iniciar o caso indicado pelo professor.</p>
+                  <span class="case-code__live"
+                    ><i aria-hidden="true"></i> Sala ao vivo</span
+                  >
+                  <h2>Entre na consulta da sua turma</h2>
                 </div>
               </div>
+
               <div class="case-code__fields">
                 <div class="case-code__field">
-                  <label for="nomeAluno">Seu nome</label>
-                  <input id="nomeAluno" name="nomeAluno" type="text" placeholder="Como quer ser identificado na sala" maxlength="60" required autocomplete="name" />
+                  <label for="nomeAluno"
+                    ><span>1</span> Como devemos chamar você?</label
+                  >
+                  <input
+                    id="nomeAluno"
+                    name="nomeAluno"
+                    type="text"
+                    placeholder="Digite seu nome"
+                    maxlength="60"
+                    required
+                    autocomplete="name"
+                  />
                 </div>
                 <div class="case-code__field">
-                  <label for="caseCode">Código da sala</label>
-                  <input id="caseCode" name="caseCode" type="text" placeholder="Ex.: ABC123" maxlength="12" required autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="case-code-hint" />
+                  <label for="caseCode"><span>2</span> Código da sala</label>
+                  <input
+                    id="caseCode"
+                    name="caseCode"
+                    type="text"
+                    placeholder="ABC123"
+                    minlength="6"
+                    maxlength="12"
+                    required
+                    autocomplete="off"
+                    autocapitalize="characters"
+                    spellcheck="false"
+                    aria-describedby="case-code-hint room-ready"
+                  />
                 </div>
               </div>
-              <button class="case-code__submit" type="submit">Entrar na sala <span aria-hidden="true">→</span></button>
-              <p id="case-code-hint" class="case-code__hint">O código está no convite compartilhado pelo professor.</p>
+              <div class="case-code__actions">
+                <button class="case-code__scan" type="button" data-qr-open>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 14h2v6h-6v-2M16 18h2"
+                    />
+                  </svg>
+                  Ler QR Code
+                </button>
+                <button class="case-code__submit" type="submit">
+                  Entrar e começar <span aria-hidden="true">→</span>
+                </button>
+              </div>
+              <div class="case-code__footer">
+                <p id="case-code-hint" class="case-code__hint">
+                  Você encontra o código de 6 caracteres no convite do
+                  professor.
+                </p>
+                <p
+                  id="room-ready"
+                  class="case-code__ready"
+                  data-room-ready
+                  role="status"
+                  aria-live="polite"
+                >
+                  Preencha os dois campos para continuar.
+                </p>
+              </div>
             </form>
 
             <section
@@ -497,40 +563,75 @@
                   data-ai-close
                   aria-label="Fechar"
                 >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
                     <path d="M5 5l14 14M19 5L5 19" />
                   </svg>
                 </button>
-                <span class="ai-modal__eyebrow">Clinify AI · prática personalizada</span>
+                <span class="ai-modal__eyebrow"
+                  >Clinify AI · prática personalizada</span
+                >
                 <h2 id="ai-modal-title">Crie seu caso clínico</h2>
-                <p class="ai-modal__intro">Descreva o cenário que deseja praticar. A simulação será montada com as suas escolhas.</p>
+                <p class="ai-modal__intro">
+                  Descreva o cenário que deseja praticar. A simulação será
+                  montada com as suas escolhas.
+                </p>
                 <form class="ai-modal__form" data-ai-form>
                   <label for="ai-caracteristicas">
                     Características do caso
-                    <textarea id="ai-caracteristicas" data-ai-characteristics name="caracteristicas" required minlength="20" maxlength="500" rows="4" placeholder="Ex.: pessoa idosa com tontura há dois dias, histórico de quedas e dificuldade para explicar os sintomas"></textarea>
+                    <textarea
+                      id="ai-caracteristicas"
+                      data-ai-characteristics
+                      name="caracteristicas"
+                      required
+                      minlength="20"
+                      maxlength="500"
+                      rows="4"
+                      placeholder="Ex.: pessoa idosa com tontura há dois dias, histórico de quedas e dificuldade para explicar os sintomas"
+                    ></textarea>
                   </label>
                   <div class="ai-modal__choices">
                     <label for="ai-materia">
                       Matéria
-                      <select id="ai-materia" data-ai-specialty name="materia" required>
+                      <select
+                        id="ai-materia"
+                        data-ai-specialty
+                        name="materia"
+                        required
+                      >
                         <option value="cardiologia">Cardiologia</option>
                         <option value="pneumologia">Pneumologia</option>
                         <option value="neurologia" selected>Neurologia</option>
-                        <option value="gastroenterologia">Gastroenterologia</option>
+                        <option value="gastroenterologia">
+                          Gastroenterologia
+                        </option>
                         <option value="endocrinologia">Endocrinologia</option>
                         <option value="histologia">Histologia</option>
                       </select>
                     </label>
                     <label for="ai-dificuldade">
                       Dificuldade
-                      <select id="ai-dificuldade" data-ai-difficulty name="dificuldade" required>
+                      <select
+                        id="ai-dificuldade"
+                        data-ai-difficulty
+                        name="dificuldade"
+                        required
+                      >
                         <option value="facil">Fácil</option>
                         <option value="media" selected>Média</option>
                         <option value="dificil">Difícil</option>
                       </select>
                     </label>
                   </div>
-                  <button class="ai-modal__create" type="submit">Gerar e iniciar caso <span aria-hidden="true">→</span></button>
+                  <button class="ai-modal__create" type="submit">
+                    Gerar e iniciar caso <span aria-hidden="true">→</span>
+                  </button>
                 </form>
               </div>
             </div>
@@ -560,8 +661,7 @@
                 </svg>
               </span>
               <span class="floating-ai__text"
-                ><strong>Clinify AI</strong
-                ><small>Criar meu caso</small></span
+                ><strong>Clinify AI</strong><small>Criar meu caso</small></span
               >
               <span class="floating-ai__arrow" aria-hidden="true">↗</span>
             </button>
@@ -574,7 +674,7 @@
               <div class="footer-brand">
                 <span class="footer-brand__mark">C</span>
                 <span class="footer-brand__text">
-                  <span class="footer-brand__eyebrow">Projeto</span>
+                  <span class="footer-brand__eyebrow">Plataforma</span>
                   <span class="footer-brand__wordmark">Clinify</span>
                 </span>
               </div>
@@ -611,10 +711,56 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="modal-leitor-qr" hidden>
+      <div class="modal-box qr-reader">
+        <div class="qr-reader__cabecalho">
+          <div>
+            <span class="case-code__eyebrow">Convite do professor</span>
+            <h2 id="titulo-leitor-qr">Ler QR Code</h2>
+          </div>
+          <button type="button" class="btn btn--ghost" data-qr-close>
+            Fechar
+          </button>
+        </div>
+        <p>Aponte a câmera para o QR Code exibido pelo professor.</p>
+        <div class="qr-reader__camera">
+          <video
+            data-qr-video
+            playsinline
+            muted
+            aria-label="Visualização da câmera"
+          ></video>
+          <canvas data-qr-canvas hidden></canvas>
+          <p data-qr-status role="status">
+            A câmera será iniciada quando você selecionar o botão abaixo.
+          </p>
+        </div>
+        <div class="qr-reader__actions">
+          <button type="button" class="btn btn--primary" data-qr-camera>
+            Ativar câmera
+          </button>
+          <label class="btn btn--ghost qr-reader__file">
+            Ler imagem
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              data-qr-file
+            />
+          </label>
+        </div>
+        <p class="qr-reader__ajuda">
+          Se a câmera não estiver disponível, selecione uma foto do QR Code ou
+          digite o código da sala.
+        </p>
+      </div>
+    </div>
+
     <script src="../assets/js/shared/components.js"></script>
     <script src="../assets/js/shared/interactions.js"></script>
     <script src="../assets/js/shared/layout.js"></script>
     <script src="../assets/js/shared/rooms.js"></script>
+    <script src="../assets/js/shared/jsQR.js"></script>
     <script src="../assets/js/student/simulation.js"></script>
   </body>
 </html>

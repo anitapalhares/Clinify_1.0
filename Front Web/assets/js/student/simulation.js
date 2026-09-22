@@ -32,6 +32,13 @@
         var counter = document.querySelector('[data-case-counter]');
         var empty = document.querySelector('[data-empty-state]');
         var codeForm = document.querySelector('[data-code-form]');
+        var roomReady = document.querySelector('[data-room-ready]');
+        var qrModal = document.getElementById('modal-leitor-qr');
+        var qrVideo = document.querySelector('[data-qr-video]');
+        var qrCanvas = document.querySelector('[data-qr-canvas]');
+        var qrStatus = document.querySelector('[data-qr-status]');
+        var qrStream = null;
+        var qrFrame = 0;
         var modal = document.querySelector('[data-ai-modal]');
         var openModal = document.querySelector('[data-ai-open]');
         var closeModal = document.querySelector('[data-ai-close]');
@@ -45,6 +52,92 @@
 
         function normalize(text) {
             return (text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function atualizarConvite() {
+            if (!codeForm || !roomReady) return;
+            var nome = codeForm.querySelector('[name="nomeAluno"]');
+            var codigo = codeForm.querySelector('[name="caseCode"]');
+            codigo.value = codigo.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            var pronto = nome.value.trim().length > 1 && codigo.value.length >= 6;
+            roomReady.textContent = pronto ? 'Tudo pronto! Você já pode entrar na sala.' : 'Preencha os dois campos para continuar.';
+            roomReady.classList.toggle('is-ready', pronto);
+            codeForm.classList.toggle('is-ready', pronto);
+        }
+
+        if (codeForm) codeForm.addEventListener('input', atualizarConvite);
+
+        function codigoDoQr(conteudo) {
+            var texto = String(conteudo || '').trim();
+            var convite = texto.match(/^CLINIFY:SALA:([A-Z0-9]{6,12})$/i);
+            if (convite) return convite[1].toUpperCase();
+            try {
+                var url = new URL(texto);
+                var parametro = url.searchParams.get('sala') || url.searchParams.get('codigo');
+                if (parametro) return parametro.trim().toUpperCase();
+            } catch (erro) { /* O conteúdo pode ser apenas o código. */ }
+            return /^[A-Z0-9]{6,12}$/i.test(texto) ? texto.toUpperCase() : '';
+        }
+
+        function pararLeitorQr() {
+            cancelAnimationFrame(qrFrame);
+            qrFrame = 0;
+            if (qrStream) qrStream.getTracks().forEach(function (trilha) { trilha.stop(); });
+            qrStream = null;
+            if (qrVideo) { qrVideo.pause(); qrVideo.srcObject = null; }
+        }
+
+        function aplicarQr(conteudo) {
+            var codigo = codigoDoQr(conteudo);
+            if (!codigo) { qrStatus.textContent = 'Este QR Code não contém um convite válido do Clinify.'; return false; }
+            codeForm.querySelector('[name="caseCode"]').value = codigo;
+            atualizarConvite();
+            pararLeitorQr();
+            qrModal.hidden = true;
+            ClinifyUI.mensagem('Código ' + codigo + ' lido. Informe seu nome para entrar.');
+            codeForm.querySelector('[name="nomeAluno"]').focus();
+            return true;
+        }
+
+        function procurarQr() {
+            if (!qrStream || qrVideo.readyState < 2) { qrFrame = requestAnimationFrame(procurarQr); return; }
+            var contexto = qrCanvas.getContext('2d', {willReadFrequently: true});
+            qrCanvas.width = qrVideo.videoWidth; qrCanvas.height = qrVideo.videoHeight;
+            contexto.drawImage(qrVideo, 0, 0, qrCanvas.width, qrCanvas.height);
+            var pixels = contexto.getImageData(0, 0, qrCanvas.width, qrCanvas.height);
+            var resultado = typeof jsQR === 'function' ? jsQR(pixels.data, pixels.width, pixels.height, {inversionAttempts: 'dontInvert'}) : null;
+            if (!resultado || !aplicarQr(resultado.data)) qrFrame = requestAnimationFrame(procurarQr);
+        }
+
+        if (qrModal) {
+            new MutationObserver(function () { if (qrModal.hidden) pararLeitorQr(); }).observe(qrModal, {attributes: true, attributeFilter: ['hidden']});
+            document.querySelector('[data-qr-open]').addEventListener('click', function () { qrModal.hidden = false; });
+            document.querySelector('[data-qr-close]').addEventListener('click', function () { pararLeitorQr(); qrModal.hidden = true; });
+            qrModal.addEventListener('click', function (event) { if (event.target === qrModal) { pararLeitorQr(); qrModal.hidden = true; } });
+            document.querySelector('[data-qr-camera]').addEventListener('click', async function () {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { qrStatus.textContent = 'A câmera não está disponível. Use a opção Ler imagem.'; return; }
+                try {
+                    pararLeitorQr(); qrStatus.textContent = 'Procurando QR Code…';
+                    qrStream = await navigator.mediaDevices.getUserMedia({video: {facingMode: {ideal: 'environment'}}, audio: false});
+                    qrVideo.srcObject = qrStream; await qrVideo.play(); procurarQr();
+                } catch (erro) { qrStatus.textContent = 'Não foi possível acessar a câmera. Autorize o acesso ou use uma imagem.'; }
+            });
+            document.querySelector('[data-qr-file]').addEventListener('change', function (event) {
+                var arquivo = event.target.files[0];
+                if (!arquivo) return;
+                var imagem = new Image();
+                imagem.onload = function () {
+                    var contexto = qrCanvas.getContext('2d', {willReadFrequently: true});
+                    var limite = 1400; var escala = Math.min(1, limite / Math.max(imagem.width, imagem.height));
+                    qrCanvas.width = Math.round(imagem.width * escala); qrCanvas.height = Math.round(imagem.height * escala);
+                    contexto.drawImage(imagem, 0, 0, qrCanvas.width, qrCanvas.height);
+                    var pixels = contexto.getImageData(0, 0, qrCanvas.width, qrCanvas.height);
+                    var resultado = typeof jsQR === 'function' ? jsQR(pixels.data, pixels.width, pixels.height) : null;
+                    if (!resultado || !aplicarQr(resultado.data)) qrStatus.textContent = 'QR Code não encontrado na imagem. Tente outra foto.';
+                    URL.revokeObjectURL(imagem.src); event.target.value = '';
+                };
+                imagem.src = URL.createObjectURL(arquivo);
+            });
         }
 
         function render() {
@@ -156,7 +249,7 @@
                 area: materias[materia][0],
                 dificuldade: dificuldade,
                 titulo: 'Caso personalizado de ' + materias[materia][0],
-                pessoa: 'Paciente fictício',
+                pessoa: 'Paciente virtual',
                 resumo: descricao,
                 fala: materias[materia][1],
                 objetivo: dificuldades[dificuldade][1],
@@ -274,7 +367,7 @@
             var prontuario = document.querySelector('.record-card');
             var sinais = caso.sinaisVitais || vitaisPadrao(caso.materia);
             prontuario.querySelector('h2').textContent = caso.pessoa;
-            prontuario.querySelectorAll('p')[0].textContent = caso.resumo + ' Este roteiro é fictício e não contém outros dados antes da entrevista.';
+            prontuario.querySelectorAll('p')[0].textContent = caso.resumo + ' As demais informações devem ser obtidas durante a entrevista.';
             prontuario.querySelectorAll('p')[1].textContent = 'Sinais iniciais: PA ' + sinais.pa + ' mmHg, FC ' + sinais.fc + ' bpm, temperatura ' + sinais.temperatura + ' °C e dor ' + sinais.dor + '. Investigue a história e o contexto durante a conversa.';
             var cartaoVitais = document.querySelector('.vital-card');
             cartaoVitais.hidden = false;
@@ -382,7 +475,7 @@
                     addMessage('doctor', text);
                     addMessage('patient', analise.resposta_paciente);
                     addLog(analise.criterios.length ? 'Critérios reconhecidos: ' + analise.criterios.join(', ') + '.' : 'Resposta registrada para reflexão.');
-                    addMessage('ai-feedback', analise.feedback);
+                    if (analise.feedback) addMessage('ai-feedback', analise.feedback);
                     if (input) input.value = '';
                 } catch (erro) { ClinifyUI.mensagem(erro.message, true); }
                 finally { enviando = false; if (enviar && !finalizado) enviar.disabled = false; }

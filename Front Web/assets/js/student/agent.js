@@ -7,7 +7,12 @@
             associados: 'A luz e o barulho pioram muito. Não percebi fraqueza, desmaio ou alteração da fala.',
             intensidade: 'Eu diria que está em 8 de 10 e a dor pulsa na cabeça toda.',
             medicamentos: 'Tomei paracetamol. Melhorou um pouco, mas a dor voltou.',
-            contexto: 'Nunca senti uma dor assim antes e isso está me preocupando.'
+            contexto: 'Nunca senti uma dor assim antes e isso está me preocupando.',
+            contextos: [
+                'Nunca senti uma dor assim antes e isso está me preocupando.',
+                'A dor está atrapalhando meu sono e precisei ficar em um quarto escuro para tentar melhorar.',
+                'O que mais me assusta é ser uma dor nova e continuar piorando mesmo depois do remédio.'
+            ]
         },
         'cardio-dor': {
             inicio: 'Começou hoje, enquanto eu subia uma escada, e melhorou quando parei.',
@@ -89,7 +94,7 @@
         return palavras.some(function (palavra) { return frase.includes(palavra); });
     }
 
-    function responderPaciente(casoId, fala) {
+    function responderPaciente(casoId, fala, numeroResposta) {
         var frase = normalizar(fala);
         var dialogo = DIALOGOS_POR_CASO[casoId] || {
             inicio: 'Percebi os sintomas recentemente e eles ainda estão presentes.',
@@ -104,7 +109,11 @@
             if (contemAlguma(frase, assunto[1])) respostas.push(dialogo[assunto[0]]);
         });
 
-        return respostas.length ? respostas.join(' ') : dialogo.contexto;
+        if (respostas.length) return respostas.join(' ');
+        if (dialogo.contextos && dialogo.contextos.length) {
+            return dialogo.contextos[(numeroResposta - 1) % dialogo.contextos.length];
+        }
+        return dialogo.contexto;
     }
 
     function responder(casoId, fala, tentativa) {
@@ -123,10 +132,6 @@
             }
         });
 
-        if (!mensagens.length) {
-            mensagens.push('Resposta registrada. Detalhe a história, os sinais de alerta e a conduta segura.');
-        }
-
         tentativa.criterios = tentativa.criterios.concat(novos);
         tentativa.pontos = Math.min(100, tentativa.pontos + Math.min(18, novos.length * 9));
         tentativa.respostas += 1;
@@ -135,7 +140,7 @@
             tentativa: tentativa,
             resultado: {
                 feedback: mensagens.join(' '),
-                resposta_paciente: responderPaciente(casoId, fala),
+                resposta_paciente: responderPaciente(casoId, fala, tentativa.respostas),
                 criterios: novos,
                 criterios_total: tentativa.criterios,
                 pontos: tentativa.pontos,

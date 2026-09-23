@@ -360,6 +360,10 @@ Deploy no Vercel
 
 - https://clinifylxp.vercel.app/
 
+Protótipo no Figma
+
+- https://www.figma.com/design/5XBp7dz9bmiCKe95phM3xM/Clinify---prototipo?node-id=115-51&t=rlj9wU2Wilee0FHX-1
+
 ## Uso de Inteligência Artificial
 
 A Inteligência Artificial (IA) foi utilizada como ferramenta de apoio durante o desenvolvimento do projeto, auxiliando na comparação dos requisitos da Sprint 3 com o código, organização dos arquivos e componentes, correção de referências e melhorias nas interações e acessibilidade. A IA também auxiliou na preparação e revisão deste README.

@@ -1,0 +1,62 @@
+{
+  "versao": 1,
+  "gerado_em": "2026-09-23T19:15:44.078Z",
+  "usuario": {
+    "id": "12345678900@gmail.com",
+    "nome": "Estudante Clinify",
+    "email": "12345678900@gmail.com",
+    "perfil": "estudante"
+  },
+  "interacoes": [
+    {
+      "id": "interacao-1790190937232-12242",
+      "tipo": "formulario",
+      "acao": "loginForm",
+      "pagina": "/Front%20Web/clinify-front-web/index.html",
+      "data": "2026-09-23T19:15:37.232Z"
+    },
+    {
+      "id": "interacao-1790190937277-6347",
+      "tipo": "navegacao",
+      "acao": "Clinify | Home",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/home_e.html",
+      "data": "2026-09-23T19:15:37.277Z"
+    },
+    {
+      "id": "interacao-1790190943053-38582",
+      "tipo": "clique",
+      "acao": "Simulação clínica",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/home_e.html",
+      "data": "2026-09-23T19:15:43.053Z"
+    },
+    {
+      "id": "interacao-1790190943097-99936",
+      "tipo": "navegacao",
+      "acao": "Clinify | Simulação Clínica",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/casos.html",
+      "data": "2026-09-23T19:15:43.097Z"
+    },
+    {
+      "id": "interacao-1790190943373-51631",
+      "tipo": "clique",
+      "acao": "Estudos",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/casos.html",
+      "data": "2026-09-23T19:15:43.373Z"
+    },
+    {
+      "id": "interacao-1790190943401-27355",
+      "tipo": "navegacao",
+      "acao": "Clinify | Estudos",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/estudos.html",
+      "data": "2026-09-23T19:15:43.401Z"
+    },
+    {
+      "id": "interacao-1790190944078-35698",
+      "tipo": "clique",
+      "acao": "Salvar dados",
+      "pagina": "/Front%20Web/clinify-front-web/estudante/estudos.html",
+      "data": "2026-09-23T19:15:44.078Z"
+    }
+  ],
+  "atividades": []
+}

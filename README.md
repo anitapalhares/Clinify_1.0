@@ -34,25 +34,109 @@ Funcionalidades implementadas:
 
 ## Integração com o Front Web
 
-1. O JavaScript registra as atividades do estudante no navegador.
-2. O botão **Salvar dados** gera um novo arquivo com data e horário no nome, sem substituir os anteriores.
-3. Em navegadores compatíveis, a pasta `dados` pode ser selecionada para gravação direta. Nos demais, o arquivo é baixado.
-4. O estudante executa o programa Python e escolhe um dos JSONs listados.
-5. O Python apresenta o resumo e encerra.
+O JavaScript registra no navegador as interações, os módulos de estudo e as simulações concluídas pelo estudante. Ao selecionar **Salvar dados**, o site cria um novo arquivo `clinify_dados_DATA_E_HORA.json`. Os arquivos anteriores são preservados.
 
-A transferência do arquivo é manual. A entrega não utiliza API, servidor ou banco de dados.
+O Python procura todos os arquivos `.json` dentro de `Computational Thinking With Python/dados`, permite escolher um deles e apresenta um resumo com:
 
-## Como executar
+- identificação e perfil do usuário;
+- quantidade de interações registradas;
+- módulos de estudo concluídos;
+- simulações concluídas;
+- média das pontuações dos simulados.
 
-Na raiz do projeto, execute:
+A transferência ocorre por arquivo JSON. Não são utilizados API, servidor Python ou banco de dados.
+
+## Como testar passo a passo
+
+### 1. Abra o terminal na raiz do projeto
+
+Os próximos comandos devem ser executados na pasta que contém `Front Web` e `Computational Thinking With Python`.
+
+Para confirmar que está no local correto, execute:
+
+```bash
+ls
+```
+
+As duas pastas devem aparecer na lista.
+
+### 2. Inicie o Front Web
+
+No primeiro terminal, execute:
+
+```bash
+python3 -m http.server 8000 --directory "Front Web/clinify-front-web"
+```
+
+Mantenha esse terminal aberto e acesse no navegador:
+
+<http://localhost:8000/index.html>
+
+### 3. Gere atividades para o arquivo
+
+1. Entre com a conta de estudante.
+2. Abra **Estudos**, responda às questões e finalize um módulo.
+3. Abra **Simulação Clínica**, escolha um caso, converse com o paciente virtual e finalize a simulação.
+4. Use outras áreas do site caso queira registrar mais interações.
+
+Essas informações ficam salvas no navegador até serem exportadas.
+
+### 4. Salve o JSON
+
+1. Na barra lateral, selecione **Salvar dados**.
+2. Quando o navegador pedir uma pasta, escolha `Computational Thinking With Python/dados`.
+3. Confirme que apareceu uma mensagem com o nome do novo arquivo.
+
+Chrome e Edge permitem selecionar a pasta `dados` e gravar diretamente nela. Caso o navegador baixe o JSON em `Downloads`, mova o arquivo manualmente para:
+
+```text
+Computational Thinking With Python/dados/
+```
+
+Cada uso do botão cria um arquivo novo. O nome contém a data e o horário para evitar que uma exportação substitua outra.
+
+### 5. Confirme que o arquivo está na pasta correta
+
+Em outro terminal, ainda na raiz do projeto, execute:
+
+```bash
+ls "Computational Thinking With Python/dados"
+```
+
+Deve aparecer pelo menos um arquivo terminado em `.json`.
+
+### 6. Execute o programa Python
+
+Execute:
 
 ```bash
 python3 "Computational Thinking With Python/main.py"
 ```
 
-O programa mostra todos os arquivos `.json` da pasta `dados`. Digite o número desejado para ler o arquivo ou `0` para sair.
+O programa exibirá uma lista semelhante a esta:
 
-Para testar a integração, conclua uma atividade no Front Web, clique em **Salvar dados**, mantenha o JSON na pasta `dados` e execute o programa Python.
+```text
+Arquivos disponíveis na pasta dados:
+
+1. clinify_dados_2026-09-23T19-15-44-078Z.json
+0. Sair
+```
+
+Digite o número do arquivo e pressione **Enter**. Para encerrar sem abrir um arquivo, digite `0`.
+
+### 7. Confira o resultado
+
+Após a escolha, o Python informa que o arquivo foi lido e mostra o resumo dos dados. Ao terminar, aparece a mensagem `Leitura concluída. Programa encerrado.`
+
+Se o arquivo não for um JSON válido, o programa apresenta o erro e encerra sem alterar ou apagar nenhum dado.
+
+## Problemas comuns
+
+- **Nenhum arquivo encontrado:** confirme que o JSON está dentro de `Computational Thinking With Python/dados` e termina com `.json`.
+- **O arquivo foi para Downloads:** mova-o para a pasta `dados` antes de executar o Python.
+- **O comando `python3` não existe:** confirme que o Python 3 está instalado com `python3 --version`.
+- **Número inválido:** digite exatamente um dos números exibidos pelo programa.
+- **JSON inválido:** exporte novamente pelo botão **Salvar dados** e escolha o arquivo novo.
 
 ## Estrutura
 
@@ -64,6 +148,115 @@ Computational Thinking With Python/
 ```
 
 O arquivo de dados é criado durante a execução e não deve conter informações pessoais reais.
+
+# Edge Computing
+
+O módulo de Edge Computing implementa um motor local de avaliação clínica em C++17. Ele utiliza `cpp-httplib` para o servidor HTTP e `nlohmann/json` para receber e devolver dados em JSON. Um cliente Python permite validar a comunicação entre as duas linguagens.
+
+## Visão geral da arquitetura
+
+```text
+Cliente de teste Python
+          │
+          │ HTTP REST e JSON — porta 8080
+          ▼
+Clinify Edge Engine (C++17)
+├── servidor HTTP local
+├── leitura e criação de JSON
+└── avaliação de critérios clínicos
+    ├── acolhimento
+    ├── anamnese
+    ├── sinais de alerta
+    └── segurança da conduta
+```
+
+O serviço funciona de forma local e independente. O arquivo `cliente_teste.py` demonstra o envio de uma fala clínica para o servidor e a leitura da resposta em JSON.
+
+## Estrutura
+
+```text
+backend/Edge Computing/
+├── CMakeLists.txt
+├── main.cpp
+├── cliente_teste.py
+├── httplib.h
+└── json.hpp
+```
+
+## Rotas disponíveis
+
+### `GET /api/saude`
+
+Verifica se o serviço está em execução.
+
+```json
+{
+  "servico": "Clinify Edge C++",
+  "status": "online",
+  "porta": 8080
+}
+```
+
+### `POST /api/avaliar`
+
+Recebe a fala do estudante e os critérios já alcançados na sessão.
+
+Exemplo de entrada:
+
+```json
+{
+  "fala": "Olá Maria, quando começou essa dor e você teve febre?",
+  "criterios_anteriores": []
+}
+```
+
+Exemplo de resposta:
+
+```json
+{
+  "feedback": "Investigou o histórico e características da queixa. Atenção adequada aos sinais de alerta graves.",
+  "ganho_pontos": 18,
+  "novos_criterios": [
+    "anamnese",
+    "sinais de alerta"
+  ]
+}
+```
+
+Um corpo com JSON inválido recebe o status `400` e uma mensagem de erro.
+
+## Como executar
+
+Pré-requisitos:
+
+- compilador com suporte a C++17;
+- CMake 3.15 ou superior;
+- Python 3 para executar o cliente de teste.
+
+No Windows com MinGW, abra o terminal na raiz do projeto e compile o serviço:
+
+```cmd
+cd "backend\Edge Computing"
+mkdir build
+cd build
+cmake -G "MinGW Makefiles" ..
+cmake --build .
+```
+
+Inicie o servidor no mesmo diretório:
+
+```cmd
+clinify_edge.exe
+```
+
+O serviço ficará disponível em `http://127.0.0.1:8080`. Em outro terminal, execute o cliente Python:
+
+```cmd
+cd "backend\Edge Computing"
+python cliente_teste.py
+```
+
+O script consulta a rota de saúde e envia uma avaliação clínica de exemplo, exibindo no terminal as respostas JSON produzidas pelo servidor C++.
 
 # Front-End Design e Web Development
 
@@ -117,7 +310,7 @@ O paciente virtual utiliza regras e palavras-chave definidas em `assets/js/stude
 Na raiz do projeto, execute:
 
 ```bash
-python3 -m http.server 8000 --directory "Front Web"
+python3 -m http.server 8000 --directory "Front Web/clinify-front-web"
 ```
 
 Acesse:

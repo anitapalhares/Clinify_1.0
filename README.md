@@ -130,24 +130,13 @@ Após a escolha, o Python informa que o arquivo foi lido e mostra o resumo dos d
 
 Se o arquivo não for um JSON válido, o programa apresenta o erro e encerra sem alterar ou apagar nenhum dado.
 
-## Problemas comuns
-
-- **Nenhum arquivo encontrado:** confirme que o JSON está dentro de `Computational Thinking With Python/dados` e termina com `.json`.
-- **O arquivo foi para Downloads:** mova-o para a pasta `dados` antes de executar o Python.
-- **O comando `python3` não existe:** confirme que o Python 3 está instalado com `python3 --version`.
-- **Número inválido:** digite exatamente um dos números exibidos pelo programa.
-- **JSON inválido:** exporte novamente pelo botão **Salvar dados** e escolha o arquivo novo.
-
 ## Estrutura
 
 ```text
 Computational Thinking With Python/
 ├── main.py
-├── dados/
-└── README.md
+└── dados/
 ```
-
-O arquivo de dados é criado durante a execução e não deve conter informações pessoais reais.
 
 # Edge Computing
 

@@ -1,5 +1,3 @@
-/*Header para manipulação de JSON (nlohmann/json)*/
-
 //     __ _____ _____ _____
 //  __|  |   __|     |   | |  JSON for Modern C++
 // |  |  |__   |  |  | | | |  version 3.12.0

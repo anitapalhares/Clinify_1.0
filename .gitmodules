@@ -1,0 +1,3 @@
+[submodule "Front Web"]
+	path = Front Web
+	url = https://github.com/coelhokauap/clinify-front-web.git
